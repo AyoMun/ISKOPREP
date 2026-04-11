@@ -1020,7 +1020,7 @@ function pageHome() {
     '<p style="color:' + subTextColor('math') + ';font-size:16px;line-height:1.8;">Master complex concepts faster with our proven study techniques. Thousands of students have cut their preparation time in half while achieving better scores. Smart practice beats long hours — every time.</p>' +
     '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-accelerate">' +
-    '<!-- <img src="your-image.jpg" alt="Accelerate Learning"> -->' +
+    '<!-- <img src="Accelerate_your_learning.png" alt="Accelerate Learning"> -->' +
     '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
     '</div>' +
     '</div>' +
@@ -1031,7 +1031,7 @@ function pageHome() {
     '<p style="color:' + subTextColor('sci') + ';font-size:16px;line-height:1.8;">Transform test anxiety into unstoppable confidence. Our systematic approach ensures you walk into the PLMAT exam feeling prepared, focused, and ready to excel. Confidence is a skill — and we teach it.</p>' +
     '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-confidence">' +
-    '<!-- <img src="your-image.jpg" alt="Build Confidence"> -->' +
+    '<!-- <img src="Build_lasting_confidence.png" alt="Build Confidence"> -->' +
     '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
     '</div>' +
     '</div>' +
@@ -1042,7 +1042,7 @@ function pageHome() {
     '<p style="color:' + subTextColor('eng') + ';font-size:16px;line-height:1.8;">Watch your progress soar with detailed analytics and personalized insights. Celebrate every milestone as you climb toward your goal. Your improvement is visible, measurable, and motivating — every single day.</p>' +
     '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-victory">' +
-    '<!-- <img src="your-image.jpg" alt="Track Victory"> -->' +
+    '<!-- <img src="Track_every_victories.png" alt="Track Victory"> -->' +
     '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
     '</div>' +
     '</div>' +
@@ -1053,7 +1053,7 @@ function pageHome() {
     '<p style="color:' + subTextColor('log') + ';font-size:16px;line-height:1.8;">Work efficiently with targeted practice that focuses on what matters most. Our intelligent system adapts to your strengths and weaknesses, maximizing every minute of study time. Study smarter. Score higher. Live the dream.</p>' +
     '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-smarter">' +
-    '<!-- <img src="your-image.jpg" alt="Study Smarter"> -->' +
+    '<!-- <img src="Study_smarter.png" alt="Study Smarter"> -->' +
     '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
     '</div>' +
     '</div>' +
