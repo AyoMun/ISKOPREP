@@ -2554,3 +2554,21 @@ button {
     border-radius: 16px;
   }
 }
+
+/* BENEFIT IMAGE STYLING */
+.benefit-img {
+  text-align: center;          /* centers the image inside the card */
+  margin-top: 20px;            /* spacing above the image */
+}
+
+.benefit-img img {
+  max-width: 100%;             /* scales image to fit card width */
+  height: 180px;                /* keeps aspect ratio */
+  border-radius: 8px;          /* optional: rounded corners */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* subtle shadow for depth */
+  transition: transform 0.3s ease; /* smooth hover effect */
+}
+
+.benefit-img img:hover {
+  transform: scale(1.05);      /* slight zoom on hover */
+}
