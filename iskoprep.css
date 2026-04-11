@@ -477,6 +477,39 @@ button {
   margin-top: 6px;
 }
 
+.path-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.path-body {
+  flex: 1;
+}
+
+.path-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.path-title {
+  font-size: 32px;
+  color: #fff;
+}
+
+.path-desc {
+  color: #bbb;
+  font-size: 16px;
+}
+
+.path-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 .benefit-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1955,47 +1988,51 @@ button {
     padding: 2px 7px;
   }
 
-  /* Path cards — stack vertically on mobile to stop button overflow */
+  /* Path section — 2×2 grid on mobile */
+  .path-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
   .path-card {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 14px 14px;
+    align-items: center;
+    text-align: center;
+    padding: 18px 12px 14px;
     gap: 10px;
-    border-radius: 14px;
-    margin-bottom: 10px;
+    border-radius: 16px;
+    margin-bottom: 0;
+    border-left-width: 0 !important;
+    border-top: 4px solid var(--pc, rgba(255,255,255,0.15)) !important;
   }
 
   .path-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    border-radius: 10px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    border-radius: 12px;
+    flex-shrink: 0;
   }
 
-  /* Override inline font-size on path-card headings */
-  .path-card h3 {
-    font-size: 18px !important;
-    margin-bottom: 4px !important;
-  }
-
-  .path-card > div {
+  .path-body {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
   }
 
-  .path-card p {
-    font-size: 12px;
+  .path-title-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
   }
 
-  .path-card .path-stars {
-    font-size: 11px;
-    margin-top: 4px;
-  }
-
-  /* Path card label + title row — allow wrapping */
-  .path-card h3 + span,
-  .path-card [style*="display:flex"] {
-    flex-wrap: wrap;
-    gap: 6px 10px;
+  .path-title {
+    font-size: 16px !important;
+    line-height: 1.2;
   }
 
   .path-label {
@@ -2003,13 +2040,31 @@ button {
     padding: 2px 8px;
   }
 
-  /* Button always full-width at bottom of card */
-  .path-card > .btn-gold {
+  .path-desc {
+    display: none;
+  }
+
+  .path-card .path-stars {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+
+  .path-btn {
     width: 100%;
     justify-content: center;
-    padding: 10px;
-    font-size: 13px;
-    flex-shrink: 0;
+    padding: 9px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+    margin-top: 4px;
+  }
+
+  .path-btn-text {
+    display: inline;
+  }
+
+  .path-card:hover {
+    transform: translateY(-4px);
   }
 
   /* Hero section */
@@ -2135,26 +2190,50 @@ button {
   }
 
   .subject-block {
-    padding: 16px 10px;
-    border-radius: 16px;
+    padding: 12px 8px;
+    border-radius: 14px;
+    align-items: stretch;
   }
 
   .subject-block h3 {
-    font-size: 14px;
-  }
-
-  .diff-btn {
-    padding: 10px 12px;
-    font-size: 12px;
-    border-radius: 10px;
-  }
-
-  .diff-btn .diff-name {
     font-size: 13px;
   }
 
+  /* Subject header label — override inline styles */
+  .subject-block > div:first-child {
+    font-size: 13px !important;
+    padding: 8px 10px !important;
+    margin-bottom: 12px !important;
+    border-radius: 10px !important;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Subject icon inside header — override inline styles */
+  .subject-block > div:first-child > span:first-child {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    font-size: 14px !important;
+    margin-right: 8px !important;
+    border-radius: 7px !important;
+    flex-shrink: 0;
+  }
+
+  .diff-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+    border-radius: 8px;
+    gap: 2px;
+  }
+
+  .diff-btn .diff-name {
+    font-size: 11px;
+  }
+
   .diff-btn .diff-tag {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   /* Mode page — keep 2-col */
