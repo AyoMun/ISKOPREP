@@ -1902,7 +1902,7 @@ function pageLeaderboard() {
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-trophy"></i> LEADERBOARD</h2>' +
     '<p class="sec-sub"><i class="fas fa-ranking-star" style="color:var(--gold);"></i> One row per user, ranked by total points earned from quizzes and mock exams saved in Firebase.</p>' +
     podHTML +
-    '<div style="overflow-x:auto;">' + tableHTML + '</div>' +
+    '<div class="lb-table-wrap" style="overflow-x:auto;">' + tableHTML + '</div>' +
     backBtn(false) +
     '<div class="moto-bar"><i class="fas fa-trophy" style="color:var(--gold);margin-right:8px;"></i>Today\'s hard work is tomorrow\'s top ranking. Your name belongs on this board!</div>' +
     '</div></div>';
