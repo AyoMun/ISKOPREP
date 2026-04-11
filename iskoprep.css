@@ -86,7 +86,7 @@ button {
 }
 
 .logo-box-sm {
-  width: px;
+  width: 36px;
   height: 36px;
   background: transparent;
   border-radius: 8px;
@@ -1783,4 +1783,695 @@ button {
   letter-spacing: 0.5px;
   margin-left: 6px;
   vertical-align: middle;
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤ 900px)
+   Keep 2-col layouts, just tighten spacing
+   ============================================================ */
+@media (max-width: 900px) {
+  .wrap {
+    padding: 0 20px;
+  }
+
+  .sec {
+    padding: 52px 20px;
+  }
+
+  .sec-sm {
+    padding: 32px 20px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero-section {
+    padding: 48px 20px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .mock-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mock-right {
+    position: static;
+    order: -1;
+  }
+
+  .mock-grid-nums {
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  .lb-pod.first {
+    min-width: 160px;
+  }
+
+  .lb-pod.second,
+  .lb-pod.third {
+    min-width: 130px;
+  }
+
+  .badges-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤ 640px)
+   Scale everything down — keep compact, avoid excessive stacking
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Global spacing — tighter but not collapsed */
+  .wrap {
+    padding: 0 12px;
+  }
+
+  .sec {
+    padding: 28px 12px;
+  }
+
+  .sec-sm {
+    padding: 18px 12px;
+  }
+
+  #header {
+    padding: 8px 12px;
+  }
+
+  #footer {
+    padding: 24px 12px 16px;
+  }
+
+  .moto-bar {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  /* Typography — scale down */
+  .sec-title {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .sec-sub {
+    font-size: 13px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  /* Welcome banner — compact */
+  .welcome-banner {
+    padding: 22px 16px;
+    border-radius: 14px;
+  }
+
+  .welcome-banner h1 {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .welcome-banner p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* KEEP 2-column grids — square tile style on mobile */
+  .why-grid,
+  .benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .why-card,
+  .benefit-card {
+    padding: 18px 14px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Hide long description paragraphs — keeps cards square */
+  .why-card p,
+  .benefit-card p {
+    display: none;
+  }
+
+  /* Hide benefit image placeholder on mobile */
+  .benefit-img {
+    display: none;
+  }
+
+  .why-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+  }
+
+  .why-card h3,
+  .benefit-card h3 {
+    font-size: 13px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .why-tags {
+    margin-top: 8px;
+    gap: 4px;
+    justify-content: center;
+  }
+
+  .why-tag {
+    font-size: 9px;
+    padding: 2px 7px;
+  }
+
+  /* Path cards — stack vertically on mobile to stop button overflow */
+  .path-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 14px;
+    gap: 10px;
+    border-radius: 14px;
+    margin-bottom: 10px;
+  }
+
+  .path-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  /* Override inline font-size on path-card headings */
+  .path-card h3 {
+    font-size: 18px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .path-card > div {
+    width: 100%;
+  }
+
+  .path-card p {
+    font-size: 12px;
+  }
+
+  .path-card .path-stars {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  /* Path card label + title row — allow wrapping */
+  .path-card h3 + span,
+  .path-card [style*="display:flex"] {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+
+  .path-label {
+    font-size: 9px;
+    padding: 2px 8px;
+  }
+
+  /* Button always full-width at bottom of card */
+  .path-card > .btn-gold {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  /* Hero section */
+  .hero-section {
+    padding: 24px 12px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Stat grid — keep 2 columns, shrink */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 14px 10px;
+    border-radius: 12px;
+  }
+
+  .stat-card .stat-label {
+    font-size: 11px;
+  }
+
+  .stat-card .stat-num {
+    font-size: 28px;
+  }
+
+  /* Footer — stack to 1 col only at phone size */
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .footer-h {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .footer-col p {
+    font-size: 12px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+
+  /* Quiz page — compact */
+  .quiz-page {
+    padding: 18px 0 0;
+  }
+
+  .quiz-header {
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+
+  .quiz-timer {
+    font-size: 20px;
+  }
+
+  .quiz-counter {
+    font-size: 13px;
+  }
+
+  .quiz-progress-bar {
+    margin-bottom: 20px;
+  }
+
+  .quiz-question {
+    font-size: 15px;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  .quiz-choices {
+    gap: 8px;
+  }
+
+  .choice-btn {
+    padding: 11px 12px;
+    font-size: 13px;
+    border-radius: 10px;
+    gap: 10px;
+  }
+
+  .choice-letter {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+    border-radius: 6px;
+  }
+
+  .quiz-nav {
+    margin-top: 16px;
+    gap: 8px;
+  }
+
+  .tip-box {
+    margin-top: 16px;
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+
+  /* Review page — keep 2-col grid */
+  .review-page {
+    padding: 20px 0 0;
+  }
+
+  .subjects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .subject-block {
+    padding: 16px 10px;
+    border-radius: 16px;
+  }
+
+  .subject-block h3 {
+    font-size: 14px;
+  }
+
+  .diff-btn {
+    padding: 10px 12px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .diff-btn .diff-name {
+    font-size: 13px;
+  }
+
+  .diff-btn .diff-tag {
+    font-size: 10px;
+  }
+
+  /* Mode page — keep 2-col */
+  .mode-page {
+    padding: 24px 0 0;
+  }
+
+  .mode-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 100%;
+  }
+
+  .mode-card {
+    padding: 24px 14px;
+    border-radius: 14px;
+  }
+
+  .mode-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .mode-card h3 {
+    font-size: 14px;
+  }
+
+  .mode-card p {
+    font-size: 12px;
+  }
+
+  /* Results page */
+  .results-page {
+    padding: 20px 0 0;
+  }
+
+  .result-banner {
+    padding: 24px 16px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+  }
+
+  .result-banner h2 {
+    font-size: 18px;
+  }
+
+  .result-score {
+    font-size: 52px;
+    margin: 10px 0;
+  }
+
+  .result-item {
+    padding: 12px 14px;
+    font-size: 13px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+
+  /* Mock exam */
+  .mock-instructions {
+    padding: 20px 0 0;
+  }
+
+  .instr-card {
+    padding: 18px 14px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+  }
+
+  .instr-list li {
+    font-size: 13px;
+    padding: 7px 0;
+  }
+
+  .mock-layout {
+    grid-template-columns: 1fr;
+    padding: 14px 0 0;
+    gap: 12px;
+  }
+
+  .mock-right {
+    position: static;
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .mock-grid-nums {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    margin-bottom: 14px;
+  }
+
+  .num-box {
+    font-size: 11px;
+    border-radius: 6px;
+  }
+
+  .mock-timer-big {
+    font-size: 20px;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  .mock-nav {
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  /* Leaderboard */
+  .lb-page {
+    padding: 20px 0 0;
+  }
+
+  .lb-podium {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .lb-pod {
+    padding: 14px 8px;
+    border-radius: 12px;
+  }
+
+  .lb-pod.first {
+    min-width: 110px;
+    padding-top: 24px;
+  }
+
+  .lb-pod.second,
+  .lb-pod.third {
+    min-width: 90px;
+    margin-bottom: 12px;
+  }
+
+  .pod-rank {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    top: -12px;
+  }
+
+  .pod-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .pod-name {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+
+  .pod-streak {
+    font-size: 10px;
+  }
+
+  .pod-score {
+    font-size: 17px;
+  }
+
+  /* Leaderboard table — scrollable */
+  .lb-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .lb-table {
+    min-width: 460px;
+  }
+
+  .lb-row td {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  /* Progress page */
+  .progress-page {
+    padding: 20px 0 0;
+  }
+
+  .prog-card {
+    padding: 16px 14px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+  }
+
+  /* Badges — keep 2-col but tighter */
+  .badges-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .badge-card {
+    padding: 16px 10px;
+    border-radius: 12px;
+  }
+
+  .badge-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .badge-name {
+    font-size: 12px;
+  }
+
+  .improvement-card {
+    padding: 14px 12px;
+    gap: 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .improvement-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Profile / inner page */
+  .inner-page {
+    padding: 20px 0 0;
+  }
+
+  .ip-header-card {
+    padding: 22px 14px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+  }
+
+  .avatar-lg {
+    width: 72px;
+    height: 72px;
+    font-size: 30px;
+  }
+
+  .settings-item {
+    padding: 12px 14px;
+    gap: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .settings-item-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  /* Back button */
+  .back-area {
+    padding: 16px 0 8px;
+  }
+
+  .back-btn {
+    padding: 10px 18px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  /* Scroll buttons */
+  .scroll-flame-btn {
+    right: 8px;
+    width: 36px;
+    height: 36px;
+  }
+
+  #scroll-up-btn {
+    bottom: 52px;
+  }
+
+  #scroll-down-btn {
+    bottom: 8px;
+  }
+
+  /* Buttons */
+  .btn-gold,
+  .btn-outline {
+    padding: 9px 16px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  /* Login box — already compact, slight padding reduction */
+  .login-box {
+    padding: 24px 18px;
+    border-radius: 16px;
+  }
+
+  .login-flame-img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .login-title {
+    font-size: 32px;
+  }
+
+  .login-logo {
+    margin-bottom: 18px;
+  }
+
+  .login-tabs {
+    margin-bottom: 18px;
+  }
+
+  .login-form {
+    gap: 10px;
+  }
+
+  /* Modal */
+  .modal-box {
+    padding: 28px 16px;
+    border-radius: 16px;
+  }
 }
