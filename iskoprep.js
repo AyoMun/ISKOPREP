@@ -1008,53 +1008,50 @@ function pageHome() {
     '</section>' +
 
     /* BENEFIT BOXES */
+    /* BENEFIT BOXES */
     '<section class="sec">' +
     '<div class="wrap">' +
     '<h2 class="bng sec-title">THE ISKOPREP DIFFERENCE</h2>' +
     '<p class="sec-sub">We didn\'t just build a quiz app. We built a system that transforms how you prepare — and how you perform on exam day.</p>' +
     '<div class="benefit-grid">' +
 
+    // Card 1
     '<div class="benefit-card ' + subClass('math') + ' card">' +
     '<div class="why-icon"><i class="fas fa-rocket"></i></div>' +
     '<h3 class="bng" style="font-size:26px;color:#fff;margin-bottom:12px;">ACCELERATE YOUR LEARNING</h3>' +
     '<p style="color:' + subTextColor('math') + ';font-size:16px;line-height:1.8;">Master complex concepts faster with our proven study techniques. Thousands of students have cut their preparation time in half while achieving better scores. Smart practice beats long hours — every time.</p>' +
-    '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-accelerate">' +
-    '<!-- <img src="Accelerate_your_learning.png" alt="Accelerate Learning"> -->' +
-    '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
+    '<img src="Accelerate_your_learning.png" alt="Accelerate Learning">' +
     '</div>' +
     '</div>' +
 
+    // Card 2
     '<div class="benefit-card ' + subClass('sci') + ' card">' +
     '<div class="why-icon"><i class="fas fa-shield-halved"></i></div>' +
     '<h3 class="bng" style="font-size:26px;color:#fff;margin-bottom:12px;">BUILD LASTING CONFIDENCE</h3>' +
     '<p style="color:' + subTextColor('sci') + ';font-size:16px;line-height:1.8;">Transform test anxiety into unstoppable confidence. Our systematic approach ensures you walk into the PLMAT exam feeling prepared, focused, and ready to excel. Confidence is a skill — and we teach it.</p>' +
-    '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-confidence">' +
-    '<!-- <img src="Build_lasting_confidence.png" alt="Build Confidence"> -->' +
-    '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
+    '<img src="Build_lasting_confidence.png" alt="Build Confidence">' +
     '</div>' +
     '</div>' +
 
+    // Card 3
     '<div class="benefit-card ' + subClass('eng') + ' card">' +
     '<div class="why-icon"><i class="fas fa-medal"></i></div>' +
     '<h3 class="bng" style="font-size:26px;color:#fff;margin-bottom:12px;">TRACK EVERY VICTORY</h3>' +
     '<p style="color:' + subTextColor('eng') + ';font-size:16px;line-height:1.8;">Watch your progress soar with detailed analytics and personalized insights. Celebrate every milestone as you climb toward your goal. Your improvement is visible, measurable, and motivating — every single day.</p>' +
-    '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-victory">' +
-    '<!-- <img src="Track_every_victories.png" alt="Track Victory"> -->' +
-    '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
+    '<img src="Track_every_victories.png" alt="Track Victory">' +
     '</div>' +
     '</div>' +
 
+    // Card 4
     '<div class="benefit-card ' + subClass('log') + ' card">' +
     '<div class="why-icon"><i class="fas fa-lightbulb"></i></div>' +
     '<h3 class="bng" style="font-size:26px;color:#fff;margin-bottom:12px;">STUDY SMARTER, NOT HARDER</h3>' +
     '<p style="color:' + subTextColor('log') + ';font-size:16px;line-height:1.8;">Work efficiently with targeted practice that focuses on what matters most. Our intelligent system adapts to your strengths and weaknesses, maximizing every minute of study time. Study smarter. Score higher. Live the dream.</p>' +
-    '<!-- IMAGE PLACEHOLDER: Replace "your-image.jpg" with your actual filename -->' +
     '<div class="benefit-img" id="img-smarter">' +
-    '<!-- <img src="Study_smarter.png" alt="Study Smarter"> -->' +
-    '<span><i class="fas fa-image" style="font-size:28px;margin-bottom:8px;display:block;"></i>Add image: src="your-image.jpg"</span>' +
+    '<img src="Study_smarter.png" alt="Study Smarter">' +
     '</div>' +
     '</div>' +
 
