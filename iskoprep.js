@@ -948,56 +948,60 @@ function pageHome() {
     '<h2 class="bng sec-title"><i class="fas fa-compass" style="color:var(--gold);margin-right:10px;"></i>CHOOSE YOUR PATH</h2>' +
     '<p class="sec-sub">Every journey starts with a single step. Pick where you want to go today and let IskoPrep guide you the rest of the way.</p>' +
 
-    '<div class="path-card" onclick="goTo(\'review\')" style="border-left:5px solid var(--math-a);">' +
+    '<div class="path-grid">' +
+
+    '<div class="path-card" onclick="goTo(\'review\')" style="border-left:5px solid var(--math-a);--pc:var(--math-a);">' +
     '<div class="path-icon grad-math"><i class="fas fa-book-open"></i></div>' +
-    '<div style="flex:1;">' +
-    '<div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">' +
-    '<h3 class="bng" style="font-size:32px;color:#fff;">START REVIEW</h3>' +
+    '<div class="path-body">' +
+    '<div class="path-title-row">' +
+    '<h3 class="bng path-title">START REVIEW</h3>' +
     '<span class="path-label" style="background:var(--math-a);">STUDY</span>' +
     '</div>' +
-    '<p style="color:#bbb;font-size:16px;"><i class="fas fa-layer-group" style="color:var(--math-a);margin-right:8px;"></i>Practice by subject and difficulty level</p>' +
+    '<p class="path-desc"><i class="fas fa-layer-group" style="color:var(--math-a);margin-right:8px;"></i>Practice by subject and difficulty level</p>' +
     '<div class="path-stars">' + stars(5) + '</div>' +
     '</div>' +
-    '<button class="btn-gold bng"><i class="fas fa-play"></i> START NOW</button>' +
+    '<button class="btn-gold bng path-btn"><i class="fas fa-play"></i> <span class="path-btn-text">START NOW</span></button>' +
     '</div>' +
 
-    '<div class="path-card" onclick="goTo(\'mock-instructions\')" style="border-left:5px solid var(--sci-a);">' +
+    '<div class="path-card" onclick="goTo(\'mock-instructions\')" style="border-left:5px solid var(--sci-a);--pc:var(--sci-a);">' +
     '<div class="path-icon grad-sci"><i class="fas fa-graduation-cap"></i></div>' +
-    '<div style="flex:1;">' +
-    '<div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">' +
-    '<h3 class="bng" style="font-size:32px;color:#fff;">MOCK PLMAT EXAM</h3>' +
+    '<div class="path-body">' +
+    '<div class="path-title-row">' +
+    '<h3 class="bng path-title">MOCK PLMAT EXAM</h3>' +
     '<span class="path-label" style="background:var(--sci-b);">TEST</span>' +
     '</div>' +
-    '<p style="color:#bbb;font-size:16px;"><i class="fas fa-clock" style="color:var(--sci-a);margin-right:8px;"></i>Full simulation — 40 questions, 1 hour 30 minutes</p>' +
+    '<p class="path-desc"><i class="fas fa-clock" style="color:var(--sci-a);margin-right:8px;"></i>Full simulation — 40 questions, 1 hour 30 minutes</p>' +
     '<div class="path-stars">' + stars(5) + '</div>' +
     '</div>' +
-    '<button class="btn-gold bng"><i class="fas fa-play"></i> SIMULATE</button>' +
+    '<button class="btn-gold bng path-btn"><i class="fas fa-play"></i> <span class="path-btn-text">SIMULATE</span></button>' +
     '</div>' +
 
-    '<div class="path-card" onclick="goTo(\'leaderboard\')" style="border-left:5px solid var(--log-a);">' +
+    '<div class="path-card" onclick="goTo(\'leaderboard\')" style="border-left:5px solid var(--log-a);--pc:var(--log-a);">' +
     '<div class="path-icon grad-log"><i class="fas fa-trophy"></i></div>' +
-    '<div style="flex:1;">' +
-    '<div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">' +
-    '<h3 class="bng" style="font-size:32px;color:#fff;">LEADERBOARD</h3>' +
+    '<div class="path-body">' +
+    '<div class="path-title-row">' +
+    '<h3 class="bng path-title">LEADERBOARD</h3>' +
     '<span class="path-label" style="background:var(--log-a);color:#1a0a0a;">COMPETE</span>' +
     '</div>' +
-    '<p style="color:#bbb;font-size:16px;"><i class="fas fa-ranking-star" style="color:var(--log-a);margin-right:8px;"></i>See the top performers and where you rank</p>' +
+    '<p class="path-desc"><i class="fas fa-ranking-star" style="color:var(--log-a);margin-right:8px;"></i>See the top performers and where you rank</p>' +
     '<div class="path-stars">' + stars(5) + '</div>' +
     '</div>' +
-    '<button class="btn-gold bng"><i class="fas fa-eye"></i> VIEW</button>' +
+    '<button class="btn-gold bng path-btn"><i class="fas fa-eye"></i> <span class="path-btn-text">VIEW</span></button>' +
     '</div>' +
 
-    '<div class="path-card" onclick="goTo(\'progress\')" style="border-left:5px solid var(--eng-a);">' +
+    '<div class="path-card" onclick="goTo(\'progress\')" style="border-left:5px solid var(--eng-a);--pc:var(--eng-a);">' +
     '<div class="path-icon grad-eng"><i class="fas fa-chart-line"></i></div>' +
-    '<div style="flex:1;">' +
-    '<div style="display:flex;align-items:center;gap:14px;margin-bottom:8px;">' +
-    '<h3 class="bng" style="font-size:32px;color:#fff;">PROGRESS TRACKER</h3>' +
+    '<div class="path-body">' +
+    '<div class="path-title-row">' +
+    '<h3 class="bng path-title">PROGRESS TRACKER</h3>' +
     '<span class="path-label" style="background:var(--eng-b);">TRACK</span>' +
     '</div>' +
-    '<p style="color:#bbb;font-size:16px;"><i class="fas fa-chart-bar" style="color:var(--eng-a);margin-right:8px;"></i>Monitor your growth and earn achievement badges</p>' +
+    '<p class="path-desc"><i class="fas fa-chart-bar" style="color:var(--eng-a);margin-right:8px;"></i>Monitor your growth and earn achievement badges</p>' +
     '<div class="path-stars">' + stars(5) + '</div>' +
     '</div>' +
-    '<button class="btn-gold bng"><i class="fas fa-arrow-right"></i> CHECK</button>' +
+    '<button class="btn-gold bng path-btn"><i class="fas fa-arrow-right"></i> <span class="path-btn-text">CHECK</span></button>' +
+    '</div>' +
+
     '</div>' +
 
     '</div>' +
