@@ -1325,6 +1325,7 @@ function pageQuiz() {
   navHtml += '</div>';
 
   return '<div class="page quiz-page"><div class="wrap">' +
+    backBtn(true, 'review') +
     '<div class="quiz-header">' +
     '<div>' +
     '<span class="bng" style="font-size:22px;color:#fff;margin-right:8px;">' + q.subject + '</span>' +
@@ -1339,7 +1340,6 @@ function pageQuiz() {
     feedbackHtml +
     navHtml +
     '<div class="tip-box">' + tipForSubject(q.subKey) + '</div>' +
-    backBtn(true, 'review') +
     '</div></div>';
 }
 
@@ -1642,8 +1642,9 @@ function pageQuizResults() {
    PAGE: MOCK EXAM INSTRUCTIONS
    ============================================================ */
 function pageMockInstructions() {
-  return '<div class="page"><div class="wrap">' +
-    '<div class="mock-instructions">' +
+  return '<div class="page" style="padding-top:80px;"><div class="wrap">' +
+    backBtn(false, 'home', true) +
+    '<div class="mock-instructions" style="padding-top:0;">' +
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-graduation-cap"></i> PLMAT SIMULATION TEST</h2>' +
     '<p class="sec-sub">Read the instructions carefully before starting. You can do this — thousands of Iskos before you have sat in this same seat and passed!</p>' +
 
@@ -1675,7 +1676,6 @@ function pageMockInstructions() {
     '</button>' +
     '</div>' +
 
-    backBtn(false) +
     '<div class="moto-bar"><i class="fas fa-graduation-cap" style="color:var(--gold);margin-right:8px;"></i>You\'ve studied hard. Now it\'s time to show what you know. The UP gates are waiting for you — open them with your score!</div>' +
     '</div>' +
     '</div></div>';
@@ -1852,7 +1852,8 @@ function pageMockExam() {
     numGridHtml += '<div class="' + cls + '" onclick="mockGoTo(' + i + ')">' + (i + 1) + '</div>';
   }
 
-  return '<div class="page"><div class="wrap" style="padding-top:40px;">' +
+  return '<div class="page" style="padding-top:80px;"><div class="wrap">' +
+    backBtn(true, 'mock-instructions') +
     '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">' +
     '<h2 class="bng" style="font-size:28px;color:var(--gold);"><i class="fas fa-graduation-cap"></i> MOCK PLMAT EXAM</h2>' +
     '<div style="font-size:15px;color:#bbb;">Question <strong style="color:#fff;">' + (cur + 1) + '</strong> of ' + total + '</div>' +
@@ -1872,7 +1873,6 @@ function pageMockExam() {
     '<div class="tip-box" style="margin-top:24px;">' +
     '<i class="fas fa-lightbulb"></i> Eliminate wrong options first — narrowing to 2 choices doubles your chances of guessing correctly!' +
     '</div>' +
-    backBtn(true, 'mock-instructions') +
     '</div>' +
     '<div class="mock-right">' +
     '<div class="mock-timer-big bng" id="mock-timer-disp">' + fmtTime(state.mock.timeLeft) + '</div>' +
@@ -2131,7 +2131,7 @@ function pageLeaderboard() {
     '<p class="sec-sub"><i class="fas fa-ranking-star" style="color:var(--gold);"></i> One row per user, ranked by total points earned from quizzes and mock exams saved in Firebase.</p>' +
     podHTML +
     '<div class="lb-table-wrap" style="overflow-x:auto;">' + tableHTML + '</div>' +
-    '<div class="moto-bar" style="margin-top:80px;"><i class="fas fa-trophy" style="color:var(--gold);margin-right:8px;"></i>Today\'s hard work is tomorrow\'s top ranking. Your name belongs on this board!</div>' +
+    '<div class="moto-bar"><i class="fas fa-trophy" style="color:var(--gold);margin-right:8px;"></i>Today\'s hard work is tomorrow\'s top ranking. Your name belongs on this board!</div>' +
     '</div></div>';
 }
 
@@ -2239,6 +2239,7 @@ function pageProfile() {
 
   return '<div class="page"><div class="wrap">' +
     '<div class="inner-page">' +
+    backBtn(false, 'home', true) +
     '<div class="ip-header-card grad-math card">' +
     '<div class="avatar-lg"><i class="fas fa-user-graduate"></i></div>' +
     '<h2 class="bng" style="font-size:32px;color:var(--gold);margin-bottom:6px;">' + username.toUpperCase() + '</h2>' +
@@ -2257,7 +2258,6 @@ function pageProfile() {
     '<div class="stat-card card grad-eng"><div style="font-size:26px;margin-bottom:8px;"><i class="fas fa-language"></i></div><div class="bng" style="color:#fff;font-size:16px;">ENGLISH</div><div class="bng" style="color:var(--gold);font-size:28px;margin-top:4px;">' + PROGRESS.eng.pct + '%</div></div>' +
     '<div class="stat-card card grad-log"><div style="font-size:26px;margin-bottom:8px;"><i class="fas fa-brain"></i></div><div class="bng" style="color:#fff;font-size:16px;">LOGIC</div><div class="bng" style="color:var(--gold);font-size:28px;margin-top:4px;">' + PROGRESS.log.pct + '%</div></div>' +
     '</div>' +
-    backBtn(false) +
     '<div style="margin-top:24px;text-align:center;">' +
     '<button class="logout-btn" onclick="showLogoutConfirm()"><i class="fas fa-sign-out-alt"></i> Log Out</button>' +
     '</div>' +
@@ -2278,6 +2278,7 @@ function pageSettings() {
     { icon: 'fa-circle-question', k: 'sci', title: 'Help & Support', desc: 'FAQs, contact support, and feedback form' }
   ];
   var html = '<div class="page"><div class="wrap"><div class="inner-page">';
+  html += backBtn(false, 'home', true);
   html += '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-gear"></i> SETTINGS</h2>';
   html += '<p class="sec-sub">Customize your IskoPrep experience to fit your study style.</p>';
   items.forEach(function (it) {
@@ -2287,7 +2288,6 @@ function pageSettings() {
       '<i class="fas fa-chevron-right" style="margin-left:auto;color:#555;"></i>' +
       '</div>';
   });
-  html += backBtn(false);
   html += '</div></div></div>';
   return html;
 }
@@ -2297,6 +2297,7 @@ function pageSettings() {
    ============================================================ */
 function pageAbout() {
   return '<div class="page"><div class="wrap"><div class="inner-page">' +
+    backBtn(false, 'home', true) +
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-circle-info"></i> ABOUT ISKOPREP</h2>' +
     '<p class="sec-sub">Learn about the platform built to help every Filipino student realize their UP dream.</p>' +
     '<div class="instr-card" style="background:linear-gradient(135deg,#5c1a1a,#8b2222);border:2px solid var(--gold);margin-bottom:28px;">' +
@@ -2317,7 +2318,6 @@ function pageAbout() {
     '<div class="contact-row"><i class="fab fa-instagram"></i> @iskoprep</div>' +
     '<div class="contact-row"><i class="fab fa-tiktok"></i> @iskoprep.ph</div>' +
     '</div>' +
-    backBtn(false) +
     '<div class="moto-bar"><i class="fas fa-heart" style="color:#e74c3c;margin-right:8px;"></i>IskoPrep is built with love for every Filipino student chasing the UP dream. You are never alone in this journey!</div>' +
     '</div></div></div>';
 }
@@ -2331,7 +2331,7 @@ function backBtn(requireConfirm, fallback, top) {
   var cls = top ? 'back-area-top' : 'back-area';
   return '<div class="' + cls + '">' +
     '<button class="back-btn" onclick="' + onclick + '">' +
-    '<i class="fas fa-arrow-left"></i> Go Back' +
+    '<i class="fas fa-arrow-left"></i>' +
     '</button>' +
     '</div>';
 }
