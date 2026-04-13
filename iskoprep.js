@@ -426,6 +426,8 @@ function closeConfirm() {
 }
 
 /* ---- RENDER ---- */
+var NO_FOOTER_PAGES = ['review', 'choose-mode', 'quiz', 'quiz-results', 'mock-instructions', 'mock-exam', 'mock-results'];
+
 function render() {
   var main = $('main');
   var p = state.page;
@@ -442,6 +444,9 @@ function render() {
   else if (p === 'profile') main.innerHTML = pageProfile();
   else if (p === 'about') main.innerHTML = pageAbout();
   else main.innerHTML = pageHome();
+
+  var footerEl = document.getElementById('footer');
+  if (footerEl) footerEl.style.display = NO_FOOTER_PAGES.indexOf(p) !== -1 ? 'none' : '';
 }
 
 /* ============================================================
@@ -850,6 +855,21 @@ function doRegister() {
 /* --- Log Out ---
    FIREBASE: Replace body with: signOut(auth)
 */
+function showLogoutConfirm() {
+  var modal = document.getElementById('logout-modal');
+  if (modal) modal.style.display = 'flex';
+}
+
+function closeLogoutConfirm() {
+  var modal = document.getElementById('logout-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function confirmLogout() {
+  closeLogoutConfirm();
+  doLogout();
+}
+
 function doLogout() {
   authActionInProgress = false;
   window.fbFunctions.signOut(window.fbAuth).then(function () {
@@ -1061,9 +1081,12 @@ function pageHome() {
 
     /* HERO SECTION */
     '<div class="hero-section">' +
+    '<div class="hero-section-inner">' +
     '<div class="hero-grid">' +
     '<div>' +
-    '<h2 class="bng" style="font-size:34px;color:var(--gold);margin-bottom:28px;"><i class="fas fa-headset"></i> GET IN TOUCH</h2>' +
+    '<div class="contact-section-label"><i class="fas fa-envelope"></i> CONTACT US</div>' +
+    '<h2 class="bng" style="font-size:38px;color:#fff;margin-bottom:6px;"><i class="fas fa-headset" style="color:var(--gold);"></i> GET IN TOUCH</h2>' +
+    '<p style="color:#bbb;font-size:16px;margin-bottom:28px;line-height:1.6;">Have questions about IskoPrep? We\'re here to help you on your PLMAT journey.</p>' +
     '<div class="contact-row"><i class="fas fa-envelope"></i> support@iskoprep.com</div>' +
     '<div class="contact-row"><i class="fas fa-phone"></i> +63 912 345 6789</div>' +
     '<div class="contact-row"><i class="fas fa-map-marker-alt"></i> Diliman, Quezon City, Philippines</div>' +
@@ -1102,6 +1125,7 @@ function pageHome() {
     '<div style="margin-top:24px;padding:28px;background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.25);border-radius:16px;">' +
     '<h4 class="bng" style="color:var(--gold);font-size:20px;margin-bottom:12px;"><i class="fas fa-quote-left"></i> DAILY INSPIRATION</h4>' +
     '<p style="color:#ccc;font-size:15px;line-height:1.7;font-style:italic;">' + motivational() + '</p>' +
+    '</div>' +
     '</div>' +
     '</div>' +
     '</div>' +
@@ -1220,7 +1244,7 @@ function pageChooseMode() {
     '<li>Review your errors after each quiz to learn from them.</li>' +
     '</ul>' +
     '</div>' +
-    backBtn(false) +
+    backBtn(false, 'review') +
     '<div class="moto-bar"><i class="fas fa-fire" style="color:#e85d04;margin-right:8px;"></i>Pressure makes diamonds. Embrace the challenge and show the PLMAT what you\'re made of!</div>' +
     '</div></div>';
 }
@@ -1229,7 +1253,7 @@ function startQuiz(mode) {
   var k = state.quiz.key;
   var q = QUESTIONS[k];
   if (!q) return;
-  state.quiz = { key: k, current: 0, answers: {}, timer: null, timeLeft: q.timer, mode: mode, complete: false, showReview: false, savedResultId: null, resultAudioPlayed: false };
+  state.quiz = { key: k, current: 0, answers: {}, timer: null, timeLeft: q.timer, mode: mode, complete: false, showReview: false, savedResultId: null, resultAudioPlayed: false, checked: false, lastCorrect: false };
   goTo('quiz');
 }
 
@@ -1246,6 +1270,9 @@ function pageQuiz() {
   var letters = ['A', 'B', 'C', 'D'];
   var pct = Math.round((cur / total) * 100);
   var gc = subClass(q.subKey);
+  var checked = state.quiz.checked;
+  var answered = state.quiz.answers[cur] !== undefined;
+
   var timerHtml = '';
   if (state.quiz.mode === 'timed') {
     timerHtml = '<div class="quiz-timer" id="quiz-timer"><i class="fas fa-stopwatch"></i> <span id="timer-disp">' + fmtTime(state.quiz.timeLeft) + '</span></div>';
@@ -1255,15 +1282,36 @@ function pageQuiz() {
 
   var choicesHtml = '';
   item.o.forEach(function (opt, i) {
-    var sel = state.quiz.answers[cur] === i ? ' selected' : '';
-    choicesHtml += '<button class="choice-btn' + sel + '" onclick="selectAnswer(' + i + ')">' +
+    var cls = 'choice-btn';
+    if (checked) {
+      if (i === item.a) cls += ' correct';
+      else if (state.quiz.answers[cur] === i) cls += ' wrong';
+    } else {
+      if (state.quiz.answers[cur] === i) cls += ' selected';
+    }
+    var onclick = checked ? '' : ' onclick="selectAnswer(' + i + ')"';
+    choicesHtml += '<button class="' + cls + '"' + onclick + '>' +
       '<span class="choice-letter">' + letters[i] + '</span>' + opt + '</button>';
   });
 
+  var feedbackHtml = '';
+  if (checked) {
+    var isCorrect = state.quiz.lastCorrect;
+    feedbackHtml = '<div class="quiz-feedback ' + (isCorrect ? 'feedback-correct' : 'feedback-wrong') + '">' +
+      '<i class="fas ' + (isCorrect ? 'fa-check-circle' : 'fa-times-circle') + '" style="margin-right:8px;"></i>' +
+      (isCorrect ? 'YIS GALING!' : 'GOODNESS GRACIOUS! PUSH MO PA') +
+      '</div>';
+  }
+
   var navHtml = '<div class="quiz-nav">';
   if (cur > 0) navHtml += '<button class="btn-outline bng" onclick="quizPrev()"><i class="fas fa-chevron-left"></i> PREVIOUS</button>';
-  if (cur < total - 1) navHtml += '<button class="btn-gold bng" onclick="quizNext()">NEXT <i class="fas fa-chevron-right"></i></button>';
-  else navHtml += '<button class="btn-gold bng" onclick="finishQuiz()"><i class="fas fa-flag-checkered"></i> FINISH EXAM</button>';
+  if (!checked) {
+    var checkDisabled = answered ? '' : ' disabled style="opacity:0.45;cursor:not-allowed;"';
+    navHtml += '<button class="btn-gold bng"' + checkDisabled + ' onclick="quizCheck()"><i class="fas fa-check"></i> CHECK</button>';
+  } else {
+    if (cur < total - 1) navHtml += '<button class="btn-gold bng" onclick="quizNext()">NEXT <i class="fas fa-chevron-right"></i></button>';
+    else navHtml += '<button class="btn-gold bng" onclick="preFinishQuiz()"><i class="fas fa-flag-checkered"></i> FINISH EXAM</button>';
+  }
   navHtml += '</div>';
 
   return '<div class="page quiz-page"><div class="wrap">' +
@@ -1278,6 +1326,7 @@ function pageQuiz() {
     '<div class="quiz-progress-bar"><div class="quiz-progress-fill ' + gc + '" style="width:' + pct + '%;"></div></div>' +
     '<div class="quiz-question"><strong>' + (cur + 1) + '.</strong> ' + item.q + '</div>' +
     '<div class="quiz-choices">' + choicesHtml + '</div>' +
+    feedbackHtml +
     navHtml +
     '<div class="tip-box">' + tipForSubject(q.subKey) + '</div>' +
     backBtn(true, 'review') +
@@ -1286,11 +1335,26 @@ function pageQuiz() {
 }
 
 function selectAnswer(idx) {
+  if (state.quiz.checked) return;
   var cur = state.quiz.current;
   state.quiz.answers[cur] = idx;
-  clearQuizTimer();
   render();
-  if (state.quiz.mode === 'timed') startQuizTimer();
+}
+
+function quizCheck() {
+  if (state.quiz.checked) return;
+  var k = state.quiz.key;
+  var q = QUESTIONS[k];
+  var cur = state.quiz.current;
+  var item = q.q[cur];
+  var answered = state.quiz.answers[cur] !== undefined;
+  if (!answered) return;
+  var isCorrect = state.quiz.answers[cur] === item.a;
+  state.quiz.checked = true;
+  state.quiz.lastCorrect = isCorrect;
+  if (state.quiz.mode === 'timed') clearQuizTimer();
+  playAnswerAudio(isCorrect);
+  render();
 }
 
 function quizNext() {
@@ -1298,6 +1362,8 @@ function quizNext() {
   if (state.quiz.current < q.q.length - 1) {
     state.quiz.current++;
     state.quiz.timeLeft = q.timer;
+    state.quiz.checked = false;
+    state.quiz.lastCorrect = false;
     clearQuizTimer();
     render();
     if (state.quiz.mode === 'timed') startQuizTimer();
@@ -1309,16 +1375,52 @@ function quizPrev() {
   if (state.quiz.current > 0) {
     state.quiz.current--;
     state.quiz.timeLeft = q.timer;
+    state.quiz.checked = false;
+    state.quiz.lastCorrect = false;
     clearQuizTimer();
     render();
     if (state.quiz.mode === 'timed') startQuizTimer();
   }
 }
 
-function finishQuiz() {
+function preFinishQuiz() {
   clearQuizTimer();
   state.quiz.complete = true;
-  goTo('quiz-results');
+
+  var k = state.quiz.key;
+  var q = QUESTIONS[k];
+  var total = q.q.length;
+  var correct = 0;
+  q.q.forEach(function (item, i) {
+    if (state.quiz.answers[i] === item.a) correct++;
+  });
+  var subKey = k.split('_')[0];
+
+  var futureCorrect = (PROGRESS[subKey].correct || 0) + correct;
+  var futureTotal = (PROGRESS[subKey].total || 0) + total;
+  var futurePct = futureTotal ? Math.round((futureCorrect / futureTotal) * 100) : 0;
+
+  var badgesToShow = [];
+  if (state.user.loggedIn && correct > 0 && !BADGES[0].earned) {
+    badgesToShow.push(BADGES[0]);
+  }
+  var badgeIndexMap = { math: 2, sci: 3, eng: 4, log: 5 };
+  var badgeIndex = badgeIndexMap[subKey];
+  if (badgeIndex !== undefined && futurePct >= 85 && !BADGES[badgeIndex].earned) {
+    badgesToShow.push(BADGES[badgeIndex]);
+  }
+
+  if (badgesToShow.length > 0) {
+    showBadgePopup(badgesToShow[0], function () {
+      goTo('quiz-results');
+    });
+  } else {
+    goTo('quiz-results');
+  }
+}
+
+function finishQuiz() {
+  preFinishQuiz();
 }
 
 /* ---- QUIZ TIMER ---- */
@@ -1584,6 +1686,111 @@ function awardBadge(badgeIndex) {
   }
 }
 
+function showBadgePopup(badge, onContinue) {
+  var existing = document.getElementById('badge-popup-overlay');
+  if (existing) existing.remove();
+
+  playBadgeAudio();
+
+  var overlay = document.createElement('div');
+  overlay.id = 'badge-popup-overlay';
+  overlay.innerHTML =
+    '<div class="badge-popup-box">' +
+    '<div class="badge-popup-unlocked"><i class="fas fa-lock-open"></i> BADGE UNLOCKED</div>' +
+    '<div class="badge-popup-icon ' + subClass(badge.subKey) + '">' +
+    '<i class="fas ' + badge.icon + '"></i>' +
+    '</div>' +
+    '<h2 class="bng badge-popup-title">CONGRATULATIONS!</h2>' +
+    '<h3 class="bng badge-popup-name">' + badge.name + '</h3>' +
+    '<p class="badge-popup-desc">You earned a new badge! Your hard work and dedication is paying off. Keep pushing, Isko!</p>' +
+    '<button class="btn-gold bng badge-popup-btn" onclick="closeBadgePopup()"><i class="fas fa-star"></i> AWESOME!</button>' +
+    '</div>';
+
+  document.body.appendChild(overlay);
+  window._badgePopupCallback = onContinue;
+}
+
+function closeBadgePopup() {
+  var overlay = document.getElementById('badge-popup-overlay');
+  if (overlay) {
+    overlay.style.animation = 'badgeFadeIn 0.25s ease reverse';
+    setTimeout(function () {
+      if (overlay.parentNode) overlay.remove();
+      if (window._badgePopupCallback) {
+        var cb = window._badgePopupCallback;
+        window._badgePopupCallback = null;
+        cb();
+      }
+    }, 220);
+  }
+}
+
+function playBadgeAudio() {
+  if (!uiAudioUnlocked) return;
+  if (!uiAudioContext && (window.AudioContext || window.webkitAudioContext)) {
+    uiAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (!uiAudioContext) return;
+  var now = uiAudioContext.currentTime;
+  var notes = [523, 659, 784, 1047];
+  notes.forEach(function (freq, i) {
+    var t = now + i * 0.14;
+    var osc = uiAudioContext.createOscillator();
+    var gain = uiAudioContext.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(freq, t);
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.18, t + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
+    osc.connect(gain);
+    gain.connect(uiAudioContext.destination);
+    osc.start(t);
+    osc.stop(t + 0.2);
+  });
+}
+
+function playAnswerAudio(isCorrect) {
+  if (!uiAudioUnlocked) return;
+  if (!uiAudioContext && (window.AudioContext || window.webkitAudioContext)) {
+    uiAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (!uiAudioContext) return;
+  var now = uiAudioContext.currentTime;
+  if (isCorrect) {
+    var notes = [659, 784];
+    notes.forEach(function (freq, i) {
+      var t = now + i * 0.1;
+      var osc = uiAudioContext.createOscillator();
+      var gain = uiAudioContext.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.14, t + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
+      osc.connect(gain);
+      gain.connect(uiAudioContext.destination);
+      osc.start(t);
+      osc.stop(t + 0.16);
+    });
+  } else {
+    var notes2 = [330, 294];
+    notes2.forEach(function (freq, i) {
+      var t = now + i * 0.1;
+      var osc = uiAudioContext.createOscillator();
+      var gain = uiAudioContext.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.12, t + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+      osc.connect(gain);
+      gain.connect(uiAudioContext.destination);
+      osc.start(t);
+      osc.stop(t + 0.14);
+    });
+  }
+}
+
 // CONNECT LEADERBOARD 9A
 function startLeaderboardListener() {
   if (leaderboardUnsubscribe || !firebaseReady()) return;
@@ -1721,7 +1928,14 @@ function confirmFinishMock() {
 function finishMockExam() {
   clearMockTimer();
   state.mock.complete = true;
-  goTo('mock-results');
+
+  if (state.user.loggedIn && !BADGES[6].earned) {
+    showBadgePopup(BADGES[6], function () {
+      goTo('mock-results');
+    });
+  } else {
+    goTo('mock-results');
+  }
 }
 
 /* ---- MOCK TIMER ---- */
@@ -2033,7 +2247,7 @@ function pageProfile() {
     '</div>' +
     backBtn(false) +
     '<div style="margin-top:24px;text-align:center;">' +
-    '<button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Log Out</button>' +
+    '<button class="logout-btn" onclick="showLogoutConfirm()"><i class="fas fa-sign-out-alt"></i> Log Out</button>' +
     '</div>' +
     '</div>' +
     '</div></div>';
