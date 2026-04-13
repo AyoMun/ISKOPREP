@@ -17,14 +17,14 @@
     <link rel="stylesheet" href="iskoprep.css" />
   </head>
 
-  <body>
+  <body class="login-open">
     <!-- ============================================================
        LOGIN SCREEN OVERLAY
        FIREBASE: On DOMContentLoaded, call onAuthStateChanged().
                  If user exists, call hideLogin() and set state.user.
                  If not, call showLogin().
        ============================================================ -->
-    <div id="login-screen" style="display: none">
+    <div id="login-screen" style="display: flex">
       <!-- Background overlay layer — swap src with actual PLM facade image when available -->
       <div class="login-bg-layer"></div>
 
