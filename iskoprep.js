@@ -1032,7 +1032,7 @@ function pageHome() {
     '<section class="sec">' +
     '<div class="wrap">' +
     '<h2 class="bng sec-title">THE ISKOPREP DIFFERENCE</h2>' +
-    '<p class="sec-sub">A special study platform for you, our future PLMAYERS!</p>' +
+    '<p class="sec-sub">We didn\'t just build a quiz app. We built a system that transforms how you prepare — and how you perform on exam day.</p>' +
     '<div class="benefit-grid">' +
 
     // Card 1
@@ -1131,7 +1131,6 @@ function pageHome() {
     '</div>' +
     '</div>' +
 
-    '<div class="moto-bar"><i class="fas fa-heart" style="color:#e74c3c;margin-right:8px;"></i>Every expert was once a beginner. Every Isko started exactly where you are. Keep going — your UP dream is worth every question.</div>' +
     '</div>';
 }
 
@@ -1277,7 +1276,7 @@ function pageQuiz() {
   if (state.quiz.mode === 'timed') {
     timerHtml = '<div class="quiz-timer" id="quiz-timer"><i class="fas fa-stopwatch"></i> <span id="timer-disp">' + fmtTime(state.quiz.timeLeft) + '</span></div>';
   } else {
-    timerHtml = '<div style="color:#888;font-size:14px;"><i class="fas fa-infinity"></i> Practice Mode</div>';
+    timerHtml = '<div class="quiz-timer" style="color:#888;border-color:rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);"><i class="fas fa-infinity"></i> Practice Mode — No Time Limit</div>';
   }
 
   var choicesHtml = '';
@@ -1320,9 +1319,9 @@ function pageQuiz() {
     '<span class="bng" style="font-size:22px;color:#fff;margin-right:8px;">' + q.subject + '</span>' +
     '<span style="color:#bbb;font-size:14px;">— ' + q.lesson + '</span>' +
     '</div>' +
-    timerHtml +
     '<div class="quiz-counter">Question <strong style="color:#fff;">' + (cur + 1) + '</strong> of ' + total + '</div>' +
     '</div>' +
+    timerHtml +
     '<div class="quiz-progress-bar"><div class="quiz-progress-fill ' + gc + '" style="width:' + pct + '%;"></div></div>' +
     '<div class="quiz-question"><strong>' + (cur + 1) + '.</strong> ' + item.q + '</div>' +
     '<div class="quiz-choices">' + choicesHtml + '</div>' +
@@ -1330,7 +1329,6 @@ function pageQuiz() {
     navHtml +
     '<div class="tip-box">' + tipForSubject(q.subKey) + '</div>' +
     backBtn(true, 'review') +
-    '<div class="moto-bar"><i class="fas fa-star" style="color:var(--gold);margin-right:8px;"></i>' + motivational() + '</div>' +
     '</div></div>';
 }
 
@@ -1880,7 +1878,6 @@ function pageMockExam() {
     '</div>' +
     '</div>' +
     '</div>' +
-    '<div class="moto-bar"><i class="fas fa-fire" style="color:#e85d04;margin-right:8px;"></i>You\'re doing great! Pace yourself — you have time. Trust your preparation!</div>' +
     '</div></div>';
 }
 
