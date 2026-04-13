@@ -395,13 +395,25 @@ function motivational() {
 }
 
 /* ---- ROUTING ---- */
+var _homeScrollY = 0;
+
 function goTo(page, data) {
   clearQuizTimer();
   clearMockTimer();
+  if (state.page === 'home') {
+    _homeScrollY = window.scrollY;
+  }
   state.page = page;
   if (data) state.goData = data;
   render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (page === 'home') {
+    var restoreY = _homeScrollY;
+    requestAnimationFrame(function () {
+      window.scrollTo({ top: restoreY, behavior: 'smooth' });
+    });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 /* ---- SIDEBAR ---- */
@@ -1175,6 +1187,7 @@ function pageReview() {
     }
   ];
   var html = '<div class="page review-page"><div class="wrap">';
+  html += backBtn(false, 'home', true);
   html += '<h2 class="bng sec-title"><i class="fas fa-book-open" style="color:var(--gold);margin-right:10px;"></i>START REVIEW</h2>';
   html += '<p class="sec-sub">Choose a subject, then select a difficulty to begin. Each quiz has 10 questions. Study well and trust the process!</p>';
 
@@ -1197,8 +1210,6 @@ function pageReview() {
     html += '</div></div>';
   });
   html += '</div>';
-
-  html += backBtn(false);
   html += '<div class="moto-bar"><i class="fas fa-star" style="color:var(--gold);margin-right:8px;"></i>Start with Easy if you\'re reviewing, or challenge yourself with Hard to push your limits. Either way, every question makes you sharper!</div>';
   html += '</div></div>';
   return html;
@@ -1218,6 +1229,7 @@ function pageChooseMode() {
   if (!q) return pageReview();
   var gc = subClass(q.subKey);
   return '<div class="page mode-page"><div class="wrap">' +
+    backBtn(false, 'review', true) +
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-gamepad"></i> CHOOSE YOUR GAME</h2>' +
     '<p class="sec-sub"><strong style="color:#fff;">' + q.subject + '</strong> — ' + q.lesson + '<br>Pick your mode below. Timed mode mirrors the real PLMAT pressure!</p>' +
     '<div class="mode-grid">' +
@@ -1243,7 +1255,6 @@ function pageChooseMode() {
     '<li>Review your errors after each quiz to learn from them.</li>' +
     '</ul>' +
     '</div>' +
-    backBtn(false, 'review') +
     '<div class="moto-bar"><i class="fas fa-fire" style="color:#e85d04;margin-right:8px;"></i>Pressure makes diamonds. Embrace the challenge and show the PLMAT what you\'re made of!</div>' +
     '</div></div>';
 }
@@ -2033,6 +2044,7 @@ function pageMockResults() {
   });
 
   return '<div class="page results-page"><div class="wrap">' +
+    backBtn(false, 'home', true) +
     '<div class="result-banner grad-sci card">' +
     '<i class="fas fa-graduation-cap" style="font-size:56px;margin-bottom:16px;display:block;"></i>' +
     '<h2 class="bng" style="font-size:36px;color:#fff;margin-bottom:8px;">EXAM COMPLETE</h2>' +
@@ -2063,7 +2075,10 @@ function pageLeaderboard() {
   var podHTML = '';
   if (leaders.length) {
     podHTML = '<div class="lb-podium">';
-    leaders.slice(0, 3).forEach(function (leader, idx) {
+    var top3 = leaders.slice(0, 3);
+    var podOrder = top3.length === 1 ? [0] : top3.length === 2 ? [1, 0] : [1, 0, 2];
+    podOrder.forEach(function (idx) {
+      var leader = top3[idx];
       var rank = idx + 1;
       var subject = leader.subject || 'math';
       var cls = rank === 1 ? 'first' : rank === 2 ? 'second' : 'third';
@@ -2111,12 +2126,12 @@ function pageLeaderboard() {
   tableHTML += leaders.length ? '</table>' : '</table><p style="color:#888;text-align:center;margin-top:18px;">No ranked users yet.</p>';
 
   return '<div class="page lb-page"><div class="wrap">' +
+    backBtn(false, 'home', true) +
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-trophy"></i> LEADERBOARD</h2>' +
     '<p class="sec-sub"><i class="fas fa-ranking-star" style="color:var(--gold);"></i> One row per user, ranked by total points earned from quizzes and mock exams saved in Firebase.</p>' +
     podHTML +
     '<div class="lb-table-wrap" style="overflow-x:auto;">' + tableHTML + '</div>' +
-    backBtn(false) +
-    '<div class="moto-bar"><i class="fas fa-trophy" style="color:var(--gold);margin-right:8px;"></i>Today\'s hard work is tomorrow\'s top ranking. Your name belongs on this board!</div>' +
+    '<div class="moto-bar" style="margin-top:80px;"><i class="fas fa-trophy" style="color:var(--gold);margin-right:8px;"></i>Today\'s hard work is tomorrow\'s top ranking. Your name belongs on this board!</div>' +
     '</div></div>';
 }
 
@@ -2195,6 +2210,7 @@ function pageProgress() {
   });
 
   return '<div class="page progress-page"><div class="wrap">' +
+    backBtn(false, 'home', true) +
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-chart-line"></i> PROGRESS TRACKER</h2>' +
     '<p class="sec-sub">Your growth is measurable. Every session brings you closer to that UP acceptance letter. Keep going, Isko!</p>' +
     summaryHTML +
@@ -2208,7 +2224,6 @@ function pageProgress() {
     '<button class="btn-gold bng" onclick="goTo(\'review\')"><i class="fas fa-book-open"></i> CONTINUE PRACTICING</button>' +
     '<button class="btn-gold bng" onclick="goTo(\'mock-instructions\')"><i class="fas fa-graduation-cap"></i> TAKE MOCK EXAM</button>' +
     '</div>' +
-    backBtn(false) +
     '<div class="moto-bar"><i class="fas fa-chart-line" style="color:var(--sci-a);margin-right:8px;"></i>Progress isn\'t always visible day to day — but look back a month and see how far you\'ve come. You\'re growing, Isko!</div>' +
     '</div></div>';
 }
@@ -2308,12 +2323,13 @@ function pageAbout() {
 }
 
 /* ---- BACK BUTTON HELPER ---- */
-function backBtn(requireConfirm, fallback) {
+function backBtn(requireConfirm, fallback, top) {
   var dest = fallback || 'home';
   var onclick = requireConfirm ?
     'showConfirm(function(){clearQuizTimer();clearMockTimer();goTo(\'' + dest + '\')})' :
     'goTo(\'' + dest + '\')';
-  return '<div class="back-area">' +
+  var cls = top ? 'back-area-top' : 'back-area';
+  return '<div class="' + cls + '">' +
     '<button class="back-btn" onclick="' + onclick + '">' +
     '<i class="fas fa-arrow-left"></i> Go Back' +
     '</button>' +
@@ -2389,6 +2405,7 @@ window.addEventListener('DOMContentLoaded', function () {
             }
             hideLogin();
             startLeaderboardListener();
+            updateLeaderboardEntry();
             render();
             authActionInProgress = false;
           })
