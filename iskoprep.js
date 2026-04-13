@@ -1032,7 +1032,7 @@ function pageHome() {
     '<section class="sec">' +
     '<div class="wrap">' +
     '<h2 class="bng sec-title">THE ISKOPREP DIFFERENCE</h2>' +
-    '<p class="sec-sub">We didn\'t just build a quiz app. We built a system that transforms how you prepare — and how you perform on exam day.</p>' +
+    '<p class="sec-sub">A special study platform for you, our future PLMAYERS!</p>' +
     '<div class="benefit-grid">' +
 
     // Card 1
