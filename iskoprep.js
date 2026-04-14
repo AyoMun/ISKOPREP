@@ -356,9 +356,12 @@ var DEMO_PROGRESS_SIGNATURE = {
 var UI_AUDIO = {
   hoverSrc: '',
   clickSrc: '',
-  resultExcellentSrc: '',
-  resultGoodSrc: '',
-  resultNeedsPracticeSrc: '',
+  resultExcellentSrc: 'high_score.mp3',
+  resultGoodSrc: 'high_score.mp3',
+  resultNeedsPracticeSrc: 'low_score.mp3',
+  badgeSrc: 'badge.mp3',
+  answerCorrectSrc: 'correct_ans.mp3',
+  answerWrongSrc: 'wrong_ans.mp3',
   enabled: true,
   volume: 0.35
 };
@@ -1735,69 +1738,15 @@ function closeBadgePopup() {
 }
 
 function playBadgeAudio() {
-  if (!uiAudioUnlocked) return;
-  if (!uiAudioContext && (window.AudioContext || window.webkitAudioContext)) {
-    uiAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (!uiAudioContext) return;
-  var now = uiAudioContext.currentTime;
-  var notes = [523, 659, 784, 1047];
-  notes.forEach(function (freq, i) {
-    var t = now + i * 0.14;
-    var osc = uiAudioContext.createOscillator();
-    var gain = uiAudioContext.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(freq, t);
-    gain.gain.setValueAtTime(0.0001, t);
-    gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.18, t + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
-    osc.connect(gain);
-    gain.connect(uiAudioContext.destination);
-    osc.start(t);
-    osc.stop(t + 0.2);
-  });
+  if (!UI_AUDIO.enabled || !uiAudioUnlocked || !UI_AUDIO.badgeSrc) return;
+  playAudioFile(UI_AUDIO.badgeSrc);
 }
 
 function playAnswerAudio(isCorrect) {
-  if (!uiAudioUnlocked) return;
-  if (!uiAudioContext && (window.AudioContext || window.webkitAudioContext)) {
-    uiAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (!uiAudioContext) return;
-  var now = uiAudioContext.currentTime;
-  if (isCorrect) {
-    var notes = [659, 784];
-    notes.forEach(function (freq, i) {
-      var t = now + i * 0.1;
-      var osc = uiAudioContext.createOscillator();
-      var gain = uiAudioContext.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.14, t + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
-      osc.connect(gain);
-      gain.connect(uiAudioContext.destination);
-      osc.start(t);
-      osc.stop(t + 0.16);
-    });
-  } else {
-    var notes2 = [330, 294];
-    notes2.forEach(function (freq, i) {
-      var t = now + i * 0.1;
-      var osc = uiAudioContext.createOscillator();
-      var gain = uiAudioContext.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.12, t + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
-      osc.connect(gain);
-      gain.connect(uiAudioContext.destination);
-      osc.start(t);
-      osc.stop(t + 0.14);
-    });
-  }
+  if (!UI_AUDIO.enabled || !uiAudioUnlocked) return;
+  var src = isCorrect ? UI_AUDIO.answerCorrectSrc : UI_AUDIO.answerWrongSrc;
+  if (!src) return;
+  playAudioFile(src);
 }
 
 // CONNECT LEADERBOARD 9A
