@@ -356,9 +356,9 @@ var DEMO_PROGRESS_SIGNATURE = {
 var UI_AUDIO = {
   hoverSrc: '',
   clickSrc: '',
-  resultExcellentSrc: '',
+  resultExcellentSrc: 'high_score.mp3',
   resultGoodSrc: '',
-  resultNeedsPracticeSrc: '',
+  resultNeedsPracticeSrc: 'low_score.mp3',
   enabled: true,
   volume: 0.35
 };
@@ -1759,44 +1759,10 @@ function playBadgeAudio() {
 }
 
 function playAnswerAudio(isCorrect) {
-  if (!uiAudioUnlocked) return;
-  if (!uiAudioContext && (window.AudioContext || window.webkitAudioContext)) {
-    uiAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (!uiAudioContext) return;
-  var now = uiAudioContext.currentTime;
-  if (isCorrect) {
-    var notes = [659, 784];
-    notes.forEach(function (freq, i) {
-      var t = now + i * 0.1;
-      var osc = uiAudioContext.createOscillator();
-      var gain = uiAudioContext.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.14, t + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
-      osc.connect(gain);
-      gain.connect(uiAudioContext.destination);
-      osc.start(t);
-      osc.stop(t + 0.16);
-    });
-  } else {
-    var notes2 = [330, 294];
-    notes2.forEach(function (freq, i) {
-      var t = now + i * 0.1;
-      var osc = uiAudioContext.createOscillator();
-      var gain = uiAudioContext.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.12, t + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
-      osc.connect(gain);
-      gain.connect(uiAudioContext.destination);
-      osc.start(t);
-      osc.stop(t + 0.14);
-    });
+  if (!UI_AUDIO.enabled || !uiAudioUnlocked) return;
+  var src = isCorrect ? UI_AUDIO.answerCorrectSrc : UI_AUDIO.answerWrongSrc;
+  if (src) {
+    playAudioFile(src);
   }
 }
 
