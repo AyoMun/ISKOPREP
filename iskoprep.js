@@ -2364,6 +2364,11 @@ function backBtn(requireConfirm, fallback, top) {
        }
      });
 */
+function hideAuthLoader() {
+  var loader = document.getElementById('auth-loader');
+  if (loader) loader.classList.add('hidden');
+}
+
 window.addEventListener('DOMContentLoaded', function () {
   setupInteractiveAudio();
   if (firebaseReady()) {
@@ -2404,6 +2409,7 @@ window.addEventListener('DOMContentLoaded', function () {
               }).catch(function (err) { console.warn('Could not create user profile', err); });
             }
             hideLogin();
+            hideAuthLoader();
             startLeaderboardListener();
             updateLeaderboardEntry();
             render();
@@ -2412,6 +2418,7 @@ window.addEventListener('DOMContentLoaded', function () {
           .catch(function (err) {
             authActionInProgress = false;
             console.warn('Could not load user profile', err);
+            hideAuthLoader();
             showLoginError('login-error', 'Signed in, but profile data could not be loaded.');
           });
       } else {
@@ -2419,11 +2426,13 @@ window.addEventListener('DOMContentLoaded', function () {
         PROGRESS = copyProgress(AUTH_PROGRESS_DEFAULT);
         setBadgeState([]);
         stopLeaderboardListener();
+        hideAuthLoader();
         showLogin();
         render();
       }
     });
   } else {
+    hideAuthLoader();
     showLoginError('login-error', 'Firebase did not load. Please refresh the page.');
   }
 
