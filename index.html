@@ -340,6 +340,38 @@
       </div>
     </div>
 
+    <!-- MOCK EXAM FINISH MODAL -->
+<div id="mock-finish-modal" style="display: none">
+  <div class="modal-box">
+    <i
+      class="fas fa-graduation-cap"
+      style="
+        font-size: 40px;
+        color: var(--gold);
+        margin-bottom: 16px;
+        display: block;
+      "
+    ></i>
+    <h3
+      class="bng"
+      style="font-size: 24px; color: #fff; margin-bottom: 12px"
+    >
+      FINISH EXAM?
+    </h3>
+    <p style="color: #ccc; margin-bottom: 24px">
+      Are you sure you want to finish the exam?
+    </p>
+    <div style="display: flex; gap: 12px; justify-content: center">
+      <button class="btn-outline bng" onclick="closeMockFinishModal()">
+        <i class="fas fa-arrow-left"></i> Stay
+      </button>
+      <button class="btn-gold bng" id="mock-finish-yes" onclick="finishMockExam()">
+        <i class="fas fa-flag-checkered"></i> Finish
+      </button>
+    </div>
+  </div>
+</div>
+
     <!-- SCROLL BUTTONS -->
     <button
       id="scroll-up-btn"
