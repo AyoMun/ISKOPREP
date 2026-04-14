@@ -1,1 +1,198 @@
-<mxfile host="app.diagrams.net"><diagram name="Page-1" id="1D3UCrN9c0adeVRgNF6o"><mxGraphModel dx="1161" dy="572" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0"><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="2O860KbRrKp0OVgcdXy-2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="290" y="60" width="180" height="80" as="geometry" /></mxCell><mxCell id="2O860KbRrKp0OVgcdXy-3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="290" y="180" width="180" height="80" as="geometry" /></mxCell><mxCell id="2O860KbRrKp0OVgcdXy-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="290" y="300" width="180" height="80" as="geometry" /></mxCell><mxCell id="2O860KbRrKp0OVgcdXy-5" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="290" y="440" width="180" height="80" as="geometry" /></mxCell><mxCell id="2O860KbRrKp0OVgcdXy-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonal=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitDx=0;exitDy=0;entryDx=0;entryDy=0;strokeColor=#000000;" edge="1" parent="1" source="2O860KbRrKp0OVgcdXy-2" target="2O860KbRrKp0OVgcdXy-3"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="2O860KbRrKp0OVgcdXy-7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="290" y="600" width="180" height="80" as="geometry" /><mxCell drawArrow="1" vertex="1" parent="1"><mxGeometry width="0" height="0" as="geometry" /></mxCell></mxCell></root></mxGraphModel></diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2026-04-14" agent="5.0" version="24.4.0" type="device">
+  <diagram name="Auth Flowchart" id="auth-flow">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1700">
+      <root>
+        <mxCell id="0" parent="1"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- START -->
+        <mxCell id="start" value="APP LOAD" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#FFD700;strokeColor=#333;fontSize=14;fontStyle=1" parent="1">
+          <mxGeometry x="450" y="20" width="200" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Check Firebase Auth State -->
+        <mxCell id="checkAuth" value="Check Firebase Auth State" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#E1F5FF;strokeColor=#333;fontSize=12" parent="1">
+          <mxGeometry x="425" y="110" width="250" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- User Found Decision -->
+        <mxCell id="userFound" value="User Logged In?" style="shape=diamond;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#333;fontSize=12" parent="1">
+          <mxGeometry x="450" y="210" width="200" height="100" as="geometry"/>
+        </mxCell>
+        
+        <!-- Load Main App -->
+        <mxCell id="loadApp" value="Load Main App&#10;- Hide Login Screen&#10;- Load User Data from Firestore&#10;- Render Dashboard" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#333;fontSize=11" parent="1">
+          <mxGeometry x="750" y="235" width="250" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Show Login Screen -->
+        <mxCell id="showLogin" value="Show Login Screen&#10;(Sign In / Register Tabs)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#FFCCBC;strokeColor=#333;fontSize=11" parent="1">
+          <mxGeometry x="50" y="235" width="250" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- SIGN IN BRANCH -->
+        <mxCell id="signInTab" value="SIGN IN Tab Selected" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#333;fontSize=11;fontStyle=1" parent="1">
+          <mxGeometry x="50" y="360" width="200" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- Enter Credentials (Sign In) -->
+        <mxCell id="enterCredsSignIn" value="Enter Email &amp; Password" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#FFCCBC;strokeColor=#333;fontSize=11" parent="1">
+          <mxGeometry x="50" y="440" width="200" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- Validate Sign In -->
+        <mxCell id="validateSignIn" value="Validate Input:&#10;- Email/Password filled&#10;- Firebase ready" style="shape=diamond;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="40" y="520" width="220" height="100" as="geometry"/>
+        </mxCell>
+        
+        <!-- Firebase signInWithEmailAndPassword -->
+        <mxCell id="firebaseSignIn" value="Firebase:&#10;signInWithEmailAndPassword&#10;(email, password)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#B3E5FC;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="40" y="650" width="220" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Sign In Success -->
+        <mxCell id="signInSuccess" value="�� Auth Success&#10;onAuthStateChanged() Fires&#10;setUserState()&#10;hideLogin()" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="40" y="770" width="220" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Sign In Error -->
+        <mxCell id="signInError" value="✗ Error:&#10;- Invalid email/password&#10;- User not found&#10;Show Error Message" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="280" y="650" width="220" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- SIGN UP BRANCH -->
+        <mxCell id="signUpTab" value="REGISTER Tab Selected" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#F8BBD0;strokeColor=#333;fontSize=11;fontStyle=1" parent="1">
+          <mxGeometry x="700" y="360" width="200" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- Enter Credentials (Sign Up) -->
+        <mxCell id="enterCredsSignUp" value="Enter Username, Email,&#10;Password, Confirm Password" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#FFCCBC;strokeColor=#333;fontSize=11" parent="1">
+          <mxGeometry x="675" y="440" width="250" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- Validate Sign Up -->
+        <mxCell id="validateSignUp" value="Validate Input:&#10;- All fields filled&#10;- Passwords match&#10;- Password ≥ 6 chars&#10;- Firebase ready" style="shape=diamond;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="650" y="520" width="300" height="100" as="geometry"/>
+        </mxCell>
+        
+        <!-- Firebase createUserWithEmailAndPassword -->
+        <mxCell id="firebaseSignUp" value="Firebase:&#10;createUserWithEmailAndPassword&#10;(email, password)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#B3E5FC;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="650" y="650" width="300" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Update Profile & Create Firestore Doc -->
+        <mxCell id="updateProfile" value="updateProfile(user, {displayName})&#10;&#10;setDoc(users/{uid}):&#10;- username, email, uid&#10;- joinedAt (timestamp)&#10;- streak, stats&#10;- subject, icon&#10;- progress {math, science...}" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#B3E5FC;strokeColor=#333;fontSize=9" parent="1">
+          <mxGeometry x="625" y="760" width="350" height="120" as="geometry"/>
+        </mxCell>
+        
+        <!-- Sign Up Success -->
+        <mxCell id="signUpSuccess" value="✓ Account Created&#10;onAuthStateChanged() Fires&#10;setUserState()&#10;hideLogin()" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="650" y="910" width="300" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- Sign Up Error -->
+        <mxCell id="signUpError" value="✗ Error:&#10;- Email already exists&#10;- Invalid email&#10;- Weak password&#10;Show Error Message" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#333;fontSize=10" parent="1">
+          <mxGeometry x="1000" y="650" width="220" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- APP LOADED -->
+        <mxCell id="appLoaded" value="APP LOADED&#10;Dashboard Ready" style="shape=ellipse;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#333;fontSize=13;fontStyle=1" parent="1">
+          <mxGeometry x="425" y="1050" width="250" height="80" as="geometry"/>
+        </mxCell>
+        
+        <!-- EDGES -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="start" target="checkAuth">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="checkAuth" target="userFound">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e3" value="YES" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;rounded=0;html=1;fontSize=11;fontStyle=1" edge="1" parent="1" source="userFound" target="loadApp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e4" value="NO" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;rounded=0;html=1;fontSize=11;fontStyle=1" edge="1" parent="1" source="userFound" target="showLogin">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Sign In Path -->
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="showLogin" target="signInTab">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="signInTab" target="enterCredsSignIn">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="enterCredsSignIn" target="validateSignIn">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e8" value="VALID" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;fontSize=10;fontStyle=1" edge="1" parent="1" source="validateSignIn" target="firebaseSignIn">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e9" value="INVALID" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;rounded=0;html=1;fontSize=10;fontStyle=1;dashed=1" edge="1" parent="1" source="validateSignIn" target="signInError">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e10" value="SUCCESS" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;fontSize=10;fontStyle=1" edge="1" parent="1" source="firebaseSignIn" target="signInSuccess">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e11" value="ERROR" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;rounded=0;html=1;fontSize=10;fontStyle=1;dashed=1" edge="1" parent="1" source="firebaseSignIn" target="signInError">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Sign Up Path -->
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="showLogin" target="signUpTab">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="signUpTab" target="enterCredsSignUp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="enterCredsSignUp" target="validateSignUp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e15" value="VALID" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;fontSize=10;fontStyle=1" edge="1" parent="1" source="validateSignUp" target="firebaseSignUp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e16" value="INVALID" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;rounded=0;html=1;fontSize=10;fontStyle=1;dashed=1" edge="1" parent="1" source="validateSignUp" target="signUpError">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="firebaseSignUp" target="updateProfile">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e18" value="SUCCESS" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;fontSize=10;fontStyle=1" edge="1" parent="1" source="updateProfile" target="signUpSuccess">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e19" value="ERROR" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;rounded=0;html=1;fontSize=10;fontStyle=1;dashed=1" edge="1" parent="1" source="firebaseSignUp" target="signUpError">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Converge to App Load -->
+        <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.25;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="signInSuccess" target="appLoaded">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="signUpSuccess" target="appLoaded">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;orthogonal=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;html=1;" edge="1" parent="1" source="loadApp" target="appLoaded">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
