@@ -17,20 +17,14 @@
     <link rel="stylesheet" href="iskoprep.css" />
   </head>
 
-  <body>
-    <!-- Auth loading overlay — shown while Firebase checks session -->
-    <div id="auth-loader">
-      <img src="logo.png" alt="IskoPrep" />
-      <div class="auth-loader-spinner"></div>
-    </div>
-
+  <body class="login-open">
     <!-- ============================================================
        LOGIN SCREEN OVERLAY
        FIREBASE: On DOMContentLoaded, call onAuthStateChanged().
                  If user exists, call hideLogin() and set state.user.
                  If not, call showLogin().
        ============================================================ -->
-    <div id="login-screen" style="display: none">
+    <div id="login-screen" style="display: flex">
       <!-- Background overlay layer — swap src with actual PLM facade image when available -->
       <div class="login-bg-layer"></div>
 
@@ -38,7 +32,7 @@
         <div class="login-logo">
           <img src="logo.png" alt="IskoPrep Logo" class="login-flame-img" />
           <h1 class="bng login-title">ISKOPREP</h1>
-          <p class="login-sub">PLMAT review platform </p>
+          <p class="login-sub">PLMAT Review Platform</p>
         </div>
         <div class="login-tabs">
           <button
@@ -222,10 +216,10 @@
             <i class="fas fa-circle-info"></i> ABOUT ISKOPREP
           </div>
           <p>
-            Welcome to IskoPrep — your ultimate companion for conquering the
+            Welcome to IskoPrep! Your ultimate companion for conquering the
             PLMAT. Practice quizzes, simulate the real exam, and track your
             progress across Math, Science, English, and Abstract Reasoning.
-            Designed by PLMAYERS for future PLMAYERS!
+            Designed by PLMAYERS FOR FUTURE PLMAYERS!!.
           </p>
         </div>
         <div class="footer-col">
@@ -257,7 +251,7 @@
           </div>
           <p style="margin-bottom: 16px">
             Ready to begin your PLMAT journey? Start practicing now and achieve
-            your dream of becoming a PLMAYER!
+            your dream of becoming a  PLMAYER!
           </p>
           <button class="btn-gold bng" onclick="goTo('review')">
             <i class="fas fa-arrow-right"></i> START LEARNING
@@ -265,7 +259,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 IskoPrep - PLMAT Review Platform </p>
+        <p>&copy; 2026 IskoPrep - PLMAT Review Platform</p>
         <p class="bng" style="color: var(--gold); margin-top: 4px">
           LABAN, ISKOLAR NG BAYAN!
         </p>
@@ -324,10 +318,10 @@
           class="bng"
           style="font-size: 24px; color: #fff; margin-bottom: 12px"
         >
-          LEAVE QUIZ?
+          LEAVE?
         </h3>
         <p style="color: #ccc; margin-bottom: 24px">
-          Your progress will be lost. Are you sure you want to go back?
+          Your progress will be lost. Are you sure you want to proceed?
         </p>
         <div style="display: flex; gap: 12px; justify-content: center">
           <button class="btn-outline" onclick="closeConfirm()">
