@@ -360,7 +360,7 @@ var UI_AUDIO = {
   resultGoodSrc: '',
   resultNeedsPracticeSrc: '',
   enabled: true,
-  volume: 0.35
+  volume: 1
 };
 var uiAudioContext = null;
 var uiAudioUnlocked = false;
@@ -713,12 +713,9 @@ function playUiAudio(type) {
   if (src) playAudioFile(src);
   else playGeneratedUiTone(type);
 }
-function playScoreResultAudio(pct) {
-  if (!UI_AUDIO.enabled || !uiAudioUnlocked) return;
-  var level = pct >= 80 ? 'excellent' : pct >= 60 ? 'good' : 'needsPractice';
-  var src = level === 'excellent' ? UI_AUDIO.resultExcellentSrc : level === 'good' ? UI_AUDIO.resultGoodSrc : UI_AUDIO.resultNeedsPracticeSrc;
-  if (src) playAudioFile(src);
-  else playGeneratedResultTone(level);
+function playScoreResultAudio(isHighScore) {
+    const audio = new Audio(isHighScore ? 'high_score.mp3' : 'low_score.mp3');
+    audio.play();
 }
 function leaderboardScore(entry) {
   return Number(entry.totalPoints) || Number(entry.totalCorrect) || 0;
@@ -1735,69 +1732,13 @@ function closeBadgePopup() {
 }
 
 function playBadgeAudio() {
-  if (!uiAudioUnlocked) return;
-  if (!uiAudioContext && (window.AudioContext || window.webkitAudioContext)) {
-    uiAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (!uiAudioContext) return;
-  var now = uiAudioContext.currentTime;
-  var notes = [523, 659, 784, 1047];
-  notes.forEach(function (freq, i) {
-    var t = now + i * 0.14;
-    var osc = uiAudioContext.createOscillator();
-    var gain = uiAudioContext.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(freq, t);
-    gain.gain.setValueAtTime(0.0001, t);
-    gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.18, t + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
-    osc.connect(gain);
-    gain.connect(uiAudioContext.destination);
-    osc.start(t);
-    osc.stop(t + 0.2);
-  });
+    const audio = new Audio('badge.mp3');
+    audio.play();
 }
 
 function playAnswerAudio(isCorrect) {
-  if (!uiAudioUnlocked) return;
-  if (!uiAudioContext && (window.AudioContext || window.webkitAudioContext)) {
-    uiAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (!uiAudioContext) return;
-  var now = uiAudioContext.currentTime;
-  if (isCorrect) {
-    var notes = [659, 784];
-    notes.forEach(function (freq, i) {
-      var t = now + i * 0.1;
-      var osc = uiAudioContext.createOscillator();
-      var gain = uiAudioContext.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.14, t + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
-      osc.connect(gain);
-      gain.connect(uiAudioContext.destination);
-      osc.start(t);
-      osc.stop(t + 0.16);
-    });
-  } else {
-    var notes2 = [330, 294];
-    notes2.forEach(function (freq, i) {
-      var t = now + i * 0.1;
-      var osc = uiAudioContext.createOscillator();
-      var gain = uiAudioContext.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.0001, t);
-      gain.gain.exponentialRampToValueAtTime(UI_AUDIO.volume * 0.12, t + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
-      osc.connect(gain);
-      gain.connect(uiAudioContext.destination);
-      osc.start(t);
-      osc.stop(t + 0.14);
-    });
-  }
+    const audio = new Audio(isCorrect ? 'correct_ans.mp3' : 'wrong_ans.mp3');
+    audio.play();
 }
 
 // CONNECT LEADERBOARD 9A
