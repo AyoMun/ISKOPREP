@@ -1868,15 +1868,10 @@ function confirmFinishMock() {
   var answered = Object.keys(state.mock.answers).length;
   var total = MOCK_QUESTIONS.length;
   var left = total - answered;
-  var msg = left > 0 ? 'You have ' + left + ' unanswered question(s). Are you sure you want to finish exam?' : 'You\'ve answered all questions. Ready to finish exam?';
-  
-  // Show mock finish modal
-  $('mock-finish-modal').style.display = 'flex';
-  document.querySelector('#mock-finish-modal .modal-box p').textContent = msg;
-}
-
-function closeMockFinishModal() {
-  $('mock-finish-modal').style.display = 'none';
+  var msg = left > 0 ? 'You have ' + left + ' unanswered question(s). Are you sure you want to finish?' : 'You\'ve answered all questions. Ready to finish?';
+  // Use confirm dialog
+  showConfirm(function () { finishMockExam(); });
+  document.querySelector('.modal-box p').textContent = msg;
 }
 
 function finishMockExam() {
