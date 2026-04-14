@@ -17,14 +17,20 @@
     <link rel="stylesheet" href="iskoprep.css" />
   </head>
 
-  <body class="login-open">
+  <body>
+    <!-- Auth loading overlay — shown while Firebase checks session -->
+    <div id="auth-loader">
+      <img src="logo.png" alt="IskoPrep" />
+      <div class="auth-loader-spinner"></div>
+    </div>
+
     <!-- ============================================================
        LOGIN SCREEN OVERLAY
        FIREBASE: On DOMContentLoaded, call onAuthStateChanged().
                  If user exists, call hideLogin() and set state.user.
                  If not, call showLogin().
        ============================================================ -->
-    <div id="login-screen" style="display: flex">
+    <div id="login-screen" style="display: none">
       <!-- Background overlay layer — swap src with actual PLM facade image when available -->
       <div class="login-bg-layer"></div>
 
