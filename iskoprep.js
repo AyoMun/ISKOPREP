@@ -714,8 +714,87 @@ function playUiAudio(type) {
   else playGeneratedUiTone(type);
 }
 function playScoreResultAudio(isHighScore) {
-    const audio = new Audio(isHighScore ? 'high_score.mp3' : 'low_score.mp3');
+    const audio = new Audio(isHighScore ? 'high_score.mp3' : 'low score.mp3');
     audio.play();
+}
+function playMockScoreAudio(correct) {
+    var src;
+    if (correct >= 31) src = 'score_31_40.mp3';
+    else if (correct >= 21) src = 'score_21_30.mp3';
+    else if (correct >= 11) src = 'score_11_20.mp3';
+    else src = 'score_1_10.mp3';
+    var audio = new Audio(src);
+    audio.play();
+}
+function playNavAudio() {
+    var audio = new Audio('nav_click.mp3');
+    audio.play();
+}
+/* ---- SEARCH ---- */
+var SEARCH_ITEMS = [
+  { label: 'Start Review', desc: 'Practice quizzes by subject and difficulty', icon: 'fa-book-open', action: function() { goTo('review'); } },
+  { label: 'Mock PLMAT Exam', desc: 'Full 40-question timed simulation', icon: 'fa-graduation-cap', action: function() { goTo('mock-instructions'); } },
+  { label: 'Leaderboard', desc: 'See top performers and your rank', icon: 'fa-trophy', action: function() { playNavAudio(); goTo('leaderboard'); } },
+  { label: 'Progress Tracker', desc: 'Monitor growth and earn badges', icon: 'fa-chart-line', action: function() { playNavAudio(); goTo('progress'); } },
+  { label: 'Mathematics', desc: 'Arithmetic, Geometry, Algebra, Statistics', icon: 'fa-square-root-variable', action: function() { goTo('review'); } },
+  { label: 'Mathematics – Easy', desc: 'Arithmetic & Fractions', icon: 'fa-calculator', action: function() { state.quiz = { mode: 'math_easy', subject: 'Mathematics', lesson: 'Arithmetic & Fractions', subKey: 'math', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Mathematics – Moderate', desc: 'Geometry', icon: 'fa-calculator', action: function() { state.quiz = { mode: 'math_moderate', subject: 'Mathematics', lesson: 'Geometry', subKey: 'math', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Mathematics – Hard', desc: 'Algebra', icon: 'fa-calculator', action: function() { state.quiz = { mode: 'math_hard', subject: 'Mathematics', lesson: 'Algebra', subKey: 'math', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Mathematics – Advanced', desc: 'Statistics & Probability', icon: 'fa-calculator', action: function() { state.quiz = { mode: 'math_advanced', subject: 'Mathematics', lesson: 'Statistics & Probability', subKey: 'math', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Science', desc: 'Biology, Chemistry, Physics, Earth Science', icon: 'fa-atom', action: function() { goTo('review'); } },
+  { label: 'Science – Easy', desc: 'Basic Biology', icon: 'fa-atom', action: function() { state.quiz = { mode: 'sci_easy', subject: 'Science', lesson: 'Basic Biology', subKey: 'sci', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Science – Moderate', desc: 'Chemistry', icon: 'fa-atom', action: function() { state.quiz = { mode: 'sci_moderate', subject: 'Science', lesson: 'Chemistry', subKey: 'sci', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Science – Hard', desc: 'Physics', icon: 'fa-atom', action: function() { state.quiz = { mode: 'sci_hard', subject: 'Science', lesson: 'Physics', subKey: 'sci', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Science – Advanced', desc: 'Earth & Environmental Science', icon: 'fa-atom', action: function() { state.quiz = { mode: 'sci_advanced', subject: 'Science', lesson: 'Earth & Environmental Science', subKey: 'sci', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'English', desc: 'Vocabulary, Grammar, Reading, Literature', icon: 'fa-language', action: function() { goTo('review'); } },
+  { label: 'English – Easy', desc: 'Vocabulary & Word Meanings', icon: 'fa-language', action: function() { state.quiz = { mode: 'eng_easy', subject: 'English', lesson: 'Vocabulary & Word Meanings', subKey: 'eng', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'English – Moderate', desc: 'Grammar & Sentence Completion', icon: 'fa-language', action: function() { state.quiz = { mode: 'eng_moderate', subject: 'English', lesson: 'Grammar & Sentence Completion', subKey: 'eng', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'English – Hard', desc: 'Reading Comprehension', icon: 'fa-language', action: function() { state.quiz = { mode: 'eng_hard', subject: 'English', lesson: 'Reading Comprehension', subKey: 'eng', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'English – Advanced', desc: 'Literature & Critical Analysis', icon: 'fa-language', action: function() { state.quiz = { mode: 'eng_advanced', subject: 'English', lesson: 'Literature & Critical Analysis', subKey: 'eng', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Logical Reasoning', desc: 'Analogies, Patterns, Classification, Series', icon: 'fa-brain', action: function() { goTo('review'); } },
+  { label: 'Logical Reasoning – Easy', desc: 'Analogies', icon: 'fa-brain', action: function() { state.quiz = { mode: 'log_easy', subject: 'Logical Reasoning', lesson: 'Analogies', subKey: 'log', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Logical Reasoning – Moderate', desc: 'Pattern Recognition', icon: 'fa-brain', action: function() { state.quiz = { mode: 'log_moderate', subject: 'Logical Reasoning', lesson: 'Pattern Recognition', subKey: 'log', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Logical Reasoning – Hard', desc: 'Classification', icon: 'fa-brain', action: function() { state.quiz = { mode: 'log_hard', subject: 'Logical Reasoning', lesson: 'Classification', subKey: 'log', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } },
+  { label: 'Logical Reasoning – Advanced', desc: 'Number Series & Critical Thinking', icon: 'fa-brain', action: function() { state.quiz = { mode: 'log_advanced', subject: 'Logical Reasoning', lesson: 'Number Series & Critical Thinking', subKey: 'log', current: 0, answers: {}, resultAudioPlayed: false }; goTo('quiz'); } }
+];
+var _searchMatches = [];
+function handleSearch(val) {
+  var box = document.getElementById('search-results-box');
+  if (!box) return;
+  var q = val.trim().toLowerCase();
+  if (!q) { box.style.display = 'none'; _searchMatches = []; return; }
+  _searchMatches = SEARCH_ITEMS.filter(function(item) {
+    return item.label.toLowerCase().indexOf(q) !== -1 || item.desc.toLowerCase().indexOf(q) !== -1;
+  });
+  if (_searchMatches.length === 0) {
+    box.innerHTML = '<div class="search-no-results"><i class="fas fa-search"></i> No results found for "' + val + '"</div>';
+  } else {
+    box.innerHTML = _searchMatches.map(function(item, i) {
+      return '<div class="search-result-item" onclick="doSearch(' + i + ')">' +
+        '<span class="search-result-icon"><i class="fas ' + item.icon + '"></i></span>' +
+        '<div><div class="search-result-label">' + item.label + '</div>' +
+        '<div class="search-result-desc">' + item.desc + '</div></div>' +
+        '</div>';
+    }).join('');
+  }
+  box.style.display = 'block';
+}
+function handleSearchKey(e) {
+  if (e.key === 'Enter' && _searchMatches.length > 0) { doSearch(0); }
+  if (e.key === 'Escape') { closeSearch(); }
+}
+function doSearch(idx) {
+  var item = _searchMatches[idx];
+  if (!item) return;
+  closeSearch();
+  item.action();
+}
+function closeSearch() {
+  var box = document.getElementById('search-results-box');
+  if (box) box.style.display = 'none';
+  var inp = document.getElementById('site-search');
+  if (inp) inp.value = '';
+  _searchMatches = [];
 }
 function leaderboardScore(entry) {
   return Number(entry.totalPoints) || Number(entry.totalCorrect) || 0;
@@ -756,6 +835,11 @@ function setupInteractiveAudio() {
   }, true);
   document.addEventListener('click', function (event) {
     if (isInteractiveAudioTarget(event.target)) playUiAudio('click');
+    var box = document.getElementById('search-results-box');
+    var inp = document.getElementById('site-search');
+    if (box && inp && !box.contains(event.target) && event.target !== inp) {
+      box.style.display = 'none';
+    }
   }, true);
 }
 function stopLeaderboardListener() {
@@ -1005,7 +1089,7 @@ function pageHome() {
     '<button class="btn-gold bng path-btn"><i class="fas fa-play"></i> <span class="path-btn-text">SIMULATE</span></button>' +
     '</div>' +
 
-    '<div class="path-card" onclick="goTo(\'leaderboard\')" style="border-left:5px solid var(--log-a);--pc:var(--log-a);">' +
+    '<div class="path-card" onclick="playNavAudio();goTo(\'leaderboard\')" style="border-left:5px solid var(--log-a);--pc:var(--log-a);">' +
     '<div class="path-icon grad-log"><i class="fas fa-trophy"></i></div>' +
     '<div class="path-body">' +
     '<div class="path-title-row">' +
@@ -1018,7 +1102,7 @@ function pageHome() {
     '<button class="btn-gold bng path-btn"><i class="fas fa-eye"></i> <span class="path-btn-text">VIEW</span></button>' +
     '</div>' +
 
-    '<div class="path-card" onclick="goTo(\'progress\')" style="border-left:5px solid var(--eng-a);--pc:var(--eng-a);">' +
+    '<div class="path-card" onclick="playNavAudio();goTo(\'progress\')" style="border-left:5px solid var(--eng-a);--pc:var(--eng-a);">' +
     '<div class="path-icon grad-eng"><i class="fas fa-chart-line"></i></div>' +
     '<div class="path-body">' +
     '<div class="path-title-row">' +
@@ -1107,9 +1191,10 @@ function pageHome() {
     '<div class="social-btn" style="background:#000;" title="TikTok"><i class="fab fa-tiktok"></i></div>' +
     '<div class="social-btn" style="background:#1da1f2;" title="Twitter/X"><i class="fab fa-x-twitter"></i></div>' +
     '</div>' +
-    '<div class="search-wrap">' +
+    '<div class="search-wrap" style="position:relative;">' +
     '<i class="fas fa-search"></i>' +
-    '<input type="text" placeholder="Search topics, lessons, or features...">' +
+    '<input id="site-search" type="text" placeholder="Search topics, lessons, or features..." autocomplete="off" oninput="handleSearch(this.value)" onkeydown="handleSearchKey(event)" onfocus="if(this.value)handleSearch(this.value)">' +
+    '<div id="search-results-box" class="search-results-box" style="display:none;"></div>' +
     '</div>' +
     '</div>' +
     '<div>' +
@@ -1945,7 +2030,7 @@ function pageMockResults() {
   // ========== END FIREBASE SECTION ==========
   if (!state.mock.resultAudioPlayed) {
     state.mock.resultAudioPlayed = true;
-    setTimeout(function () { playScoreResultAudio(pct); }, 250);
+    setTimeout(function () { playMockScoreAudio(correct); }, 250);
   }
 
   var msg = pct >= 80 ? 'Outstanding! You are PLMAT-ready. UP awaits you!' :
