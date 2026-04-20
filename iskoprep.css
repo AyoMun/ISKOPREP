@@ -665,6 +665,36 @@ button {
   outline: none;
 }
 
+.search-results-box {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #1e1e2e;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 9999;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  max-height: 320px;
+  overflow-y: auto;
+}
+.search-result-item {
+  padding: 11px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.15s;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: rgba(255,255,255,0.09); }
+.search-result-icon { color: var(--gold); font-size: 15px; width: 20px; text-align: center; flex-shrink: 0; }
+.search-result-label { color: #fff; font-size: 14px; font-weight: bold; }
+.search-result-desc { color: #888; font-size: 12px; margin-top: 2px; }
+.search-no-results { padding: 16px 18px; color: #888; font-size: 14px; text-align: center; }
+
 .stat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
