@@ -1883,7 +1883,7 @@ function pageMockExam() {
   }
 
   return '<div class="page" style="padding-top:80px;"><div class="wrap">' +
-    backBtn(true, 'mock-instructions') +
+    backBtn(true, 'mock-instructions', true) +
     '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">' +
     '<h2 class="bng" style="font-size:28px;color:var(--gold);"><i class="fas fa-graduation-cap"></i> MOCK PLMAT EXAM</h2>' +
     '<div style="font-size:15px;color:#bbb;">Question <strong style="color:#fff;">' + (cur + 1) + '</strong> of ' + total + '</div>' +
@@ -1957,10 +1957,12 @@ function confirmFinishMock() {
   var answered = Object.keys(state.mock.answers).length;
   var total = MOCK_QUESTIONS.length;
   var left = total - answered;
-  var msg = left > 0 ? 'You have ' + left + ' unanswered question(s). Are you sure you want to finish?' : 'You\'ve answered all questions. Ready to finish?';
-  // Use confirm dialog
+  if (left === 0) {
+    finishMockExam();
+    return;
+  }
   showConfirm(function () { finishMockExam(); });
-  document.querySelector('.modal-box p').textContent = msg;
+  document.querySelector('.modal-box p').textContent = 'You have ' + left + ' unanswered question(s). Are you sure you want to finish?';
 }
 
 function finishMockExam() {
