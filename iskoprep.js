@@ -719,15 +719,15 @@ function playScoreResultAudio(isHighScore) {
 }
 function playMockScoreAudio(correct) {
     var src;
-    if (correct >= 31) src = 'score_31_40.mp3';
-    else if (correct >= 21) src = 'score_21_30.mp3';
-    else if (correct >= 11) src = 'score_11_20.mp3';
-    else src = 'score_1_10.mp3';
+    if (correct >= 31) src = '31-40.mp3';
+    else if (correct >= 21) src = '21-30.mp3';
+    else if (correct >= 11) src = '11-20.wav';
+    else src = '1-10.wav';
     var audio = new Audio(src);
     audio.play();
 }
 function playNavAudio() {
-    var audio = new Audio('nav_click.mp3');
+    var audio = new Audio('leader-progress.mp3');
     audio.play();
 }
 /* ---- SEARCH ---- */
