@@ -1955,8 +1955,8 @@ function pageMockExam() {
   var total = qs.length;
   var item = qs[cur];
   var letters = ['A', 'B', 'C', 'D'];
-  var subColors = { math: '#9d4edd', sci: '#2ecc71', eng: '#f7c948', log: '#f4a261' };
-  var subLabel = { math: 'Math', sci: 'Science', eng: 'English', log: 'Logic' };
+  var subColors = { math: '#9d4edd', sci: '#2ecc71', eng: '#f7c948', log: '#f4a261', abs: '#e74c3c' };
+  var subLabel = { math: 'Math', sci: 'Science', eng: 'English', log: 'Logic', abs: 'Abstract' };
 
   var choicesHtml = '';
   item.o.forEach(function (opt, i) {
@@ -1984,8 +1984,11 @@ function pageMockExam() {
     '<div style="padding:6px 12px;border-radius:8px;font-size:13px;display:inline-block;margin-bottom:20px;background:' + subColors[item.subKey] + ';color:#fff;">' +
     '<i class="fas fa-tag"></i> ' + item.subject +
     '</div>' +
-    '<div style="font-size:20px;color:#fff;line-height:1.75;margin-bottom:28px;"><strong>' + (cur + 1) + '.</strong> ' + item.q + '</div>' +
-    (item.img ? '<div class="abs-img-wrap" style="margin-bottom:20px;"><img src="' + item.img + '" alt="Abstract Pattern" class="abs-pattern-img" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'block\'"><div style="display:none;color:#e74c3c;font-size:13px;margin-top:8px;"><i class="fas fa-image"></i> Image failed to load</div></div>' : '') +
+    '<div style="font-size:20px;color:#fff;line-height:1.75;margin-bottom:20px;"><strong>' + (cur + 1) + '.</strong> ' + item.q + '</div>' +
+    
+    /* ADDED THIS LINE FOR THE IMAGE WITH INLINE CSS */
+    (item.img ? '<div style="margin-bottom:24px; text-align:center;"><img src="' + item.img + '" alt="Abstract Pattern" style="max-width:100%; height:auto; border-radius:8px; border:2px solid rgba(255,255,255,0.1); display:block; margin:0 auto;"></div>' : '') +
+    
     '<div class="quiz-choices">' + choicesHtml + '</div>' +
     '<div class="mock-nav">' +
     (cur > 0 ? '<button class="btn-outline bng" onclick="mockPrev()"><i class="fas fa-chevron-left"></i> PREVIOUS</button>' : '') +
