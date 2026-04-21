@@ -2345,7 +2345,7 @@ function pageProgress() {
   return '<div class="page progress-page"><div class="wrap">' +
     backBtn(false, 'home', true) +
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-chart-line"></i> PROGRESS TRACKER</h2>' +
-    '<p class="sec-sub">Your growth is measurable. Every session brings you closer to that UP acceptance letter. Keep going, Isko!</p>' +
+    '<p class="sec-sub">YOUR GROWTH IS MEASURABLE! Every session brings you closer to that PLM acceptance letter. Keep going, PLMAYER!</p>' +
     summaryHTML +
     '<h3 class="bng" style="font-size:26px;color:var(--gold);margin-bottom:24px;"><i class="fas fa-chart-bar"></i> SUBJECT PERFORMANCE</h3>' +
     progHTML +
@@ -2399,43 +2399,16 @@ function pageProfile() {
 }
 
 /* ============================================================
-   PAGE: SETTINGS
-   ============================================================ */
-function pageSettings() {
-  var items = [
-    { icon: 'fa-user', k: 'math', title: 'Account', desc: 'Manage your profile, email, and password' },
-    { icon: 'fa-bell', k: 'sci', title: 'Notifications', desc: 'Set up daily study reminders and alerts' },
-    { icon: 'fa-palette', k: 'eng', title: 'Appearance', desc: 'Customize theme, font size, and display preferences' },
-    { icon: 'fa-database', k: 'log', title: 'Data & Privacy', desc: 'Manage your data, export progress, and privacy settings' },
-    { icon: 'fa-shield-halved', k: 'math', title: 'Security', desc: 'Two-factor authentication and login history' },
-    { icon: 'fa-circle-question', k: 'sci', title: 'Help & Support', desc: 'FAQs, contact support, and feedback form' }
-  ];
-  var html = '<div class="page"><div class="wrap"><div class="inner-page">';
-  html += backBtn(false, 'home', true);
-  html += '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-gear"></i> SETTINGS</h2>';
-  html += '<p class="sec-sub">Customize your IskoPrep experience to fit your study style.</p>';
-  items.forEach(function (it) {
-    html += '<div class="settings-item">' +
-      '<div class="settings-item-icon ' + subClass(it.k) + '"><i class="fas ' + it.icon + '"></i></div>' +
-      '<div><h4 style="color:#fff;font-size:17px;margin-bottom:4px;">' + it.title + '</h4><p style="color:#888;font-size:14px;">' + it.desc + '</p></div>' +
-      '<i class="fas fa-chevron-right" style="margin-left:auto;color:#555;"></i>' +
-      '</div>';
-  });
-  html += '</div></div></div>';
-  return html;
-}
-
-/* ============================================================
    PAGE: ABOUT
    ============================================================ */
 function pageAbout() {
   return '<div class="page"><div class="wrap"><div class="inner-page">' +
     backBtn(false, 'home', true) +
     '<h2 class="bng sec-title" style="color:var(--gold);"><i class="fas fa-circle-info"></i> ABOUT ISKOPREP</h2>' +
-    '<p class="sec-sub">Learn about the platform built to help every Filipino student realize their UP dream.</p>' +
+    '<p class="sec-sub">Learn about the platform built to help students achieve their PLMAYER dream!</p>' +
     '<div class="instr-card" style="background:linear-gradient(135deg,#5c1a1a,#8b2222);border:2px solid var(--gold);margin-bottom:28px;">' +
     '<h3 class="bng" style="font-size:24px;color:var(--gold);margin-bottom:14px;"><i class="fas fa-bullseye"></i> OUR MISSION</h3>' +
-    '<p style="color:#eee;font-size:16px;line-height:1.8;">IskoPrep was created with one goal: to make PLMAT preparation accessible, effective, and enjoyable for every aspiring Isko and Iska across the Philippines. We believe that with the right tools and guidance, every student can achieve their dream of studying at the University of the Philippines.</p>' +
+    '<p style="color:#eee;font-size:16px;line-height:1.8;">IskoPrep was created to make PLMAT preparation more accessible, effective, and engaging. It’s designed to help students stay on track and keep improving as they review.</p>' +
     '</div>' +
     '<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;">' +
     '<div class="instr-card ' + subClass('math') + ' card"><i class="fas fa-calculator" style="font-size:28px;margin-bottom:10px;display:block;"></i><h4 class="bng" style="color:#fff;margin-bottom:8px;font-size:18px;">EXPERT QUESTIONS</h4><p style="color:#e8d5f5;font-size:14px;line-height:1.7;">Curated by educators with years of PLMAT experience. Every question is crafted to mirror the real exam.</p></div>' +
@@ -2451,7 +2424,7 @@ function pageAbout() {
     '<div class="contact-row"><i class="fab fa-instagram"></i> @iskoprep</div>' +
     '<div class="contact-row"><i class="fab fa-tiktok"></i> @iskoprep.ph</div>' +
     '</div>' +
-    '<div class="moto-bar"><i class="fas fa-heart" style="color:#e74c3c;margin-right:8px;"></i>IskoPrep is built with love for every Filipino student chasing the UP dream. You are never alone in this journey!</div>' +
+    '<div class="moto-bar"><i class="fas fa-heart" style="color:#e74c3c;margin-right:8px;"></i>IskoPrep is built by PLMAYERS to help you survive and thrive. You are not alone in this journey! </div>' +
     '</div></div></div>';
 }
 
