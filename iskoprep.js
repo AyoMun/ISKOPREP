@@ -2163,8 +2163,12 @@ function pageMockResults() {
       '<div style="flex:1;">' +
       '<div style="font-size:12px;color:#888;margin-bottom:4px;">' + item.subject + '</div>' +
       '<p style="color:#ddd;font-size:15px;margin-bottom:8px;"><strong>' + (i + 1) + '.</strong> ' + item.q + '</p>' +
-      (ans !== undefined ? '<p style="font-size:14px;color:' + (isCorrect ? '#2ecc71' : '#e74c3c') + ';">Your answer: ' + item.o[ans] + '</p>' : '<p style="font-size:14px;color:#888;">Not answered</p>') +
-      (!isCorrect ? '<p style="font-size:14px;color:#2ecc71;margin-top:4px;"><i class="fas fa-check"></i> Correct: ' + item.o[item.a] + '</p>' : '') +
+      
+      /* ADDED THIS LINE FOR THE RESULTS PAGE IMAGE */
+      (item.img ? '<div style="margin-bottom:12px;"><img src="' + item.img + '" style="max-width:250px; height:auto; border-radius:6px; border:1px solid rgba(255,255,255,0.2);"></div>' : '') +
+      
+      (ans !== undefined ? '<p style="font-size:14px;color:' + 
+      (isCorrect ? '#2ecc71' : '#e74c3c') + ';">Your answer: ' + item.o[ans] + '</p>' : '<p style="font-size:14px;color:#888;">Not answered</p>') +      (!isCorrect ? '<p style="font-size:14px;color:#2ecc71;margin-top:4px;"><i class="fas fa-check"></i> Correct: ' + item.o[item.a] + '</p>' : '') +
       '</div>' +
       '</div>' +
       '</div>';
