@@ -33,228 +33,237 @@
      snap.forEach(doc => { QUESTIONS[doc.id] = doc.data(); });
    Until then, questions are hardcoded below for offline use. */
 var QUESTIONS = {
-  math_easy: {
-    lesson: 'Arithmetic & Fractions', subject: 'Mathematics', subKey: 'math',
-    timer: 80,
+  /* ---- ENGLISH (50 items / 20 mins) ---- */
+  eng_grammar: {
+    lesson: 'Correct Grammar Usage', subject: 'English', subKey: 'eng', timer: 60,
     q: [
-      { q: 'What is 3/4 + 1/4?', o: ['1', '1/2', '3/8', '7/8'], a: 0 },
-      { q: 'What is 25% of 80?', o: ['15', '20', '25', '40'], a: 1 },
-      { q: 'Which fraction is equivalent to 2/4?', o: ['2/3', '3/4', '1/2', '1/4'], a: 2 },
-      { q: 'What is 7 × 8?', o: ['54', '56', '48', '64'], a: 1 },
-      { q: 'What is 100 − 37?', o: ['73', '67', '63', '53'], a: 2 },
-      { q: 'What is 3/5 of 25?', o: ['10', '12', '15', '20'], a: 2 },
-      { q: 'Round 4.67 to the nearest whole number.', o: ['4', '5', '6', '7'], a: 1 },
-      { q: 'What is 144 ÷ 12?', o: ['10', '11', '12', '13'], a: 2 },
-      { q: 'What is 5/8 − 1/8?', o: ['3/8', '4/8', '6/8', '1/2'], a: 1 },
-      { q: 'What is 1/3 of 90?', o: ['15', '20', '30', '45'], a: 2 }
+      { q: 'Choose the correct sentence: "She ___ to school every day."', o: ['go', 'goes', 'going', 'gone'], a: 1 },
+      { q: '"Neither of the students ___ fully prepared." Choose the correct verb.', o: ['were', 'is', 'are', 'have been'], a: 1 }
     ]
   },
-  math_moderate: {
-    lesson: 'Geometry', subject: 'Mathematics', subKey: 'math',
-    timer: 60,
+  eng_vocabulary: {
+    lesson: 'Vocabulary', subject: 'English', subKey: 'eng', timer: 60,
     q: [
-      { q: 'What is the area of a rectangle with length 8 and width 5?', o: ['13', '26', '40', '80'], a: 2 },
-      { q: 'The angles of a triangle sum to:', o: ['90°', '180°', '270°', '360°'], a: 1 },
-      { q: 'A square has a perimeter of 36. What is its side length?', o: ['6', '9', '12', '18'], a: 1 },
-      { q: 'What type of angle measures exactly 90°?', o: ['Acute', 'Right', 'Obtuse', 'Straight'], a: 1 },
-      { q: 'The area of a triangle with base 10 and height 6 is:', o: ['60', '30', '16', '32'], a: 1 },
-      { q: 'A circle has a diameter of 10. What is its radius?', o: ['20', '10', '5', '100'], a: 2 },
-      { q: 'How many sides does a hexagon have?', o: ['5', '6', '7', '8'], a: 1 },
-      { q: 'What is the volume of a cube with side 4?', o: ['16', '48', '64', '96'], a: 2 },
-      { q: 'Two lines that never meet are called:', o: ['Perpendicular', 'Intersecting', 'Parallel', 'Diagonal'], a: 2 },
-      { q: 'What is the perimeter of a rectangle with length 9 and width 4?', o: ['36', '26', '13', '18'], a: 1 }
+      { q: 'What does "benevolent" mean?', o: ['Strict and harsh', 'Kind and generous', 'Indifferent', 'Clever'], a: 1 },
+      { q: '"Reserved" most closely means:', o: ['Bold and outgoing', 'Shy and quiet', 'Loud and proud', 'Angry'], a: 1 }
     ]
   },
-  math_hard: {
-    lesson: 'Algebra', subject: 'Mathematics', subKey: 'math',
-    timer: 45,
+  eng_idioms: {
+    lesson: 'Idiomatic Expressions', subject: 'English', subKey: 'eng', timer: 60,
     q: [
-      { q: 'If 2x + 5 = 13, what is x?', o: ['4', '6', '9', '3'], a: 0 },
-      { q: 'What is the value of x in 3x − 7 = 14?', o: ['5', '7', '9', '21'], a: 1 },
-      { q: 'Simplify: (x²)(x³)', o: ['x⁵', 'x⁶', '2x⁵', 'x'], a: 0 },
-      { q: 'If f(x) = 2x + 3, what is f(5)?', o: ['10', '13', '11', '15'], a: 1 },
-      { q: 'Solve: x² − 9 = 0. What is x?', o: ['±3', '±9', '3', '9'], a: 0 },
-      { q: 'What is the slope of y = 3x + 2?', o: ['2', '3', '5', '6'], a: 1 },
-      { q: 'Factor: x² + 5x + 6', o: ['(x+1)(x+6)', '(x+2)(x+3)', '(x+3)(x+4)', '(x+4)(x+2)'], a: 1 },
-      { q: 'What is the y-intercept of y = 4x − 7?', o: ['4', '−7', '7', '−4'], a: 1 },
-      { q: 'Solve: 2(x + 3) = 14. What is x?', o: ['4', '5', '6', '7'], a: 0 },
-      { q: 'If 5x = 25, then x = ?', o: ['3', '4', '5', '6'], a: 2 }
+      { q: 'What does "break a leg" mean?', o: ['To literally injure yourself', 'Good luck', 'To run fast', 'To dance'], a: 1 },
+      { q: '"Hit the sack" means:', o: ['Punch a punching bag', 'Go to sleep', 'Go shopping', 'Start working'], a: 1 }
     ]
   },
-  math_advanced: {
-    lesson: 'Statistics & Probability', subject: 'Mathematics', subKey: 'math',
-    timer: 30,
+  eng_analogy: {
+    lesson: 'Word Analogy', subject: 'English', subKey: 'eng', timer: 60,
     q: [
-      { q: 'The mean of 4, 8, 6, 10, 2 is:', o: ['5', '6', '7', '8'], a: 1 },
-      { q: 'What is the median of 3, 7, 5, 9, 1?', o: ['5', '7', '3', '9'], a: 0 },
-      { q: 'What is the mode of 2, 4, 4, 6, 8, 4?', o: ['2', '4', '6', '8'], a: 1 },
-      { q: 'P(rolling a 3 on a fair die) = ?', o: ['1/3', '1/6', '1/2', '1/4'], a: 1 },
-      { q: 'A bag has 3 red and 2 blue balls. P(red) = ?', o: ['3/5', '2/5', '3/2', '1/2'], a: 0 },
-      { q: 'The range of 5, 12, 3, 8, 17 is:', o: ['12', '14', '17', '9'], a: 1 },
-      { q: 'P(getting heads twice in 2 coin flips) = ?', o: ['1/2', '1/4', '1/3', '3/4'], a: 1 },
-      { q: 'A class of 30 has 18 girls. What % are boys?', o: ['40%', '60%', '18%', '30%'], a: 0 },
-      { q: 'Standard deviation measures:', o: ['Central tendency', 'Spread of data', 'Sum of data', 'Most frequent value'], a: 1 },
-      { q: 'P(A or B): P(A)=0.3, P(B)=0.4, mutually exclusive = ?', o: ['0.7', '0.12', '0.1', '1.0'], a: 0 }
+      { q: 'Hot : Cold :: Day : ___', o: ['Sun', 'Night', 'Light', 'Warm'], a: 1 },
+      { q: 'Teacher : School :: Doctor : ___', o: ['Medicine', 'Hospital', 'Patient', 'Clinic'], a: 1 }
     ]
   },
-  sci_easy: {
-    lesson: 'Earth Science', subject: 'Science', subKey: 'sci',
-    timer: 80,
+  eng_reading: {
+    lesson: 'Reading Comprehension', subject: 'English', subKey: 'eng', timer: 60,
     q: [
-      { q: 'What layer of Earth do we live on?', o: ['Mantle', 'Core', 'Crust', 'Lithosphere'], a: 2 },
-      { q: 'What gas makes up most of Earth\'s atmosphere?', o: ['Oxygen', 'Carbon Dioxide', 'Nitrogen', 'Hydrogen'], a: 2 },
-      { q: 'What causes day and night?', o: ['Earth\'s revolution', 'Earth\'s rotation', 'The Moon', 'The Sun\'s movement'], a: 1 },
-      { q: 'Which type of rock is formed from cooled magma?', o: ['Sedimentary', 'Metamorphic', 'Igneous', 'Fossil'], a: 2 },
-      { q: 'The process by which water vapor becomes liquid is:', o: ['Evaporation', 'Condensation', 'Precipitation', 'Transpiration'], a: 1 },
-      { q: 'What is the largest ocean?', o: ['Atlantic', 'Indian', 'Arctic', 'Pacific'], a: 3 },
-      { q: 'Earthquakes are measured using a:', o: ['Thermometer', 'Seismograph', 'Barometer', 'Telescope'], a: 1 },
-      { q: 'Which planet is closest to the Sun?', o: ['Venus', 'Mars', 'Mercury', 'Earth'], a: 2 },
-      { q: 'What type of eclipse occurs when the Moon blocks the Sun?', o: ['Lunar', 'Solar', 'Partial Lunar', 'Total Lunar'], a: 1 },
-      { q: 'Which is the hottest planet in the solar system?', o: ['Mercury', 'Mars', 'Venus', 'Jupiter'], a: 2 }
+      { q: 'Passage: "Maria studies every night. She reads and practices problems. Her hard work paid off when she aced the exam." What is the main idea?', o: ['Maria reads textbooks', 'Hard work leads to success', 'Maria takes exams', 'Maria studies at night'], a: 1 },
+      { q: 'What can be inferred? "The streets were empty, shops were closed, and only a few street lights flickered."', o: ['It was morning', 'It was a busy holiday', 'It was late at night', 'It was a festival'], a: 2 }
     ]
   },
-  sci_moderate: {
-    lesson: 'Biology', subject: 'Science', subKey: 'sci',
-    timer: 60,
+
+  /* ---- INTEGRATED SCIENCE (40 items / 25 mins) ---- */
+  sci_general: {
+    lesson: 'General Science', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'What is the powerhouse of the cell?', o: ['Nucleus', 'Ribosome', 'Mitochondria', 'Golgi body'], a: 2 },
-      { q: 'What process do plants use to make food?', o: ['Respiration', 'Photosynthesis', 'Digestion', 'Fermentation'], a: 1 },
-      { q: 'What is the basic unit of life?', o: ['Organ', 'Tissue', 'Cell', 'Atom'], a: 2 },
-      { q: 'Which organ pumps blood through the body?', o: ['Lungs', 'Kidneys', 'Heart', 'Brain'], a: 2 },
-      { q: 'What gas do plants absorb for photosynthesis?', o: ['Oxygen', 'Nitrogen', 'Carbon Dioxide', 'Hydrogen'], a: 2 },
-      { q: 'How many chambers does the human heart have?', o: ['2', '3', '4', '5'], a: 2 },
-      { q: 'The study of heredity is called:', o: ['Ecology', 'Genetics', 'Anatomy', 'Physiology'], a: 1 },
-      { q: 'Which blood type is the universal donor?', o: ['A', 'B', 'O', 'AB'], a: 2 },
-      { q: 'DNA carries the instructions for:', o: ['Breathing', 'Making proteins', 'Pumping blood', 'Digesting food'], a: 1 },
-      { q: 'Which organelle is responsible for protein synthesis?', o: ['Mitochondria', 'Ribosome', 'Vacuole', 'Lysosome'], a: 1 }
+      { q: 'What is the basic unit of matter?', o: ['Molecule', 'Atom', 'Cell', 'Element'], a: 1 },
+      { q: 'Which type of energy is stored in food?', o: ['Kinetic energy', 'Chemical energy', 'Nuclear energy', 'Mechanical energy'], a: 1 }
     ]
   },
-  sci_hard: {
-    lesson: 'Physics', subject: 'Science', subKey: 'sci',
-    timer: 45,
+  sci_cells: {
+    lesson: 'Cells', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'Newton\'s 2nd Law states F = ?', o: ['mv', 'ma', 'm/a', 'm+a'], a: 1 },
-      { q: 'What is the unit of force?', o: ['Joule', 'Newton', 'Watt', 'Pascal'], a: 1 },
-      { q: 'Speed = ?', o: ['Distance × Time', 'Time / Distance', 'Distance / Time', 'Distance + Time'], a: 2 },
-      { q: 'What is the speed of light (approximate)?', o: ['3×10⁶ m/s', '3×10⁸ m/s', '3×10¹⁰ m/s', '3×10⁴ m/s'], a: 1 },
-      { q: 'Ohm\'s Law states V = ?', o: ['I+R', 'IR', 'I/R', 'I×P'], a: 1 },
-      { q: 'What happens to pressure as depth in water increases?', o: ['Decreases', 'Stays same', 'Increases', 'Becomes zero'], a: 2 },
-      { q: 'Which electromagnetic wave has the highest frequency?', o: ['Radio', 'X-ray', 'Infrared', 'Gamma ray'], a: 3 },
-      { q: 'A car at 60 km/h for 2 hours travels:', o: ['100 km', '120 km', '90 km', '60 km'], a: 1 },
-      { q: 'Energy is measured in:', o: ['Watts', 'Newtons', 'Joules', 'Pascals'], a: 2 },
-      { q: 'The law of conservation of energy states that energy is:', o: ['Created', 'Destroyed', 'Neither created nor destroyed', 'Always kinetic'], a: 2 }
+      { q: 'What organelle controls all cell activities?', o: ['Mitochondria', 'Nucleus', 'Ribosome', 'Vacuole'], a: 1 },
+      { q: 'Plant cells have ___ that animal cells do not.', o: ['Nucleus', 'Cell membrane', 'Cell wall', 'Ribosome'], a: 2 }
     ]
   },
-  eng_easy: {
-    lesson: 'Parts of Speech', subject: 'English', subKey: 'eng',
-    timer: 80,
+  sci_gravitation: {
+    lesson: 'Law of Universal Gravitation', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'Identify the noun in: "The dog runs fast."', o: ['runs', 'fast', 'dog', 'The'], a: 2 },
-      { q: 'What part of speech is "quickly"?', o: ['Adjective', 'Noun', 'Adverb', 'Verb'], a: 2 },
-      { q: '"Beautiful" is a:', o: ['Noun', 'Verb', 'Adjective', 'Adverb'], a: 2 },
-      { q: 'In "She sings well," "sings" is a:', o: ['Noun', 'Verb', 'Adjective', 'Pronoun'], a: 1 },
-      { q: 'What is the pronoun in "He loves reading"?', o: ['loves', 'reading', 'He', 'the'], a: 2 },
-      { q: '"Under the table" — "under" is a:', o: ['Conjunction', 'Preposition', 'Adverb', 'Verb'], a: 1 },
-      { q: 'Which is a proper noun?', o: ['city', 'happiness', 'Manila', 'tree'], a: 2 },
-      { q: '"But" in "I tried but failed" is a:', o: ['Preposition', 'Adverb', 'Conjunction', 'Noun'], a: 2 },
-      { q: 'Identify the verb: "Maria writes stories."', o: ['Maria', 'writes', 'stories', 'her'], a: 1 },
-      { q: '"Wow!" is an example of:', o: ['Preposition', 'Conjunction', 'Adjective', 'Interjection'], a: 3 }
+      { q: 'Newton\'s Law of Universal Gravitation states that gravity depends on:', o: ['Speed and direction', 'Mass and distance', 'Color and size', 'Temperature and pressure'], a: 1 },
+      { q: 'What happens to gravitational force when the distance between two objects doubles?', o: ['It doubles', 'It stays the same', 'It becomes four times less', 'It becomes twice as strong'], a: 2 }
     ]
   },
-  eng_moderate: {
-    lesson: 'Grammar Fundamentals', subject: 'English', subKey: 'eng',
-    timer: 60,
+  sci_physics: {
+    lesson: 'Physics', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'Choose the correct: "The team ___ playing well."', o: ['are', 'is', 'were', 'have'], a: 1 },
-      { q: '"Neither the boys nor the girl ___ here."', o: ['are', 'am', 'is', 'were'], a: 2 },
-      { q: 'The past tense of "run" is:', o: ['runned', 'ran', 'run', 'ranned'], a: 1 },
-      { q: 'Which sentence is correct?', o: ['She don\'t know', 'She doesn\'t know', 'She didn\'t knew', 'She not know'], a: 1 },
-      { q: 'Choose the correct: "He is ___ intelligent than his brother."', o: ['more', 'most', 'much', 'very'], a: 0 },
-      { q: '"I have ___ my homework." (correct past participle)', o: ['did', 'done', 'do', 'doing'], a: 1 },
-      { q: 'Which sentence uses the passive voice?', o: ['She baked a cake.', 'A cake was baked.', 'She bakes.', 'She will bake.'], a: 1 },
-      { q: '"If I were rich, I ___ buy a house."', o: ['will', 'would', 'shall', 'can'], a: 1 },
-      { q: 'The plural of "criterion" is:', o: ['criterions', 'criteria', 'criterias', 'criterionz'], a: 1 },
-      { q: 'Identify the error: "Between you and I, this is wrong."', o: ['Between', 'you and I', 'this', 'wrong'], a: 1 }
+      { q: 'What is the SI unit of force?', o: ['Joule', 'Watt', 'Newton', 'Pascal'], a: 2 },
+      { q: 'An object at rest tends to stay at rest. This is an example of:', o: ['Newton\'s 2nd Law', 'Newton\'s 1st Law (Inertia)', 'Newton\'s 3rd Law', 'Law of Gravity'], a: 1 }
     ]
   },
-  eng_hard: {
-    lesson: 'Sentence Structure', subject: 'English', subKey: 'eng',
-    timer: 45,
+  sci_newtonian: {
+    lesson: 'Newtonian Mechanics', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'A sentence with two independent clauses joined by a conjunction is:', o: ['Simple', 'Compound', 'Complex', 'Fragment'], a: 1 },
-      { q: 'Identify the dependent clause: "Although she studied, she failed."', o: ['she failed', 'Although she studied', 'she studied', 'Both clauses'], a: 1 },
-      { q: 'What is a sentence fragment?', o: ['A run-on sentence', 'An incomplete thought', 'A complex sentence', 'A declarative sentence'], a: 1 },
-      { q: 'Which is a run-on sentence?', o: ['She studied hard, and she passed.', 'She studied hard she passed.', 'Although she studied hard.', 'She studied.'], a: 1 },
-      { q: '"The man who called yesterday left." The relative clause is:', o: ['The man', 'who called yesterday', 'left', 'The man left'], a: 1 },
-      { q: 'What is the subject in "Running fast, John won the race"?', o: ['Running fast', 'John', 'won', 'race'], a: 1 },
-      { q: 'Identify the appositive: "My teacher, Dr. Cruz, teaches math."', o: ['My teacher', 'Dr. Cruz', 'teaches math', 'math'], a: 1 },
-      { q: 'A subordinating conjunction introduces:', o: ['An independent clause', 'A dependent clause', 'A phrase', 'A noun'], a: 1 },
-      { q: 'What type of phrase is "with great courage"?', o: ['Noun phrase', 'Prepositional phrase', 'Verb phrase', 'Adjective phrase'], a: 1 },
-      { q: 'Which has correct parallel structure?', o: ['She likes running, to swim, and biking.', 'She likes running, swimming, and biking.', 'She likes run, swim, bike.', 'She runs, swims, biking.'], a: 1 }
+      { q: 'F = ma is known as Newton\'s:', o: ['First Law', 'Second Law', 'Third Law', 'Law of Gravitation'], a: 1 },
+      { q: '"For every action, there is an equal and opposite reaction." This is Newton\'s:', o: ['First Law', 'Second Law', 'Third Law', 'Law of Universal Gravitation'], a: 2 }
     ]
   },
-  eng_advanced: {
-    lesson: 'Basic Reading Comprehension', subject: 'English', subKey: 'eng',
-    timer: 30,
+  sci_optics: {
+    lesson: 'Optics', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: '"The benevolent teacher helped struggling students." "Benevolent" means:', o: ['strict', 'kind', 'indifferent', 'harsh'], a: 1 },
-      { q: 'What is the main idea of: "Regular exercise improves health, boosts energy, and reduces stress"?', o: ['Exercise is hard', 'Exercise has many benefits', 'People should rest', 'Stress is bad'], a: 1 },
-      { q: '"Consequently" signals:', o: ['Contrast', 'Cause and effect', 'Time', 'Addition'], a: 1 },
-      { q: '"Unlike her outgoing sister, Maria was reserved." What does "reserved" mean?', o: ['Shy/quiet', 'Bold', 'Friendly', 'Loud'], a: 0 },
-      { q: 'A biography is written about:', o: ['Fictional characters', 'Real people', 'Animals', 'Places'], a: 1 },
-      { q: 'What is inference?', o: ['A direct statement', 'A conclusion drawn from clues', 'A summary', 'A title'], a: 1 },
-      { q: 'The tone of "This is absolutely unacceptable behavior!" is:', o: ['Happy', 'Sad', 'Angry/Emphatic', 'Neutral'], a: 2 },
-      { q: '"Despite being tired, she finished the report." "Despite" shows:', o: ['Cause', 'Contrast', 'Addition', 'Time'], a: 1 },
-      { q: 'What is the purpose of a thesis statement?', o: ['To conclude', 'To state the main argument', 'To provide examples', 'To ask a question'], a: 1 },
-      { q: 'Context clues help readers determine:', o: ['Plot', 'Word meaning', 'Author\'s name', 'Publication date'], a: 1 }
+      { q: 'A pencil looks bent when placed in water. This is due to:', o: ['Reflection', 'Refraction', 'Diffraction', 'Absorption'], a: 1 },
+      { q: 'A concave lens causes light rays to:', o: ['Converge', 'Diverge', 'Reflect', 'Stop'], a: 1 }
     ]
   },
-  log_easy: {
-    lesson: 'Shape Patterns', subject: 'Logical Reasoning', subKey: 'log',
-    timer: 80,
+  sci_wave: {
+    lesson: 'Wave, Motion, and Acoustic', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'What comes next? Circle, Square, Triangle, Circle, Square, ___', o: ['Circle', 'Triangle', 'Square', 'Pentagon'], a: 1 },
-      { q: 'What is next in the sequence: 2, 4, 6, 8, ___?', o: ['9', '10', '12', '14'], a: 1 },
-      { q: 'What comes next: 100, 90, 80, 70, ___?', o: ['65', '60', '55', '50'], a: 1 },
-      { q: 'What is the missing number: 2, 4, ___, 16, 32?', o: ['6', '8', '10', '12'], a: 1 },
-      { q: 'Next in: 1, 3, 5, 7, ___?', o: ['8', '9', '10', '11'], a: 1 },
-      { q: 'Pattern: Red, Blue, Green, Red, Blue, ___?', o: ['Red', 'Blue', 'Green', 'Yellow'], a: 2 },
-      { q: 'What comes next: 50, 45, 40, 35, ___?', o: ['32', '30', '28', '25'], a: 1 },
-      { q: 'Next: A, C, E, G, ___?', o: ['H', 'I', 'J', 'K'], a: 1 },
-      { q: 'Pattern: 1, 2, 4, 8, ___?', o: ['12', '14', '16', '18'], a: 2 },
-      { q: 'What comes next: 3, 6, 9, 12, ___?', o: ['13', '14', '15', '16'], a: 2 }
+      { q: 'Sound travels fastest through:', o: ['Vacuum', 'Air', 'Water', 'Solids'], a: 3 },
+      { q: 'The number of waves that pass a point per second is called:', o: ['Amplitude', 'Wavelength', 'Frequency', 'Period'], a: 2 }
     ]
   },
-  log_moderate: {
-    lesson: 'Classification', subject: 'Logical Reasoning', subKey: 'log',
-    timer: 60,
+  sci_thermo: {
+    lesson: 'Thermodynamics and Heat', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'Which does NOT belong: Apple, Orange, Banana, Carrot?', o: ['Apple', 'Banana', 'Carrot', 'Orange'], a: 2 },
-      { q: 'Dog, Cat, Horse, Eagle — which is different?', o: ['Dog', 'Cat', 'Horse', 'Eagle'], a: 3 },
-      { q: 'Which does NOT belong: Monday, Tuesday, June, Friday?', o: ['Monday', 'June', 'Friday', 'Tuesday'], a: 1 },
-      { q: 'Which number does NOT belong: 2, 4, 6, 9, 12?', o: ['2', '6', '9', '12'], a: 2 },
-      { q: 'Rose, Tulip, Sunflower, Fern — which is different?', o: ['Rose', 'Tulip', 'Sunflower', 'Fern'], a: 3 },
-      { q: 'Tokyo, Paris, Manila, Asia — which is different?', o: ['Tokyo', 'Manila', 'Asia', 'Paris'], a: 2 },
-      { q: 'Hammer, Saw, Screwdriver, Eraser — which does NOT belong?', o: ['Hammer', 'Saw', 'Eraser', 'Screwdriver'], a: 2 },
-      { q: 'Red, Blue, Triangle, Green — which is different?', o: ['Red', 'Blue', 'Green', 'Triangle'], a: 3 },
-      { q: 'Mercury, Venus, Earth, Moon — which is different?', o: ['Mercury', 'Earth', 'Moon', 'Venus'], a: 2 },
-      { q: 'Piano, Guitar, Violin, Drums — Drums is different because:', o: ['It is louder', 'It has no strings', 'It is bigger', 'It is older'], a: 1 }
+      { q: 'Heat naturally flows from:', o: ['Cold to hot', 'Hot to cold', 'High to low pressure', 'Low to high pressure'], a: 1 },
+      { q: 'What is the SI unit of temperature?', o: ['Celsius', 'Fahrenheit', 'Kelvin', 'Joule'], a: 2 }
     ]
   },
-  log_hard: {
-    lesson: 'Analogies', subject: 'Logical Reasoning', subKey: 'log',
-    timer: 45,
+  sci_electro: {
+    lesson: 'Electromagnetism and Electronics', subject: 'Integrated Science', subKey: 'sci', timer: 60,
     q: [
-      { q: 'Fish : Water :: Bird : ___', o: ['Sky', 'Air', 'Tree', 'Nest'], a: 1 },
-      { q: 'Doctor : Hospital :: Teacher : ___', o: ['School', 'Office', 'Library', 'University'], a: 0 },
-      { q: 'Hot : Cold :: Light : ___', o: ['Dark', 'Day', 'Sun', 'Heavy'], a: 0 },
-      { q: 'Book : Read :: Music : ___', o: ['Watch', 'Listen', 'See', 'Smell'], a: 1 },
-      { q: '5 : 25 :: 6 : ___', o: ['30', '36', '12', '18'], a: 1 },
-      { q: 'Glove : Hand :: Hat : ___', o: ['Hair', 'Face', 'Head', 'Ear'], a: 2 },
-      { q: 'Cat : Meow :: Dog : ___', o: ['Purr', 'Bark', 'Moo', 'Quack'], a: 1 },
-      { q: 'Scene : Play :: Chapter : ___', o: ['Book', 'Song', 'Poem', 'Movie'], a: 0 },
-      { q: 'Physician : Medicine :: Lawyer : ___', o: ['Court', 'Law', 'Business', 'Science'], a: 1 },
-      { q: 'Up : Down :: North : ___', o: ['East', 'West', 'South', 'Right'], a: 2 }
+      { q: 'In Ohm\'s Law (V = IR), R stands for:', o: ['Radiation', 'Resistance', 'Reactance', 'Resonance'], a: 1 },
+      { q: 'A transformer is used to:', o: ['Generate electricity', 'Change AC voltage levels', 'Store electrical energy', 'Convert AC to DC'], a: 1 }
+    ]
+  },
+  sci_chemistry: {
+    lesson: 'Chemistry', subject: 'Integrated Science', subKey: 'sci', timer: 60,
+    q: [
+      { q: 'The atomic number of an element represents the number of:', o: ['Neutrons', 'Protons', 'Electrons only', 'Nucleons'], a: 1 },
+      { q: 'A substance that releases H⁺ ions in water is called a(n):', o: ['Base', 'Salt', 'Acid', 'Neutral compound'], a: 2 }
+    ]
+  },
+  sci_analysis: {
+    lesson: 'Analysis and Application', subject: 'Integrated Science', subKey: 'sci', timer: 60,
+    q: [
+      { q: 'A ball is dropped from rest. After 2 seconds (g = 10 m/s²), its speed is:', o: ['5 m/s', '10 m/s', '20 m/s', '40 m/s'], a: 2 },
+      { q: 'Which of the following is a chemical change?', o: ['Cutting wood', 'Melting ice', 'Burning paper', 'Bending a wire'], a: 2 }
+    ]
+  },
+  sci_knowledge: {
+    lesson: 'Comprehension and Knowledge', subject: 'Integrated Science', subKey: 'sci', timer: 60,
+    q: [
+      { q: 'Photosynthesis is best described as:', o: ['Breakdown of glucose for energy', 'Production of food using light energy', 'Exchange of gases in lungs', 'Process of cell division'], a: 1 },
+      { q: 'Which of the following is NOT a renewable energy source?', o: ['Solar', 'Wind', 'Coal', 'Hydroelectric'], a: 2 }
+    ]
+  },
+
+  /* ---- INTEGRATED MATHEMATICS (40 items / 40 mins) ---- */
+  math_basic: {
+    lesson: 'Basic Operations', subject: 'Integrated Mathematics', subKey: 'math', timer: 60,
+    q: [
+      { q: 'What is 15 × 24?', o: ['300', '360', '340', '380'], a: 1 },
+      { q: 'What is 1,440 ÷ 36?', o: ['30', '40', '45', '50'], a: 1 }
+    ]
+  },
+  math_statistics: {
+    lesson: 'Statistics', subject: 'Integrated Mathematics', subKey: 'math', timer: 60,
+    q: [
+      { q: 'The mean of 10, 20, 30, 40, 50 is:', o: ['25', '30', '35', '40'], a: 1 },
+      { q: 'In the data set {3, 5, 5, 7, 9}, the mode is:', o: ['3', '5', '7', '9'], a: 1 }
+    ]
+  },
+  math_algebra: {
+    lesson: 'Algebra', subject: 'Integrated Mathematics', subKey: 'math', timer: 60,
+    q: [
+      { q: 'If 3x + 6 = 21, what is x?', o: ['3', '5', '6', '9'], a: 1 },
+      { q: 'Simplify: 4x + 2x − 3x', o: ['3x', '4x', '5x', '6x'], a: 0 }
+    ]
+  },
+  math_geometry: {
+    lesson: 'Geometry', subject: 'Integrated Mathematics', subKey: 'math', timer: 60,
+    q: [
+      { q: 'The area of a circle with radius 7 is (use π ≈ 3.14):', o: ['43.96', '153.86', '21.98', '49'], a: 1 },
+      { q: 'How many degrees are in a right angle?', o: ['45°', '90°', '180°', '360°'], a: 1 }
+    ]
+  },
+  math_trig: {
+    lesson: 'Trigonometry', subject: 'Integrated Mathematics', subKey: 'math', timer: 60,
+    q: [
+      { q: 'In a right triangle, sin(angle) = ?', o: ['Adjacent / Hypotenuse', 'Opposite / Adjacent', 'Opposite / Hypotenuse', 'Hypotenuse / Opposite'], a: 2 },
+      { q: 'cos(60°) = ?', o: ['1', '√3/2', '1/2', '0'], a: 2 }
+    ]
+  },
+  math_verbal: {
+    lesson: 'Verbal Problem Analysis', subject: 'Integrated Mathematics', subKey: 'math', timer: 60,
+    q: [
+      { q: 'A train travels at 60 km/h. How long does it take to travel 180 km?', o: ['2 hours', '3 hours', '4 hours', '5 hours'], a: 1 },
+      { q: 'Ana has 3 times as many books as Ben. If Ben has 12, how many does Ana have?', o: ['4', '15', '36', '48'], a: 2 }
+    ]
+  },
+  math_unitcircle: {
+    lesson: 'Unit Circle', subject: 'Integrated Mathematics', subKey: 'math', timer: 60,
+    q: [
+      { q: 'On the unit circle, the coordinates at 90° are:', o: ['(1, 0)', '(0, 1)', '(−1, 0)', '(0, −1)'], a: 1 },
+      { q: 'The sine of 0° is:', o: ['0', '1', '−1', '√2/2'], a: 0 }
+    ]
+  },
+
+  /* ---- FILIPINO (30 items / 15 mins) ---- */
+  fil_gamit: {
+    lesson: 'Wastong Gamit ng Salita', subject: 'Filipino', subKey: 'fil', timer: 60,
+    q: [
+      { q: 'Piliin ang tamang salita: "Ang bata ___ naglalaro sa labas."', o: ['ay', 'si', 'ang', 'ng'], a: 0 },
+      { q: 'Alin ang wastong gamit? "Siya ___ pumunta sa paaralan kahapon."', o: ['ay', 'ay nagtayo', 'ay nagpunta', 'nagdating'], a: 2 }
+    ]
+  },
+  fil_istruktura: {
+    lesson: 'Istruktura ng Pangungusap', subject: 'Filipino', subKey: 'fil', timer: 60,
+    q: [
+      { q: 'Alin sa mga sumusunod ang isang kumpletong pangungusap?', o: ['Si Maria sa tindahan.', 'Ang magandang bulaklak.', 'Pumunta si Maria sa tindahan.', 'Kahit saan man.'], a: 2 },
+      { q: 'Anong bahagi ng pangungusap ang "kumain" sa "Kumain ang bata ng mansanas"?', o: ['Simuno', 'Panaguri', 'Katuwang', 'Layon'], a: 1 }
+    ]
+  },
+  fil_ugat: {
+    lesson: 'Pagtukoy sa Salitang Ugat', subject: 'Filipino', subKey: 'fil', timer: 60,
+    q: [
+      { q: 'Ano ang salitang ugat ng "pagtuturo"?', o: ['turo', 'pagtu', 'tuturo', 'ugat'], a: 0 },
+      { q: 'Ano ang salitang ugat ng "nagtatakbo"?', o: ['nag', 'takbo', 'tatakbo', 'takbuhan'], a: 1 }
+    ]
+  },
+  fil_idyoma: {
+    lesson: 'Idyoma at Talasalitaan', subject: 'Filipino', subKey: 'fil', timer: 60,
+    q: [
+      { q: 'Ano ang kahulugan ng idyomang "magpakawala ng luha"?', o: ['Magpahinga', 'Umiyak', 'Matulog', 'Sumigaw'], a: 1 },
+      { q: 'Ano ang ibig sabihin ng "balat-sibuyas"?', o: ['Matapang', 'Madaling masaktan o mapikon', 'Masayahin', 'Matalino'], a: 1 }
+    ]
+  },
+  fil_pagsunod: {
+    lesson: 'Pagsusunod-sunod ng Talata at Pangungusap', subject: 'Filipino', subKey: 'fil', timer: 60,
+    q: [
+      { q: 'Ayusin ang mga pangungusap: 1-Kumain siya. 2-Nagutom siya. 3-Pumunta siya sa kusina.', o: ['1-2-3', '2-3-1', '3-1-2', '1-3-2'], a: 1 },
+      { q: 'Alin ang dapat na unang pangungusap? "___ Kaya pumunta siya sa doktor."', o: ['Masaya siya.', 'Nagkasakit siya.', 'Nanalo siya.', 'Nagtrabaho siya.'], a: 1 }
+    ]
+  },
+  fil_unawa: {
+    lesson: 'Pag-unawa sa Binasa', subject: 'Filipino', subKey: 'fil', timer: 60,
+    q: [
+      { q: 'Talata: "Si Pedro ay isang masisipag na mag-aaral. Araw-araw, pinag-aaralan niya ang kanyang mga aralin." Ano ang katangian ni Pedro?', o: ['Tamad', 'Masisipag', 'Matalino', 'Masaya'], a: 1 },
+      { q: 'Ano ang pangunahing ideya? "Ang pag-aaral ay mahalaga para sa kinabukasan ng bawat kabataan. Sa pamamagitan ng edukasyon, makakamit ang mga pangarap."', o: ['Mahirap ang pag-aaral.', 'Mahalaga ang edukasyon para sa hinaharap.', 'Maraming kabataan ang nag-aaral.', 'Ang pangarap ay mahalaga.'], a: 1 }
+    ]
+  },
+  fil_kahulugan: {
+    lesson: 'Kasingkahulugan at Kasalungat ng Salita', subject: 'Filipino', subKey: 'fil', timer: 60,
+    q: [
+      { q: 'Ano ang kasingkahulugan ng "maganda"?', o: ['Pangit', 'Marikit', 'Malungkot', 'Mabangis'], a: 1 },
+      { q: 'Ano ang kasalungat ng "masaya"?', o: ['Maligaya', 'Matalino', 'Malungkot', 'Matapang'], a: 2 }
+    ]
+  },
+
+  /* ---- ABSTRACT REASONING (30 items / 10 mins) — uses images ---- */
+  abs_reasoning: {
+    lesson: 'Abstract Reasoning', subject: 'Abstract Reasoning', subKey: 'abs', timer: 60,
+    q: [
+      { q: 'Look at the pattern in the image. Which figure comes next?', img: 'abs_pattern_1.svg', o: ['Figure A', 'Figure B', 'Figure C', 'Figure D'], a: 0 },
+      { q: 'Study the sequence in the image. Which option correctly completes the pattern?', img: 'abs_pattern_2.svg', o: ['Figure A', 'Figure B', 'Figure C', 'Figure D'], a: 0 }
     ]
   }
 };
@@ -262,31 +271,39 @@ var QUESTIONS = {
 /* ---- MOCK EXAM QUESTIONS (40 total, 10 per subject) ---- */
 var MOCK_QUESTIONS = [];
 (function buildMock() {
-  function pick(pool, n) {
-    return pool.slice(0, n);
+  function fromKey(key, subjectLabel, subKey) {
+    return (QUESTIONS[key] ? QUESTIONS[key].q : []).map(function (q) {
+      return Object.assign({}, q, { subject: subjectLabel, subKey: subKey });
+    });
   }
   var mathPool = [].concat(
-    QUESTIONS.math_easy.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'Math', subKey: 'math' }) }),
-    QUESTIONS.math_moderate.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'Math', subKey: 'math' }) }),
-    QUESTIONS.math_hard.q.slice(0, 2).map(function (q) { return Object.assign({}, q, { subject: 'Math', subKey: 'math' }) }),
-    QUESTIONS.math_advanced.q.slice(0, 2).map(function (q) { return Object.assign({}, q, { subject: 'Math', subKey: 'math' }) })
-  );
+    fromKey('math_basic', 'Math', 'math'),
+    fromKey('math_statistics', 'Math', 'math'),
+    fromKey('math_algebra', 'Math', 'math'),
+    fromKey('math_geometry', 'Math', 'math'),
+    fromKey('math_trig', 'Math', 'math')
+  ).slice(0, 10);
   var sciPool = [].concat(
-    QUESTIONS.sci_easy.q.slice(0, 4).map(function (q) { return Object.assign({}, q, { subject: 'Science', subKey: 'sci' }) }),
-    QUESTIONS.sci_moderate.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'Science', subKey: 'sci' }) }),
-    QUESTIONS.sci_hard.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'Science', subKey: 'sci' }) })
-  );
+    fromKey('sci_general', 'Science', 'sci'),
+    fromKey('sci_cells', 'Science', 'sci'),
+    fromKey('sci_physics', 'Science', 'sci'),
+    fromKey('sci_newtonian', 'Science', 'sci'),
+    fromKey('sci_chemistry', 'Science', 'sci')
+  ).slice(0, 10);
   var engPool = [].concat(
-    QUESTIONS.eng_easy.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'English', subKey: 'eng' }) }),
-    QUESTIONS.eng_moderate.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'English', subKey: 'eng' }) }),
-    QUESTIONS.eng_hard.q.slice(2, 4).map(function (q) { return Object.assign({}, q, { subject: 'English', subKey: 'eng' }) }),
-    QUESTIONS.eng_advanced.q.slice(0, 2).map(function (q) { return Object.assign({}, q, { subject: 'English', subKey: 'eng' }) })
-  );
+    fromKey('eng_grammar', 'English', 'eng'),
+    fromKey('eng_vocabulary', 'English', 'eng'),
+    fromKey('eng_idioms', 'English', 'eng'),
+    fromKey('eng_analogy', 'English', 'eng'),
+    fromKey('eng_reading', 'English', 'eng')
+  ).slice(0, 10);
   var logPool = [].concat(
-    QUESTIONS.log_easy.q.slice(0, 4).map(function (q) { return Object.assign({}, q, { subject: 'Logical Reasoning', subKey: 'log' }) }),
-    QUESTIONS.log_moderate.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'Logical Reasoning', subKey: 'log' }) }),
-    QUESTIONS.log_hard.q.slice(0, 3).map(function (q) { return Object.assign({}, q, { subject: 'Logical Reasoning', subKey: 'log' }) })
-  );
+    fromKey('fil_gamit', 'Abstract Reasoning', 'abs'),
+    fromKey('fil_istruktura', 'Abstract Reasoning', 'abs'),
+    fromKey('fil_ugat', 'Abstract Reasoning', 'abs'),
+    fromKey('fil_idyoma', 'Abstract Reasoning', 'abs'),
+    fromKey('fil_kahulugan', 'Abstract Reasoning', 'abs')
+  ).slice(0, 10);
   MOCK_QUESTIONS = [].concat(mathPool, sciPool, engPool, logPool);
 })();
 
@@ -313,9 +330,10 @@ var BADGES = [
   { name: 'Math Master', icon: 'fa-calculator', subKey: 'math', earned: false },
   { name: 'Science Whiz', icon: 'fa-atom', subKey: 'sci', earned: false },
   { name: 'Word Wizard', icon: 'fa-spell-check', subKey: 'eng', earned: false },
-  { name: 'Logic Legend', icon: 'fa-brain', subKey: 'log', earned: false },
+  { name: 'Abstract Ace', icon: 'fa-shapes', subKey: 'abs', earned: false },
   { name: 'Mock Master', icon: 'fa-graduation-cap', subKey: 'math', earned: false },
-  { name: 'Top 10', icon: 'fa-trophy', subKey: 'sci', earned: false }
+  { name: 'Top 10', icon: 'fa-trophy', subKey: 'sci', earned: false },
+  { name: 'Filipino Star', icon: 'fa-book', subKey: 'fil', earned: false }
 ];
 
 /* ---- PROGRESS DATA ---- */
@@ -327,7 +345,9 @@ var PROGRESS = {
   math: { pct: 0, quizzes: 0, correct: 0, total: 0 },
   sci: { pct: 0, quizzes: 0, correct: 0, total: 0 },
   eng: { pct: 0, quizzes: 0, correct: 0, total: 0 },
-  log: { pct: 0, quizzes: 0, correct: 0, total: 0 }
+  log: { pct: 0, quizzes: 0, correct: 0, total: 0 },
+  fil: { pct: 0, quizzes: 0, correct: 0, total: 0 },
+  abs: { pct: 0, quizzes: 0, correct: 0, total: 0 }
 };
 
 /* ---- STATE ---- */
@@ -345,13 +365,16 @@ var AUTH_PROGRESS_DEFAULT = {
   math: { pct: 0, quizzes: 0, correct: 0, total: 0 },
   sci: { pct: 0, quizzes: 0, correct: 0, total: 0 },
   eng: { pct: 0, quizzes: 0, correct: 0, total: 0 },
-  log: { pct: 0, quizzes: 0, correct: 0, total: 0 }
+  log: { pct: 0, quizzes: 0, correct: 0, total: 0 },
+  fil: { pct: 0, quizzes: 0, correct: 0, total: 0 },
+  abs: { pct: 0, quizzes: 0, correct: 0, total: 0 }
 };
 var DEMO_PROGRESS_SIGNATURE = {
   math: { pct: 72, quizzes: 45, correct: 324, total: 450 },
   sci: { pct: 65, quizzes: 38, correct: 247, total: 380 },
   eng: { pct: 80, quizzes: 52, correct: 416, total: 520 },
-  log: { pct: 58, quizzes: 30, correct: 174, total: 300 }
+  fil: { pct: 58, quizzes: 30, correct: 174, total: 300 },
+  abs: { pct: 0, quizzes: 0, correct: 0, total: 0 }
 };
 var UI_AUDIO = {
   hoverSrc: '',
@@ -370,12 +393,12 @@ var uiAudioHoverTarget = null;
 /* ---- HELPERS ---- */
 function $(id) { return document.getElementById(id); }
 function subColor(k) {
-  var m = { math: ['var(--math-a)', 'var(--math-b)'], sci: ['var(--sci-a)', 'var(--sci-b)'], eng: ['var(--eng-a)', 'var(--eng-b)'], log: ['var(--log-a)', 'var(--log-b)'] };
+  var m = { math: ['var(--math-a)', 'var(--math-b)'], sci: ['var(--sci-a)', 'var(--sci-b)'], eng: ['var(--eng-a)', 'var(--eng-b)'], log: ['var(--log-a)', 'var(--log-b)'], fil: ['var(--log-a)', 'var(--log-b)'], abs: ['var(--math-a)', 'var(--math-b)'] };
   return m[k] || m.math;
 }
 function subGrad(k) { var c = subColor(k); return 'linear-gradient(135deg,' + c[0] + ',' + c[1] + ')'; }
-function subClass(k) { return { math: 'grad-math glow-math', sci: 'grad-sci glow-sci', eng: 'grad-eng glow-eng', log: 'grad-log glow-log' }[k] || 'grad-math'; }
-function subTextColor(k) { return { math: '#e8d5f5', sci: '#d5f5e3', eng: '#fff5d5', log: '#f5e8d5' }[k] || '#eee'; }
+function subClass(k) { return { math: 'grad-math glow-math', sci: 'grad-sci glow-sci', eng: 'grad-eng glow-eng', log: 'grad-log glow-log', fil: 'grad-log glow-log', abs: 'grad-math glow-math' }[k] || 'grad-math'; }
+function subTextColor(k) { return { math: '#e8d5f5', sci: '#d5f5e3', eng: '#fff5d5', log: '#f5e8d5', fil: '#f5e8d5', abs: '#e8d5f5' }[k] || '#eee'; }
 function fmtTime(s) {
   var m = Math.floor(s / 60); var sec = s % 60;
   return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
@@ -386,7 +409,8 @@ function tipForSubject(k) {
     math: '<i class="fas fa-lightbulb"></i> Pro Tip: Write down your work — even in timed mode. It helps you spot calculation errors faster.',
     sci: '<i class="fas fa-lightbulb"></i> Pro Tip: Visualize the concept. Connecting abstract ideas to real-world examples makes answers click.',
     eng: '<i class="fas fa-lightbulb"></i> Pro Tip: Read the question stem carefully — often the answer hides in the phrasing itself.',
-    log: '<i class="fas fa-lightbulb"></i> Pro Tip: Look for what\'s different, not what\'s the same. The odd one out is usually obvious once you spot the pattern.'
+    fil: '<i class="fas fa-lightbulb"></i> Pro Tip: Basahin nang mabuti ang tanong. Ang kahulugan ng salita ay maaaring matuklasan sa konteksto ng pangungusap.',
+    abs: '<i class="fas fa-lightbulb"></i> Pro Tip: Look for what changes between each figure — size, rotation, shading, or count. The pattern usually follows one consistent rule.'
   };
   return t[k] || t.math;
 }
@@ -556,7 +580,7 @@ function copyProgress(src) {
 }
 function normalizeProgress(src) {
   var clean = copyProgress(AUTH_PROGRESS_DEFAULT);
-  ['math', 'sci', 'eng', 'log'].forEach(function (sk) {
+  ['math', 'sci', 'eng', 'fil', 'abs'].forEach(function (sk) {
     var item = src && src[sk] ? src[sk] : {};
     clean[sk] = {
       pct: Number(item.pct) || 0,
@@ -570,7 +594,7 @@ function normalizeProgress(src) {
 }
 function isDemoProgress(src) {
   if (!src) return false;
-  return ['math', 'sci', 'eng', 'log'].every(function (sk) {
+  return ['math', 'sci', 'eng', 'fil', 'abs'].every(function (sk) {
     var a = src[sk] || {};
     var b = DEMO_PROGRESS_SIGNATURE[sk];
     return Number(a.pct) === b.pct && Number(a.quizzes) === b.quizzes && Number(a.correct) === b.correct && Number(a.total) === b.total;
@@ -582,7 +606,7 @@ function progressSummary() {
   var totalQuestions = 0;
   var bestSubject = null;
   var bestPct = -1;
-  ['math', 'sci', 'eng', 'log'].forEach(function (sk) {
+  ['math', 'sci', 'eng', 'fil', 'abs'].forEach(function (sk) {
     var p = PROGRESS[sk] || { pct: 0, quizzes: 0, correct: 0, total: 0 };
     totalQuizzes += Number(p.quizzes) || 0;
     totalCorrect += Number(p.correct) || 0;
@@ -1238,65 +1262,104 @@ function pageHome() {
 function pageReview() {
   var subjects = [
     {
-      key: 'math', label: 'MATHEMATICS', icon: 'fa-square-root-variable',
-      diff: [
-        { k: 'math_easy', n: 'Arithmetic & Fractions', d: 'Easy' },
-        { k: 'math_moderate', n: 'Geometry', d: 'Moderate' },
-        { k: 'math_hard', n: 'Algebra', d: 'Hard' },
-        { k: 'math_advanced', n: 'Statistics & Probability', d: 'Advanced' }
-      ]
-    },
-    {
-      key: 'sci', label: 'SCIENCE', icon: 'fa-atom',
-      diff: [
-        { k: 'sci_easy', n: 'Earth Science', d: 'Easy' },
-        { k: 'sci_moderate', n: 'Biology', d: 'Moderate' },
-        { k: 'sci_hard', n: 'Physics', d: 'Hard' }
-      ]
-    },
-    {
       key: 'eng', label: 'ENGLISH', icon: 'fa-language',
-      diff: [
-        { k: 'eng_easy', n: 'Parts of Speech', d: 'Easy' },
-        { k: 'eng_moderate', n: 'Grammar Fundamentals', d: 'Moderate' },
-        { k: 'eng_hard', n: 'Sentence Structure', d: 'Hard' },
-        { k: 'eng_advanced', n: 'Basic Reading Comprehension', d: 'Advanced' }
+      meta: '50 items &bull; 20 mins',
+      topics: [
+        { k: 'eng_grammar', n: 'Correct Grammar Usage' },
+        { k: 'eng_vocabulary', n: 'Vocabulary' },
+        { k: 'eng_idioms', n: 'Idiomatic Expressions' },
+        { k: 'eng_analogy', n: 'Word Analogy' },
+        { k: 'eng_reading', n: 'Reading Comprehension' }
       ]
     },
     {
-      key: 'log', label: 'LOGICAL REASONING', icon: 'fa-brain',
-      diff: [
-        { k: 'log_easy', n: 'Shape Patterns', d: 'Easy' },
-        { k: 'log_moderate', n: 'Classification', d: 'Moderate' },
-        { k: 'log_hard', n: 'Analogies', d: 'Hard' }
+      key: 'sci', label: 'INTEGRATED SCIENCE', icon: 'fa-atom',
+      meta: '40 items &bull; 25 mins',
+      topics: [
+        { k: 'sci_general', n: 'General Science' },
+        { k: 'sci_cells', n: 'Cells' },
+        { k: 'sci_gravitation', n: 'Law of Universal Gravitation' },
+        { k: 'sci_physics', n: 'Physics' },
+        { k: 'sci_newtonian', n: 'Newtonian Mechanics' },
+        { k: 'sci_optics', n: 'Optics' },
+        { k: 'sci_wave', n: 'Wave, Motion, and Acoustic' },
+        { k: 'sci_thermo', n: 'Thermodynamics and Heat' },
+        { k: 'sci_electro', n: 'Electromagnetism and Electronics' },
+        { k: 'sci_chemistry', n: 'Chemistry' },
+        { k: 'sci_analysis', n: 'Analysis and Application' },
+        { k: 'sci_knowledge', n: 'Comprehension and Knowledge' }
+      ]
+    },
+    {
+      key: 'math', label: 'INTEGRATED MATHEMATICS', icon: 'fa-square-root-variable',
+      meta: '40 items &bull; 40 mins',
+      topics: [
+        { k: 'math_basic', n: 'Basic Operations' },
+        { k: 'math_statistics', n: 'Statistics' },
+        { k: 'math_algebra', n: 'Algebra' },
+        { k: 'math_geometry', n: 'Geometry' },
+        { k: 'math_trig', n: 'Trigonometry' },
+        { k: 'math_verbal', n: 'Verbal Problem Analysis' },
+        { k: 'math_unitcircle', n: 'Unit Circle' }
+      ]
+    },
+    {
+      key: 'fil', label: 'FILIPINO', icon: 'fa-book',
+      meta: '30 items &bull; 15 mins',
+      topics: [
+        { k: 'fil_gamit', n: 'Wastong Gamit ng Salita' },
+        { k: 'fil_istruktura', n: 'Istruktura ng Pangungusap' },
+        { k: 'fil_ugat', n: 'Pagtukoy sa Salitang Ugat' },
+        { k: 'fil_idyoma', n: 'Idyoma at Talasalitaan' },
+        { k: 'fil_pagsunod', n: 'Pagsusunod-sunod ng Talata at Pangungusap' },
+        { k: 'fil_unawa', n: 'Pag-unawa sa Binasa' },
+        { k: 'fil_kahulugan', n: 'Kasingkahulugan at Kasalungat ng Salita' }
+      ]
+    },
+    {
+      key: 'abs', label: 'ABSTRACT REASONING', icon: 'fa-shapes',
+      meta: '30 items &bull; 10 mins',
+      note: '<i class="fas fa-image" style="margin-right:6px;color:rgba(255,255,255,0.7);"></i>This section uses images — replace placeholder images with real patterns.',
+      topics: [
+        { k: 'abs_reasoning', n: 'Abstract Reasoning (Image-based)' }
       ]
     }
   ];
+
   var html = '<div class="page review-page"><div class="wrap">';
   html += backBtn(false, 'home', true);
   html += '<h2 class="bng sec-title"><i class="fas fa-book-open" style="color:var(--gold);margin-right:10px;"></i>START REVIEW</h2>';
-  html += '<p class="sec-sub">Choose a subject, then select a difficulty to begin. Each quiz has 10 questions. Study well and trust the process!</p>';
+  html += '<p class="sec-sub">Select a topic under any subject to begin a focused quiz. Each question has a 1-minute timer. Study well and trust the process!</p>';
 
   html += '<div class="subjects-grid">';
   subjects.forEach(function (s) {
     var cls = subClass(s.key);
     html += '<div class="subject-block">';
-    html += '<div class="bng ' + cls + '" style="display:inline-flex;align-items:center;padding:14px 26px 14px 18px;border-radius:14px;margin-bottom:22px;font-size:20px;">';
-    html += '<span style="width:52px;height:52px;background:rgba(255,255,255,0.2);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;margin-right:14px;font-size:24px;"><i class="fas ' + s.icon + '"></i></span>';
+
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;width:100%;margin-bottom:18px;flex-wrap:wrap;gap:10px;">';
+    html += '<div class="bng ' + cls + '" style="display:inline-flex;align-items:center;padding:14px 24px 14px 16px;border-radius:14px;font-size:20px;">';
+    html += '<span style="width:48px;height:48px;background:rgba(255,255,255,0.2);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;margin-right:12px;font-size:22px;"><i class="fas ' + s.icon + '"></i></span>';
     html += s.label + '</div>';
+    html += '<span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);padding:6px 16px;border-radius:20px;font-size:13px;color:#ddd;white-space:nowrap;">' + s.meta + '</span>';
+    html += '</div>';
+
+    if (s.note) {
+      html += '<div style="width:100%;margin-bottom:14px;padding:10px 16px;background:rgba(255,255,255,0.06);border-radius:10px;font-size:13px;color:rgba(255,255,255,0.65);">' + s.note + '</div>';
+    }
+
     html += '<div class="diff-row">';
-    s.diff.forEach(function (d) {
-      var tagCls = d.d === 'Easy' ? 'diff-easy' : d.d === 'Moderate' ? 'diff-mod' : d.d === 'Hard' ? 'diff-hard' : 'diff-adv';
-      var timer = QUESTIONS[d.k] ? QUESTIONS[d.k].timer : 60;
-      html += '<button class="diff-btn ' + cls + '" style="background:' + subGrad(s.key) + ';" onclick="selectDifficulty(\'' + d.k + '\')">';
-      html += '<span class="diff-name">' + d.n + '</span>';
-      html += '<span class="diff-tag ' + tagCls + '">' + d.d + ' &bull; ' + Math.floor(timer / 60) + 'm ' + (timer % 60 ? timer % 60 + 's' : '') + '</span>';
+    s.topics.forEach(function (t) {
+      html += '<button class="diff-btn ' + cls + '" style="background:' + subGrad(s.key) + ';" onclick="selectDifficulty(\'' + t.k + '\')">';
+      html += '<span class="diff-name">' + t.n + '</span>';
+      html += '<span class="diff-tag diff-mod"><i class="fas fa-stopwatch" style="margin-right:4px;"></i>1 min per question</span>';
       html += '</button>';
     });
-    html += '</div></div>';
+    html += '</div>';
+
+    html += '</div>';
   });
   html += '</div>';
-  html += '<div class="moto-bar"><i class="fas fa-star" style="color:var(--gold);margin-right:8px;"></i>Start with Easy if you\'re reviewing, or challenge yourself with Hard to push your limits. Either way, every question makes you sharper!</div>';
+  html += '<div class="moto-bar"><i class="fas fa-star" style="color:var(--gold);margin-right:8px;"></i>Every topic you practice brings you one step closer to acing the PLMAT. Keep going, Isko!</div>';
   html += '</div></div>';
   return html;
 }
@@ -1422,6 +1485,7 @@ function pageQuiz() {
     timerHtml +
     '<div class="quiz-progress-bar"><div class="quiz-progress-fill ' + gc + '" style="width:' + pct + '%;"></div></div>' +
     '<div class="quiz-question"><strong>' + (cur + 1) + '.</strong> ' + item.q + '</div>' +
+    (item.img ? '<div class="abs-img-wrap"><img src="' + item.img + '" alt="Abstract Reasoning Pattern" class="abs-pattern-img" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'"/><div class="abs-placeholder-box" style="display:none;"><i class="fas fa-image"></i><span>Image: <strong>' + item.img + '</strong></span><span style=\'font-size:12px;color:#aaa;\'>Place this image file in the project root folder</span></div></div>' : '') +
     '<div class="quiz-choices">' + choicesHtml + '</div>' +
     feedbackHtml +
     navHtml +
@@ -1499,7 +1563,7 @@ function preFinishQuiz() {
   if (state.user.loggedIn && correct > 0 && !BADGES[0].earned) {
     badgesToShow.push(BADGES[0]);
   }
-  var badgeIndexMap = { math: 2, sci: 3, eng: 4, log: 5 };
+  var badgeIndexMap = { math: 2, sci: 3, eng: 4, abs: 5, fil: 8 };
   var badgeIndex = badgeIndexMap[subKey];
   if (badgeIndex !== undefined && futurePct >= 85 && !BADGES[badgeIndex].earned) {
     badgesToShow.push(BADGES[badgeIndex]);
@@ -1588,8 +1652,10 @@ function getBestSubjectIcon() {
     math: 'fa-calculator',
     sci: 'fa-atom',
     eng: 'fa-language',
-    log: 'fa-brain'
-  }[getBestSubject()];
+    log: 'fa-brain',
+    fil: 'fa-book',
+    abs: 'fa-shapes'
+  }[getBestSubject()] || 'fa-star';
 }
 
 function getBestSubjectName() {
@@ -1597,8 +1663,9 @@ function getBestSubjectName() {
     math: 'Math',
     sci: 'Science',
     eng: 'English',
-    log: 'Logic'
-  }[getBestSubject()];
+    fil: 'Filipino',
+    abs: 'Abstract Reasoning'
+  }[getBestSubject()] || 'Math';
 }
 
 /* ============================================================
@@ -1655,9 +1722,9 @@ function pageQuizResults() {
     }
 
     // Award subject master badges if progress >= 85%
-    var badgeIndexMap = { math: 2, sci: 3, eng: 4, log: 5 };
+    var badgeIndexMap = { math: 2, sci: 3, eng: 4, abs: 5, fil: 8 };
     var badgeIndex = badgeIndexMap[subKey];
-    if (PROGRESS[subKey].pct >= 85) {
+    if (badgeIndex !== undefined && PROGRESS[subKey].pct >= 85) {
       awardBadge(badgeIndex);
     }
 
@@ -1740,7 +1807,7 @@ function pageMockInstructions() {
     '<li><i class="fas fa-file-circle-check"></i><div><strong style="color:#fff;">Total Questions:</strong> 40 questions (mixed subjects)</div></li>' +
     '<li><i class="fas fa-clock"></i><div><strong style="color:#fff;">Time Limit:</strong> 1 hour and 30 minutes (continuous timer)</div></li>' +
     '<li><i class="fas fa-star"></i><div><strong style="color:#fff;">Points:</strong> 1 point each (40 points total)</div></li>' +
-    '<li><i class="fas fa-layer-group"></i><div><strong style="color:#fff;">Subjects:</strong> Mathematics, Science, English, Logical Reasoning</div></li>' +
+    '<li><i class="fas fa-layer-group"></i><div><strong style="color:#fff;">Subjects:</strong> Mathematics, Science, English, Abstract Reasoning</div></li>' +
     '<li><i class="fas fa-arrow-right-arrow-left"></i><div><strong style="color:#fff;">Navigation:</strong> You can move between questions freely</div></li>' +
     '</ul>' +
     '</div>' +
@@ -2008,10 +2075,10 @@ function pageMockResults() {
   var pct = Math.round((correct / total) * 100);
 
   // ========== STEP 10A: FIREBASE - Calculate breakdown FIRST ==========
-  var subCounts = { math: { c: 0, t: 0 }, sci: { c: 0, t: 0 }, eng: { c: 0, t: 0 }, log: { c: 0, t: 0 } };
+  var subCounts = { math: { c: 0, t: 0 }, sci: { c: 0, t: 0 }, eng: { c: 0, t: 0 }, abs: { c: 0, t: 0 } };
   qs.forEach(function (item, i) {
-    subCounts[item.subKey].t++;
-    if (state.mock.answers[i] === item.a) subCounts[item.subKey].c++;
+    var sk = item.subKey === 'log' ? 'abs' : item.subKey;
+    if (subCounts[sk]) { subCounts[sk].t++; if (state.mock.answers[i] === item.a) subCounts[sk].c++; }
   });
 
   // ========== STEP 10A: FIREBASE - Save mock exam result ==========
@@ -2044,9 +2111,9 @@ function pageMockResults() {
       'Don\'t give up! Review your weak areas and try again.';
 
   var breakdownHtml = '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:40px;">';
-  var subNames = { math: 'Math', sci: 'Science', eng: 'English', log: 'Logic' };
-  var subIcons = { math: 'fa-calculator', sci: 'fa-atom', eng: 'fa-language', log: 'fa-brain' };
-  ['math', 'sci', 'eng', 'log'].forEach(function (sk) {
+  var subNames = { math: 'Math', sci: 'Science', eng: 'English', abs: 'Abstract' };
+  var subIcons = { math: 'fa-calculator', sci: 'fa-atom', eng: 'fa-language', abs: 'fa-shapes' };
+  ['math', 'sci', 'eng', 'abs'].forEach(function (sk) {
     var c = subCounts[sk];
     var p = c.t ? Math.round((c.c / c.t) * 100) : 0;
     breakdownHtml += '<div class="stat-card card ' + subClass(sk) + '">' +
@@ -2101,8 +2168,8 @@ function pageMockResults() {
    PAGE: LEADERBOARD
    ============================================================ */
 function pageLeaderboard() {
-  var subGrads = { math: subGrad('math'), sci: subGrad('sci'), eng: subGrad('eng'), log: subGrad('log') };
-  var subBadge = { math: 'MATH', sci: 'SCIENCE', eng: 'ENGLISH', log: 'LOGIC' };
+  var subGrads = { math: subGrad('math'), sci: subGrad('sci'), eng: subGrad('eng'), fil: subGrad('fil'), abs: subGrad('abs'), log: subGrad('abs') };
+  var subBadge = { math: 'MATH', sci: 'SCIENCE', eng: 'ENGLISH', fil: 'FILIPINO', abs: 'ABSTRACT', log: 'ABSTRACT' };
   var leaders = normalizeLeaderboardEntries(LEADERS);
   var podHTML = '';
   if (leaders.length) {
@@ -2136,7 +2203,7 @@ function pageLeaderboard() {
   leaders.forEach(function (l, i) {
     var subject = l.subject || 'math';
     var isMe = state.user.uid && l.uid === state.user.uid;
-    var lightBg = 'background:rgba(' + (subject === 'math' ? '157,78,221' : subject === 'sci' ? '46,204,113' : subject === 'eng' ? '247,201,72' : '244,162,97') + ',0.12);';
+    var lightBg = 'background:rgba(' + (subject === 'math' ? '157,78,221' : subject === 'sci' ? '46,204,113' : subject === 'eng' ? '247,201,72' : subject === 'fil' ? '244,162,97' : '157,78,221') + ',0.12);';
     var totalQuizzes = Number(l.totalQuizzes) || 0;
     var mockExams = Number(l.mockExams) || 0;
     var avgScore = Number(l.avgScore) || 0;
@@ -2171,9 +2238,9 @@ function pageLeaderboard() {
    PAGE: PROGRESS TRACKER
    ============================================================ */
 function pageProgress() {
-  var subNames = { math: 'Mathematics', sci: 'Science', eng: 'English', log: 'Logical Reasoning' };
-  var subIcons = { math: 'fa-calculator', sci: 'fa-atom', eng: 'fa-language', log: 'fa-brain' };
-  var subFill = { math: 'linear-gradient(90deg,var(--math-a),#c77dff)', sci: 'linear-gradient(90deg,var(--sci-a),#58d68d)', eng: 'linear-gradient(90deg,var(--eng-a),#f9dc5c)', log: 'linear-gradient(90deg,var(--log-a),#f4c089)' };
+  var subNames = { math: 'Mathematics', sci: 'Science', eng: 'English', fil: 'Filipino', abs: 'Abstract Reasoning' };
+  var subIcons = { math: 'fa-calculator', sci: 'fa-atom', eng: 'fa-language', fil: 'fa-book', abs: 'fa-shapes' };
+  var subFill = { math: 'linear-gradient(90deg,var(--math-a),#c77dff)', sci: 'linear-gradient(90deg,var(--sci-a),#58d68d)', eng: 'linear-gradient(90deg,var(--eng-a),#f9dc5c)', fil: 'linear-gradient(90deg,var(--log-a),#f4c089)', abs: 'linear-gradient(90deg,var(--math-a),#a29bfe)' };
 
   var summary = progressSummary();
   var correctText = summary.totalQuestions ? summary.totalCorrect + '/' + summary.totalQuestions + ' correct' : 'No saved answers yet';
@@ -2188,7 +2255,7 @@ function pageProgress() {
 
   /* SUBJECT PROGRESS */
   var progHTML = '';
-  ['math', 'sci', 'eng', 'log'].forEach(function (sk) {
+  ['math', 'sci', 'eng', 'fil', 'abs'].forEach(function (sk) {
     var p = PROGRESS[sk];
     progHTML += '<div class="prog-card ' + subClass(sk) + ' card">' +
       '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
@@ -2219,7 +2286,8 @@ function pageProgress() {
 
   /* AREAS FOR IMPROVEMENT */
   var improvHTML = '';
-  var sorted = Object.keys(PROGRESS).sort(function (a, b) { return PROGRESS[a].pct - PROGRESS[b].pct; });
+  var activeSubjects = ['math', 'sci', 'eng', 'fil', 'abs'];
+  var sorted = activeSubjects.slice().sort(function (a, b) { return (PROGRESS[a] ? PROGRESS[a].pct : 0) - (PROGRESS[b] ? PROGRESS[b].pct : 0); });
   sorted.forEach(function (sk) {
     var p = PROGRESS[sk];
     var isGood = p.pct >= 75;
@@ -2227,7 +2295,8 @@ function pageProgress() {
       math: 'Focus on Algebra and Statistics. Try working through problems step-by-step and check each calculation twice.',
       sci: 'Review Physics fundamentals. Draw diagrams for force and motion problems to visualize the concepts better.',
       eng: 'Practice grammar rules daily. Reading short passages will also sharpen your Reading Comprehension score.',
-      log: 'Work on Analogies — look for the relationship type first (category, function, degree, etc.) before picking an answer.'
+      fil: 'Pag-aralan ang mga salitang ugat at idyoma. Subukang magbasa ng mga Filipino na teksto upang mapalakas ang talasalitaan.',
+      abs: 'Practice identifying patterns in shapes — focus on rotation, reflection, and size changes. Speed comes with repeated exposure.'
     };
     improvHTML += '<div class="improvement-card" style="background:linear-gradient(135deg,' + (isGood ? 'rgba(46,204,113,0.1)' : 'rgba(231,76,60,0.07)') + ',' + (isGood ? 'rgba(0,119,182,0.1)' : 'rgba(192,57,43,0.07)') + ');border-color:' + (isGood ? 'rgba(46,204,113,0.25)' : 'rgba(231,76,60,0.25)') + ';">' +
       '<div class="improvement-icon" style="background:' + (isGood ? subGrad('sci') : subGrad('log')) + '"><i class="fas fa-' + (isGood ? 'circle-check' : 'triangle-exclamation') + '"></i></div>' +
@@ -2403,8 +2472,10 @@ function hideAuthLoader() {
 
 window.addEventListener('DOMContentLoaded', function () {
   setupInteractiveAudio();
+
   if (firebaseReady()) {
     var F = window.fbFunctions;
+
     F.onAuthStateChanged(window.fbAuth, function (firebaseUser) {
       if (firebaseUser) {
         F.getDoc(F.doc(window.fbDb, 'users', firebaseUser.uid))
@@ -2440,6 +2511,18 @@ window.addEventListener('DOMContentLoaded', function () {
                 badges: []
               }).catch(function (err) { console.warn('Could not create user profile', err); });
             }
+            // Load questions from Firestore now that the user is authenticated
+            return F.getDocs(F.collection(window.fbDb, 'questions'))
+              .then(function (qSnap) {
+                qSnap.forEach(function (docSnap) {
+                  QUESTIONS[docSnap.id] = docSnap.data();
+                });
+              })
+              .catch(function (err) {
+                console.warn('Could not load questions from Firestore (using built-in questions):', err);
+              });
+          })
+          .then(function () {
             hideLogin();
             hideAuthLoader();
             startLeaderboardListener();
