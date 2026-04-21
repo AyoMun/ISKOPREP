@@ -2164,8 +2164,8 @@ function pageMockResults() {
       '<div style="font-size:12px;color:#888;margin-bottom:4px;">' + item.subject + '</div>' +
       '<p style="color:#ddd;font-size:15px;margin-bottom:8px;"><strong>' + (i + 1) + '.</strong> ' + item.q + '</p>' +
       
-      /* ADDED THIS LINE FOR THE RESULTS PAGE IMAGE */
-      (item.img ? '<div style="margin-bottom:12px;"><img src="' + item.img + '" style="max-width:250px; height:auto; border-radius:6px; border:1px solid rgba(255,255,255,0.2);"></div>' : '') +
+      /* FIXED INLINE CSS FOR RESULTS PAGE IMAGE */
+      (item.img ? '<div style="margin-bottom:16px; width:100%;"><img src="' + item.img + '" alt="Question Image" style="display:block; max-width:100%; width:250px; height:auto; border-radius:6px; border:1px solid rgba(255,255,255,0.2);" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'block\'"><div style="display:none;color:#e74c3c;font-size:12px;margin-top:4px;"><i class="fas fa-image"></i> Image failed to load</div></div>' : '') +
       
       (ans !== undefined ? '<p style="font-size:14px;color:' + 
       (isCorrect ? '#2ecc71' : '#e74c3c') + ';">Your answer: ' + item.o[ans] + '</p>' : '<p style="font-size:14px;color:#888;">Not answered</p>') +      (!isCorrect ? '<p style="font-size:14px;color:#2ecc71;margin-top:4px;"><i class="fas fa-check"></i> Correct: ' + item.o[item.a] + '</p>' : '') +
