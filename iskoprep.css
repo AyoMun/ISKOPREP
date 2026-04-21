@@ -826,7 +826,7 @@ button {
 .subjects-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--subjects-grid-gap);
+  gap: 48px;
   margin-bottom: 40px;
 }
 
@@ -834,11 +834,47 @@ button {
   margin-bottom: 0;
   background: rgba(255, 255, 255, 0.04);
   border-radius: var(--subject-block-radius);
-  padding: var(--subject-block-padding);
+  padding: 36px 30px 40px;
   border: 2px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.abs-img-wrap {
+  width: 100%;
+  margin: 16px 0 24px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+  border: 2px dashed rgba(255,255,255,0.2);
+}
+
+.abs-pattern-img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  display: block;
+}
+
+.abs-placeholder-box {
+  width: 100%;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px;
+  color: rgba(255,255,255,0.55);
+  font-size: 15px;
+  text-align: center;
+}
+
+.abs-placeholder-box i {
+  font-size: 48px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 6px;
 }
 
 .diff-row {
