@@ -297,14 +297,19 @@ var MOCK_QUESTIONS = [];
     fromKey('eng_analogy', 'English', 'eng'),
     fromKey('eng_reading', 'English', 'eng')
   ).slice(0, 10);
-  var logPool = [].concat(
-    fromKey('fil_gamit', 'Abstract Reasoning', 'abs'),
-    fromKey('fil_istruktura', 'Abstract Reasoning', 'abs'),
-    fromKey('fil_ugat', 'Abstract Reasoning', 'abs'),
-    fromKey('fil_idyoma', 'Abstract Reasoning', 'abs'),
-    fromKey('fil_kahulugan', 'Abstract Reasoning', 'abs')
-  ).slice(0, 10);
-  MOCK_QUESTIONS = [].concat(mathPool, sciPool, engPool, logPool);
+var filPool = [].concat(
+  fromKey('fil_gamit', 'Filipino', 'fil'),
+  fromKey('fil_istruktura', 'Filipino', 'fil'),
+  fromKey('fil_ugat', 'Filipino', 'fil'),
+  fromKey('fil_idyoma', 'Filipino', 'fil'),
+  fromKey('fil_kahulugan', 'Filipino', 'fil')
+).slice(0, 10);
+
+var absPool = [].concat(
+  fromKey('abs_reasoning', 'Abstract Reasoning', 'abs')
+).slice(0, 10);
+
+MOCK_QUESTIONS = [].concat(mathPool, sciPool, engPool, filPool, absPool);
 })();
 
 /* ---- LEADERBOARD DATA ---- */
