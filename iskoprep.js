@@ -1014,6 +1014,22 @@ function guestMode() {
   // Guest mode: no Firebase auth. Progress is not saved.
   state.user = { uid: null, username: 'Guest', email: '', loggedIn: true, streak: 0, mockExams: 0, mockCorrect: 0, mockTotal: 0 };
   hideLogin();
+  
+  // FETCH QUESTIONS FOR GUESTS TOO
+  if (firebaseReady()) {
+    var F = window.fbFunctions;
+    F.getDocs(F.collection(window.fbDb, 'questions'))
+      .then(function (qSnap) {
+        qSnap.forEach(function (docSnap) {
+          QUESTIONS[docSnap.id] = docSnap.data();
+        });
+        buildMock(); // Rebuild mock exam pool with Firebase data
+      })
+      .catch(function (err) {
+        console.warn('Guest mode: Could not load questions from Firestore', err);
+      });
+  }
+
   render();
 }
 
@@ -1969,6 +1985,7 @@ function pageMockExam() {
     '<i class="fas fa-tag"></i> ' + item.subject +
     '</div>' +
     '<div style="font-size:20px;color:#fff;line-height:1.75;margin-bottom:28px;"><strong>' + (cur + 1) + '.</strong> ' + item.q + '</div>' +
+    (item.img ? '<div class="abs-img-wrap" style="margin-bottom:20px;"><img src="' + item.img + '" alt="Abstract Pattern" class="abs-pattern-img" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'block\'"><div style="display:none;color:#e74c3c;font-size:13px;margin-top:8px;"><i class="fas fa-image"></i> Image failed to load</div></div>' : '') +
     '<div class="quiz-choices">' + choicesHtml + '</div>' +
     '<div class="mock-nav">' +
     (cur > 0 ? '<button class="btn-outline bng" onclick="mockPrev()"><i class="fas fa-chevron-left"></i> PREVIOUS</button>' : '') +
