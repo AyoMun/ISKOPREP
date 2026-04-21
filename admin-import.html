@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IskoPrep — Question Importer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #1a1a2e; color: #eee; padding: 32px 16px; min-height: 100vh; }
+    h1 { color: #f5c842; font-size: 24px; margin-bottom: 4px; }
+    .subtitle { color: #aaa; font-size: 14px; margin-bottom: 28px; }
+    .card { background: #16213e; border: 1px solid #2a2a4a; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    label { display: block; font-size: 13px; color: #bbb; margin-bottom: 6px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    select, textarea, input[type=text] {
+      width: 100%; padding: 10px 14px; border-radius: 8px;
+      border: 1px solid #333; background: #0f0f1f; color: #eee;
+      font-size: 14px; outline: none;
+    }
+    select:focus, textarea:focus { border-color: #f5c842; }
+    textarea { resize: vertical; font-family: monospace; line-height: 1.6; }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .col { flex: 1; min-width: 200px; }
+    .btn {
+      display: inline-block; padding: 12px 32px; border-radius: 8px;
+      font-size: 15px; font-weight: bold; cursor: pointer; border: none;
+      background: #f5c842; color: #1a1a2e; margin-top: 16px;
+      transition: opacity 0.2s;
+    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn.secondary { background: #2a2a4a; color: #eee; margin-left: 12px; }
+    .log { background: #0a0a1a; border-radius: 8px; padding: 16px; margin-top: 20px;
+           font-family: monospace; font-size: 13px; line-height: 1.8; max-height: 300px; overflow-y: auto; }
+    .log .ok { color: #52d98a; }
+    .log .err { color: #ff6b6b; }
+    .log .info { color: #aaa; }
+    .log .warn { color: #f5c842; }
+    .format-box { background: #0a0a1a; border-radius: 8px; padding: 16px; font-family: monospace;
+                  font-size: 13px; line-height: 1.9; color: #b0e0ff; border-left: 3px solid #f5c842; }
+    .format-box .comment { color: #666; }
+    .tip { background: #1e2a1e; border: 1px solid #2a4a2a; border-radius: 8px;
+           padding: 12px 16px; font-size: 13px; color: #8fc; margin-top: 12px; }
+    .tip strong { color: #52d98a; }
+    .preview-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 16px; }
+    .preview-table th { background: #0a0a1a; padding: 8px 12px; text-align: left; color: #aaa; font-weight: bold; border-bottom: 1px solid #2a2a4a; }
+    .preview-table td { padding: 8px 12px; border-bottom: 1px solid #1a1a3a; vertical-align: top; }
+    .preview-table tr:hover td { background: #1a1a2e; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+    .badge.ok { background: #1e3a1e; color: #52d98a; }
+    .badge.err { background: #3a1e1e; color: #ff6b6b; }
+    .section-title { font-size: 16px; font-weight: bold; color: #f5c842; margin-bottom: 12px; }
+    hr { border: none; border-top: 1px solid #2a2a4a; margin: 20px 0; }
+  </style>
+</head>
+<body>
+
+<h1>IskoPrep — Question Importer</h1>
+<p class="subtitle">Add questions to Firestore without touching the main code.</p>
+
+<div class="card">
+  <div class="section-title">Step 1 — Select Topic</div>
+  <div class="row">
+    <div class="col">
+      <label>Subject &amp; Topic</label>
+      <select id="topicSelect">
+        <optgroup label="English">
+          <option value="eng_grammar">English — Correct Grammar Usage</option>
+          <option value="eng_vocabulary">English — Vocabulary</option>
+          <option value="eng_idioms">English — Idiomatic Expressions</option>
+          <option value="eng_analogy">English — Word Analogy</option>
+          <option value="eng_reading">English — Reading Comprehension</option>
+        </optgroup>
+        <optgroup label="Integrated Science">
+          <option value="sci_general">Science — General Science</option>
+          <option value="sci_cells">Science — Cells</option>
+          <option value="sci_gravitation">Science — Law of Universal Gravitation</option>
+          <option value="sci_physics">Science — Physics</option>
+          <option value="sci_newtonian">Science — Newtonian Mechanics</option>
+          <option value="sci_optics">Science — Optics</option>
+          <option value="sci_wave">Science — Wave, Motion &amp; Acoustic</option>
+          <option value="sci_thermo">Science — Thermodynamics and Heat</option>
+          <option value="sci_electro">Science — Electromagnetism</option>
+          <option value="sci_chemistry">Science — Chemistry</option>
+          <option value="sci_analysis">Science — Analysis and Application</option>
+          <option value="sci_knowledge">Science — Comprehension and Knowledge</option>
+        </optgroup>
+        <optgroup label="Integrated Mathematics">
+          <option value="math_basic">Math — Basic Operations</option>
+          <option value="math_statistics">Math — Statistics</option>
+          <option value="math_algebra">Math — Algebra</option>
+          <option value="math_geometry">Math — Geometry</option>
+          <option value="math_trig">Math — Trigonometry</option>
+          <option value="math_verbal">Math — Verbal Problem Analysis</option>
+          <option value="math_unitcircle">Math — Unit Circle</option>
+        </optgroup>
+        <optgroup label="Filipino">
+          <option value="fil_gamit">Filipino — Wastong Gamit ng Salita</option>
+          <option value="fil_istruktura">Filipino — Istruktura ng Pangungusap</option>
+          <option value="fil_ugat">Filipino — Pagtukoy sa Salitang Ugat</option>
+          <option value="fil_idyoma">Filipino — Idyoma at Talasalitaan</option>
+          <option value="fil_pagsunod">Filipino — Pagsusunod-sunod</option>
+          <option value="fil_unawa">Filipino — Pag-unawa sa Binasa</option>
+          <option value="fil_kahulugan">Filipino — Kasingkahulugan at Kasalungat</option>
+        </optgroup>
+        <optgroup label="Abstract Reasoning">
+          <option value="abs_reasoning">Abstract Reasoning</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title">Step 2 — Paste Your Questions</div>
+  <p style="font-size:13px;color:#aaa;margin-bottom:14px;">Use this exact format. Separate each question with a blank line.</p>
+
+  <div class="format-box">
+    <span class="comment"># Question 1</span><br>
+    Q: What is the correct sentence?<br>
+    A: She go to school every day.<br>
+    B: She goes to school every day.<br>
+    C: She gone to school every day.<br>
+    D: She going to school every day.<br>
+    Answer: B<br>
+    <br>
+    <span class="comment"># Question 2 (leave blank line between questions)</span><br>
+    Q: Choose the word closest in meaning to "benevolent".<br>
+    A: cruel<br>
+    B: lazy<br>
+    C: kind<br>
+    D: angry<br>
+    Answer: C<br>
+  </div>
+
+  <div class="tip" style="margin-top:14px;">
+    <strong>Rules:</strong>
+    Each question needs <strong>Q:</strong> (question), <strong>A: B: C: D:</strong> (4 choices), and <strong>Answer:</strong> (the correct letter A, B, C, or D).
+    Separate questions with a blank line. Lines starting with <strong>#</strong> are ignored (comments).
+  </div>
+
+  <textarea id="questionsInput" rows="18" placeholder="Paste your questions here using the format above..." style="margin-top:16px;"></textarea>
+
+  <div style="margin-top:16px;">
+    <button class="btn secondary" onclick="previewQuestions()">Preview</button>
+    <button class="btn" id="uploadBtn" onclick="uploadQuestions()" disabled>Upload to Firestore</button>
+  </div>
+</div>
+
+<div class="card" id="previewCard" style="display:none;">
+  <div class="section-title">Preview — <span id="previewCount">0</span> questions parsed</div>
+  <div id="previewContent"></div>
+</div>
+
+<div class="card" id="logCard" style="display:none;">
+  <div class="section-title">Upload Log</div>
+  <div class="log" id="logBox"></div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, doc, setDoc, getDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyARckYL1B0WqAo6KF7s6EZlU9deaYhOUMg",
+    authDomain: "iskoprep-94cf9.firebaseapp.com",
+    projectId: "iskoprep-94cf9",
+    storageBucket: "iskoprep-94cf9.firebasestorage.app",
+    messagingSenderId: "451644156983",
+    appId: "1:451644156983:web:022f8e0764c12ed3ea23b2"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  const TOPIC_META = {
+    eng_grammar:    { lesson: 'Correct Grammar Usage',          subject: 'English',                 subKey: 'eng' },
+    eng_vocabulary: { lesson: 'Vocabulary',                     subject: 'English',                 subKey: 'eng' },
+    eng_idioms:     { lesson: 'Idiomatic Expressions',          subject: 'English',                 subKey: 'eng' },
+    eng_analogy:    { lesson: 'Word Analogy',                   subject: 'English',                 subKey: 'eng' },
+    eng_reading:    { lesson: 'Reading Comprehension',          subject: 'English',                 subKey: 'eng' },
+    sci_general:    { lesson: 'General Science',                subject: 'Integrated Science',      subKey: 'sci' },
+    sci_cells:      { lesson: 'Cells',                          subject: 'Integrated Science',      subKey: 'sci' },
+    sci_gravitation:{ lesson: 'Law of Universal Gravitation',   subject: 'Integrated Science',      subKey: 'sci' },
+    sci_physics:    { lesson: 'Physics',                        subject: 'Integrated Science',      subKey: 'sci' },
+    sci_newtonian:  { lesson: 'Newtonian Mechanics',            subject: 'Integrated Science',      subKey: 'sci' },
+    sci_optics:     { lesson: 'Optics',                         subject: 'Integrated Science',      subKey: 'sci' },
+    sci_wave:       { lesson: 'Wave, Motion and Acoustic',      subject: 'Integrated Science',      subKey: 'sci' },
+    sci_thermo:     { lesson: 'Thermodynamics and Heat',        subject: 'Integrated Science',      subKey: 'sci' },
+    sci_electro:    { lesson: 'Electromagnetism',               subject: 'Integrated Science',      subKey: 'sci' },
+    sci_chemistry:  { lesson: 'Chemistry',                      subject: 'Integrated Science',      subKey: 'sci' },
+    sci_analysis:   { lesson: 'Analysis and Application',       subject: 'Integrated Science',      subKey: 'sci' },
+    sci_knowledge:  { lesson: 'Comprehension and Knowledge',    subject: 'Integrated Science',      subKey: 'sci' },
+    math_basic:     { lesson: 'Basic Operations',               subject: 'Integrated Mathematics',  subKey: 'math' },
+    math_statistics:{ lesson: 'Statistics',                     subject: 'Integrated Mathematics',  subKey: 'math' },
+    math_algebra:   { lesson: 'Algebra',                        subject: 'Integrated Mathematics',  subKey: 'math' },
+    math_geometry:  { lesson: 'Geometry',                       subject: 'Integrated Mathematics',  subKey: 'math' },
+    math_trig:      { lesson: 'Trigonometry',                   subject: 'Integrated Mathematics',  subKey: 'math' },
+    math_verbal:    { lesson: 'Verbal Problem Analysis',        subject: 'Integrated Mathematics',  subKey: 'math' },
+    math_unitcircle:{ lesson: 'Unit Circle',                    subject: 'Integrated Mathematics',  subKey: 'math' },
+    fil_gamit:      { lesson: 'Wastong Gamit ng Salita',        subject: 'Filipino',                subKey: 'fil' },
+    fil_istruktura: { lesson: 'Istruktura ng Pangungusap',      subject: 'Filipino',                subKey: 'fil' },
+    fil_ugat:       { lesson: 'Pagtukoy sa Salitang Ugat',      subject: 'Filipino',                subKey: 'fil' },
+    fil_idyoma:     { lesson: 'Idyoma at Talasalitaan',         subject: 'Filipino',                subKey: 'fil' },
+    fil_pagsunod:   { lesson: 'Pagsusunod-sunod',               subject: 'Filipino',                subKey: 'fil' },
+    fil_unawa:      { lesson: 'Pag-unawa sa Binasa',            subject: 'Filipino',                subKey: 'fil' },
+    fil_kahulugan:  { lesson: 'Kasingkahulugan at Kasalungat',  subject: 'Filipino',                subKey: 'fil' },
+    abs_reasoning:  { lesson: 'Abstract Reasoning',             subject: 'Abstract Reasoning',      subKey: 'abs' },
+  };
+
+  function parseQuestions(raw) {
+    const blocks = raw.split(/\n\s*\n/).map(b => b.trim()).filter(b => b && !b.startsWith('#'));
+    const results = [];
+    const errors = [];
+
+    blocks.forEach(function(block, i) {
+      const lines = block.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+      const get = (prefix) => {
+        const line = lines.find(l => l.toUpperCase().startsWith(prefix.toUpperCase()));
+        return line ? line.slice(prefix.length).trim() : null;
+      };
+      const q = get('Q:');
+      const a = get('A:');
+      const b = get('B:');
+      const c = get('C:');
+      const d = get('D:');
+      const answerLetter = get('Answer:');
+
+      const missing = [];
+      if (!q) missing.push('Q');
+      if (!a) missing.push('A');
+      if (!b) missing.push('B');
+      if (!c) missing.push('C');
+      if (!d) missing.push('D');
+      if (!answerLetter) missing.push('Answer');
+
+      if (missing.length > 0) {
+        errors.push({ index: i + 1, msg: 'Missing: ' + missing.join(', ') });
+        results.push({ ok: false, index: i + 1, msg: 'Missing: ' + missing.join(', '), raw: block });
+        return;
+      }
+
+      const letterMap = { A: 0, B: 1, C: 2, D: 3 };
+      const answerIndex = letterMap[answerLetter.toUpperCase()];
+      if (answerIndex === undefined) {
+        errors.push({ index: i + 1, msg: 'Answer must be A, B, C, or D — got: ' + answerLetter });
+        results.push({ ok: false, index: i + 1, msg: 'Answer must be A, B, C, or D', raw: block });
+        return;
+      }
+
+      results.push({ ok: true, index: i + 1, q, o: [a, b, c, d], a: answerIndex });
+    });
+
+    return results;
+  }
+
+  window.previewQuestions = function() {
+    const raw = document.getElementById('questionsInput').value;
+    if (!raw.trim()) { alert('Please paste your questions first.'); return; }
+
+    const results = parseQuestions(raw);
+    const good = results.filter(r => r.ok);
+    const bad = results.filter(r => !r.ok);
+
+    document.getElementById('previewCount').textContent = good.length + ' valid, ' + bad.length + ' errors';
+    document.getElementById('previewCard').style.display = 'block';
+
+    let html = '<table class="preview-table"><thead><tr><th>#</th><th>Status</th><th>Question</th><th>Answer</th></tr></thead><tbody>';
+    results.forEach(function(r) {
+      if (r.ok) {
+        const letters = ['A', 'B', 'C', 'D'];
+        html += '<tr><td>' + r.index + '</td>'
+          + '<td><span class="badge ok">OK</span></td>'
+          + '<td>' + r.q + '</td>'
+          + '<td><strong>' + letters[r.a] + ':</strong> ' + r.o[r.a] + '</td></tr>';
+      } else {
+        html += '<tr><td>' + r.index + '</td>'
+          + '<td><span class="badge err">Error</span></td>'
+          + '<td colspan="2" style="color:#ff6b6b">' + r.msg + '</td></tr>';
+      }
+    });
+    html += '</tbody></table>';
+    document.getElementById('previewContent').innerHTML = html;
+
+    const uploadBtn = document.getElementById('uploadBtn');
+    uploadBtn.disabled = good.length === 0;
+    if (good.length > 0) {
+      uploadBtn.textContent = 'Upload ' + good.length + ' Questions to Firestore';
+    }
+  };
+
+  window.uploadQuestions = async function() {
+    const raw = document.getElementById('questionsInput').value;
+    const topicKey = document.getElementById('topicSelect').value;
+    const meta = TOPIC_META[topicKey];
+    const results = parseQuestions(raw);
+    const good = results.filter(r => r.ok).map(r => ({ q: r.q, o: r.o, a: r.a }));
+
+    if (good.length === 0) { alert('No valid questions to upload.'); return; }
+
+    document.getElementById('logCard').style.display = 'block';
+    const log = document.getElementById('logBox');
+    log.innerHTML = '';
+
+    const addLog = (msg, type) => {
+      const div = document.createElement('div');
+      div.className = type || 'info';
+      div.textContent = msg;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+    };
+
+    addLog('Starting upload for topic: ' + topicKey, 'info');
+
+    const user = auth.currentUser;
+    if (!user) {
+      addLog('ERROR: You must be signed in to upload. Open the main IskoPrep app, sign in, then come back here and try again.', 'err');
+      return;
+    }
+
+    addLog('Signed in as: ' + user.email, 'info');
+    addLog('Checking if topic document already exists...', 'info');
+
+    try {
+      const docRef = doc(db, 'questions', topicKey);
+      const existing = await getDoc(docRef);
+
+      let existingQuestions = [];
+      if (existing.exists() && existing.data().q) {
+        existingQuestions = existing.data().q;
+        addLog('Found existing document with ' + existingQuestions.length + ' question(s). Appending...', 'warn');
+      } else {
+        addLog('No existing document found. Creating new one.', 'info');
+      }
+
+      const merged = existingQuestions.concat(good);
+
+      addLog('Writing ' + good.length + ' new question(s) (total will be ' + merged.length + ')...', 'info');
+
+      await setDoc(docRef, {
+        lesson: meta.lesson,
+        subject: meta.subject,
+        subKey: meta.subKey,
+        timer: 60,
+        q: merged
+      });
+
+      addLog('SUCCESS! ' + good.length + ' question(s) uploaded to "' + topicKey + '".', 'ok');
+      addLog('Total questions in this topic: ' + merged.length, 'ok');
+      addLog('Done. You can close this page or upload more questions for another topic.', 'info');
+
+      document.getElementById('uploadBtn').disabled = true;
+      document.getElementById('uploadBtn').textContent = 'Uploaded!';
+
+    } catch (err) {
+      addLog('ERROR: ' + err.message, 'err');
+      if (err.code === 'permission-denied') {
+        addLog('Firestore blocked the write. Make sure your Firestore rules allow authenticated writes to the "questions" collection.', 'err');
+      }
+    }
+  };
+
+  onAuthStateChanged(auth, function(user) {
+    const btn = document.getElementById('uploadBtn');
+    if (!user) {
+      btn.title = 'Sign in to the main app first';
+    }
+  });
+</script>
+</body>
+</html>
