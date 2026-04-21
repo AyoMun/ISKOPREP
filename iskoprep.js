@@ -270,7 +270,7 @@ var QUESTIONS = {
 
 /* ---- MOCK EXAM QUESTIONS (40 total, 10 per subject) ---- */
 var MOCK_QUESTIONS = [];
-(function buildMock() {
+function buildMock() {
   function fromKey(key, subjectLabel, subKey) {
     return (QUESTIONS[key] ? QUESTIONS[key].q : []).map(function (q) {
       return Object.assign({}, q, { subject: subjectLabel, subKey: subKey });
@@ -310,7 +310,10 @@ var absPool = [].concat(
 ).slice(0, 10);
 
 MOCK_QUESTIONS = [].concat(mathPool, sciPool, engPool, filPool, absPool);
-})();
+}
+
+// Build the initial offline pool
+buildMock();
 
 /* ---- LEADERBOARD DATA ---- */
 /* FIREBASE: Replace this hardcoded array with a real-time Firestore listener:
@@ -2522,6 +2525,9 @@ window.addEventListener('DOMContentLoaded', function () {
                 qSnap.forEach(function (docSnap) {
                   QUESTIONS[docSnap.id] = docSnap.data();
                 });
+                
+                // UPDATE THE POOLS WITH FIREBASE QUESTIONS!
+                buildMock();
               })
               .catch(function (err) {
                 console.warn('Could not load questions from Firestore (using built-in questions):', err);
