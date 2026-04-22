@@ -1234,7 +1234,7 @@ function pageHome() {
     '<p style="color:#bbb;font-size:16px;margin-bottom:28px;line-height:1.6;">Have questions about IskoPrep? We\'re here to help you on your PLMAT journey.</p>' +
     '<div class="contact-row"><i class="fas fa-envelope"></i> support@iskoprep.com</div>' +
     '<div class="contact-row"><i class="fas fa-phone"></i> +63 912 345 6789</div>' +
-    '<div class="contact-row"><i class="fas fa-map-marker-alt"></i> Diliman, Quezon City, Philippines</div>' +
+    '<div class="contact-row"><i class="fas fa-map-marker-alt"></i> Intramuros, Manila City, Philippines</div>' +
     '<div class="contact-row"><i class="fas fa-paper-plane"></i> Send us your feedback anytime!</div>' +
     '<h3 class="bng" style="color:var(--gold);font-size:22px;margin:24px 0 14px;"><i class="fas fa-share-nodes"></i> FOLLOW US</h3>' +
     '<div class="social-row">' +
